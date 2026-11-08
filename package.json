@@ -1,0 +1,25 @@
+{
+  "name": "nocturne-restaurant",
+  "version": "1.0.0",
+  "description": "NOCTURNE Fine Dining Restaurant Website - Level 48",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "frontend": "node server.js",
+    "dev": "node server.js",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:build": "docker compose up -d --build",
+    "docker:logs": "docker compose logs -f",
+    "open": "start http://localhost:3000/"
+  },
+  "keywords": [
+    "fine-dining",
+    "restaurant",
+    "nocturne",
+    "tasting-menu",
+    "docker"
+  ],
+  "author": "",
+  "license": "ISC"
+}

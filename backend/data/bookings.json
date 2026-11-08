@@ -1,0 +1,35 @@
+[
+  {
+    "id": "BK-075132",
+    "name": "Nguyen Thu Huong",
+    "phone": "0901234567",
+    "email": "",
+    "date": "2026-11-10",
+    "time": "19:30",
+    "guests": 2,
+    "space": "Bàn cửa sổ view thành phố",
+    "preference": "Tiêu chuẩn Bếp trưởng",
+    "wine": "Wine Pairing 6 ly chọn lọc",
+    "note": "Di ung nam",
+    "deposit": 1000000,
+    "status": "Chờ xác nhận Concierge",
+    "createdAt": "2026-11-04T03:47:55.132Z"
+  },
+  {
+    "id": "BK-20261107-001",
+    "name": "Trần Minh Hoàng",
+    "phone": "0912345678",
+    "email": "hoang.tran@gmail.com",
+    "date": "2026-11-07",
+    "time": "19:30",
+    "guests": 8,
+    "tier": "8 Khách (14 Món The Obsidian Vault)",
+    "space": "The Obsidian Vault",
+    "preference": "Tiêu chuẩn Bếp trưởng (Cân bằng Wagyu & Hải sản)",
+    "wine": "Wine Pairing 6 ly chọn lọc",
+    "note": "Kỷ niệm 10 năm ngày cưới, dị ứng tôm cua vỏ cứng",
+    "deposit": 4000000,
+    "status": "Đã xác nhận",
+    "createdAt": "2026-11-03T20:00:00.000Z"
+  }
+]

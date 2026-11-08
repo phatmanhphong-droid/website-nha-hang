@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOCTURNE · Đặt Bàn & Tùy Biến Thực Đơn Tầng 48</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Be+Vietnam+Pro:wght@200;300;400;500;600;700&display=swap');
+    @import url("https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css");
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #root {
+      display: contents;
+    }
+
+    .font-display {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    .font-body {
+      font-family: 'Be Vietnam Pro', 'Helvetica Neue', sans-serif;
+    }
+
+    .tnum {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .chamfer {
+      clip-path: polygon(26px 0, 100% 0, 100% 100%, 0 100%, 0 26px);
+    }
+
+    .no-bar {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .no-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .plate input[type="date"]::-webkit-calendar-picker-indicator {
+      opacity: .55;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body class="bg-[#1a1a1a] text-white selection:bg-[#F8D127] selection:text-[#1D1312]">
+  <div id="root">
+    <div class="font-body bg-[#1a1a1a] text-white">
+      <!-- HEADER CHUẨN ĐỒNG BỘ ĐIỀU HƯỚNG TỪNG TRANG RIÊNG BIỆT -->
+      <header class="sticky top-0 z-50 border-b border-[#F8D127]/25 bg-[#1D1312]/90 backdrop-blur-xl">
+        <div class="mx-auto flex h-[78px] w-full max-w-[1440px] items-center justify-between px-[64px]">
+          <a class="flex items-baseline gap-3" href="/">
+            <span class="font-display text-[25px] leading-none tracking-[0.24em] text-[#F8D127]">NOCTURNE</span>
+            <span class="text-[9px] uppercase tracking-[0.3em] text-white/40">Tầng 48 · Quận 1</span>
+          </a>
+          <nav class="flex items-center gap-9 text-[11px] uppercase tracking-[0.18em]">
+            <a class="text-white/65 hover:text-[#F8D127] transition" href="/">Trang chủ</a>
+            <a class="text-white/65 hover:text-[#F8D127] transition" href="/thuc-don.html">Thực đơn</a>
+            <a class="text-white/65 hover:text-[#F8D127] transition" href="/bep-truong.html">Bếp trưởng</a>
+            <a class="text-[#F8D127] border-b border-[#F8D127] pb-1.5" href="/dat-ban.html">Đặt bàn</a>
+            <a class="text-white/65 hover:text-[#F8D127] transition" href="/lien-he.html">Liên hệ</a>
+          </nav>
+          <div class="flex items-center gap-7">
+            <a class="tnum text-[13px] font-light tracking-[0.04em] text-white/65 hover:text-[#F8D127] transition"
+              href="tel:0988888999">0988 888 999</a>
+            <a class="bg-[#F8D127] px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.2em] text-[#1D1312] transition hover:bg-white"
+              href="/dat-ban.html">Đặt bàn</a>
+          </div>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="border-b border-white/10 pb-[60px] pt-[80px]">
+          <div class="mx-auto grid w-full max-w-[1440px] grid-cols-[1fr_380px] items-end gap-[80px] px-[64px]">
+            <div>
+              <div class="mb-6 h-px w-[104px] bg-[#F8D127]"></div>
+              <h1 class="font-display text-[64px] leading-[1.04] text-white">Đặt bàn & Tùy chọn thực đơn</h1>
+              <p class="mt-4 max-w-[500px] text-[16px] font-light leading-[1.85] text-white/60">
+                Thực đơn được chuẩn bị chính xác theo số lượng khách đã chọn: <strong
+                  class="text-[#F8D127] font-medium">2 khách (12 món)</strong>, <strong
+                  class="text-[#F8D127] font-medium">8 khách (14 món Vault)</strong> hoặc <strong
+                  class="text-[#F8D127] font-medium">16+ khách (16 món Bespoke)</strong>.
+              </p>
+            </div>
+            <div class="border-t border-white/12">
+              <div class="flex items-baseline justify-between border-b border-white/10 py-3.5">
+                <span class="text-[10px] uppercase tracking-[0.22em] text-white/40">Giờ nhận khách</span>
+                <span class="tnum text-[15px] text-white/85">17:30 – 22:00</span>
+              </div>
+              <div class="flex items-baseline justify-between border-b border-white/10 py-3.5">
+                <span class="text-[10px] uppercase tracking-[0.22em] text-white/40">Sức chứa tối đa</span>
+                <span class="tnum text-[15px] text-white/85">24 chỗ / đêm</span>
+              </div>
+              <div class="flex items-baseline justify-between py-3.5">
+                <span class="text-[10px] uppercase tracking-[0.22em] text-white/40">Quy chuẩn món</span>
+                <span class="tnum text-[15px] text-[#F8D127]">Tùy biến theo số khách</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="py-[80px]" id="dat-ban">
+          <div class="mx-auto grid w-full max-w-[1440px] grid-cols-[1fr_440px] items-start gap-[80px] px-[64px]">
+
+            <!-- FORM ĐẶT BÀN -->
+            <form class="w-full" id="booking-form" onsubmit="return false">
+
+              <!-- NGÀY -->
+              <div class="grid grid-cols-[150px_1fr] items-start gap-8 border-t border-white/12 py-7">
+                <label class="pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40" for="rv-date">Ngày
+                  đặt</label>
+                <div>
+                  <input
+                    class="tnum w-full border-b border-white/25 bg-transparent pb-3 text-[18px] text-white outline-none [color-scheme:dark] focus:border-[#F8D127]"
+                    id="rv-date" type="date" value="2026-11-07" />
+                </div>
+              </div>
+
+              <!-- GIỜ -->
+              <div class="grid grid-cols-[150px_1fr] items-start gap-8 border-t border-white/10 py-7">
+                <div class="pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40">Giờ nhận bàn</div>
+                <div>
+                  <div aria-label="Giờ đặt bàn" class="grid grid-cols-5 gap-2" id="rv-times" role="group">
+                    <button
+                      class="slot tnum border border-white/20 py-3.5 text-[13px] text-white/70 transition-colors hover:border-white/45"
+                      data-time="17:30" type="button">17:30</button>
+                    <button
+                      class="slot tnum border border-white/20 py-3.5 text-[13px] text-white/70 transition-colors hover:border-white/45"
+                      data-time="18:00" type="button">18:00</button>
+                    <button
+                      class="slot tnum border border-white/20 py-3.5 text-[13px] text-white/70 transition-colors hover:border-white/45"
+                      data-time="19:00" type="button">19:00</button>
+                    <button
+                      class="slot tnum border border-white/20 py-3.5 text-[13px] text-white/70 transition-colors hover:border-white/45"
+                      data-time="19:30" type="button">19:30</button>
+                    <button
+                      class="slot tnum border border-white/20 py-3.5 text-[13px] text-white/70 transition-colors hover:border-white/45"
+                      data-time="21:00" type="button">21:00</button>
+                  </div>
+                  <p class="mt-3 text-[12px] leading-[1.6] text-white/35">Thực đơn nếm kéo dài khoảng 2 giờ 30 phút.</p>
+                </div>
+              </div>
+
+              <!-- SỐ LƯỢNG KHÁCH (NÓI RÕ SỐ MÓN THEO KHÁCH) -->
+              <div class="grid grid-cols-[150px_1fr] items-start gap-8 border-t border-white/10 py-7">
+                <div class="pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40">Số khách</div>
+                <div>
+                  <div aria-label="Số khách" class="grid grid-cols-4 gap-2" id="rv-guests" role="group">
+                    <button
+                      class="guest tnum border border-white/20 py-3.5 text-center transition-colors hover:border-white/45"
+                      data-guests="2" data-tier="2" type="button">
+                      <span class="block text-[14px]">2 khách</span>
+                      <span class="block text-[10px] text-white/40 mt-0.5">12 món tinh hoa</span>
+                    </button>
+                    <button
+                      class="guest tnum border border-white/20 py-3.5 text-center transition-colors hover:border-white/45"
+                      data-guests="4" data-tier="4" type="button">
+                      <span class="block text-[14px]">4–6 khách</span>
+                      <span class="block text-[10px] text-white/40 mt-0.5">12 món salon</span>
+                    </button>
+                    <button
+                      class="guest tnum border border-white/20 py-3.5 text-center transition-colors hover:border-white/45"
+                      data-guests="8" data-tier="8" type="button">
+                      <span class="block text-[14px]">8 khách</span>
+                      <span class="block text-[10px] text-[#F8D127] mt-0.5">14 món Vault VIP</span>
+                    </button>
+                    <button
+                      class="guest tnum border border-white/20 py-3.5 text-center transition-colors hover:border-white/45"
+                      data-guests="16" data-tier="16" type="button">
+                      <span class="block text-[14px]">16+ khách</span>
+                      <span class="block text-[10px] text-[#F8D127] mt-0.5">16 món Bespoke</span>
+                    </button>
+                  </div>
+                  <div id="guest-tier-tip"
+                    class="mt-3.5 flex items-center gap-2 border border-[#F8D127]/25 bg-[#F8D127]/10 px-4 py-2.5 text-[12px] text-[#F8D127]">
+                    <i class="ph ph-info"></i>
+                    <span id="guest-tier-tip-text">Bàn 2 khách được phục vụ Thực đơn 12 món nếm thử tinh hoa
+                      (2.850.000₫/khách).</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TÙY CHỈNH THỰC ĐƠN & PHONG CÁCH -->
+              <div class="grid grid-cols-[150px_1fr] items-start gap-8 border-t border-white/10 py-7">
+                <div class="pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40">Tùy biến thực đơn</div>
+                <div class="space-y-4">
+                  <div>
+                    <label class="block text-[11px] uppercase tracking-[0.16em] text-white/50 mb-2">Phong cách ẩm
+                      thực</label>
+                    <select id="rv-pref-select"
+                      class="w-full border border-white/20 bg-[#1D1312] px-4 py-3 text-[14px] text-white outline-none focus:border-[#F8D127]">
+                      <option value="Tiêu chuẩn Bếp trưởng (Cân bằng Wagyu & Hải sản)">Tiêu chuẩn Bếp trưởng (Cân bằng
+                        Wagyu & Hải sản)</option>
+                      <option value="Thiên về Bò Wagyu A5 Miyazaki nướng than">Thiên về Bò Wagyu A5 Miyazaki nướng than
+                      </option>
+                      <option value="Thiên về Hải sản sâu & Tôm hùm Caviar">Thiên về Hải sản sâu & Tôm hùm Caviar
+                      </option>
+                      <option value="Thực đơn Chay Cao Cấp nướng than (Haute Cuisine)">Thực đơn Chay Cao Cấp nướng than
+                        (Haute Cuisine)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-[11px] uppercase tracking-[0.16em] text-white/50 mb-2">Gói rượu vang / Thức
+                      uống đi kèm</label>
+                    <select id="rv-wine-select"
+                      class="w-full border border-white/20 bg-[#1D1312] px-4 py-3 text-[14px] text-white outline-none focus:border-[#F8D127]">
+                      <option value="Không kèm rượu (Gọi lẻ theo chai)">Không kèm rượu (Gọi lẻ theo chai tại nhà hàng)
+                      </option>
+                      <option value="Wine Pairing 6 ly chọn lọc (+1.250.000₫/khách)" selected>Wine Pairing 6 ly chọn lọc
+                        (+1.250.000₫/khách)</option>
+                      <option value="Grand Cru Reserve 8 ly (+2.400.000₫/khách)">Grand Cru Reserve 8 ly thượng hạng
+                        (+2.400.000₫/khách)</option>
+                      <option value="Pairing Trà & Mocktail (+650.000₫/khách)">Pairing Trà thảo mộc & Mocktail trái cây
+                        (+650.000₫/khách)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- KHÔNG GIAN BÀN TIỆC -->
+              <div class="grid grid-cols-[150px_1fr] items-start gap-8 border-t border-white/10 py-7">
+                <div class="pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40">Không gian</div>
+                <div>
+                  <div aria-label="Không gian" class="grid grid-cols-2 gap-3" id="rv-space" role="group">
+                    <button
+                      class="space-opt border border-white/15 px-5 py-4 text-left transition hover:border-white/35"
+                      data-seats="2 khách" data-space="Quầy bar bếp lửa" type="button">
+                      <span class="block text-[14px] text-white/85">Quầy bar bếp lửa</span>
+                      <span class="mt-1 block text-[11px] text-white/40">2 khách · nhìn thẳng bếp than</span>
+                    </button>
+                    <button
+                      class="space-opt border border-white/15 px-5 py-4 text-left transition hover:border-white/35"
+                      data-seats="2–4 khách" data-space="Bàn cửa sổ view thành phố" type="button">
+                      <span class="block text-[14px] text-white/85">Bàn cửa sổ view thành phố</span>
+                      <span class="mt-1 block text-[11px] text-white/40">2–4 khách · cửa kính toàn cảnh</span>
+                    </button>
+                    <button
+                      class="space-opt border border-white/15 px-5 py-4 text-left transition hover:border-white/35"
+                      data-seats="4–6 khách" data-space="Sofa lounge" type="button">
+                      <span class="block text-[14px] text-white/85">Sofa lounge</span>
+                      <span class="mt-1 block text-[11px] text-white/40">4–6 khách · góc riêng tĩnh lặng</span>
+                    </button>
+                    <button
+                      class="space-opt border border-white/15 px-5 py-4 text-left transition hover:border-white/35"
+                      data-seats="8–12 khách" data-space="The Obsidian Vault" type="button">
+                      <span class="block text-[14px] text-white/85">The Obsidian Vault</span>
+                      <span class="mt-1 block text-[11px] text-white/40">8–12 khách · phòng riêng, phục vụ riêng</span>
+                    </button>
+                    <button
+                      class="space-opt col-span-2 border border-white/15 px-5 py-4 text-left transition hover:border-white/35"
+                      data-seats="12–24 khách" data-space="Penthouse Grand Salon" type="button">
+                      <span class="block text-[14px] text-white/85">Penthouse Grand Salon (Bao trọn tầng 48)</span>
+                      <span class="mt-1 block text-[11px] text-white/40">12–24 khách · đại yến tiệc, quầy bar & acoustic
+                        riêng</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- HỌ VÀ TÊN -->
+              <div class="grid grid-cols-[150px_1fr] items-start gap-8 border-t border-white/10 py-7">
+                <label class="pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40" for="rv-name">Họ và
+                  tên</label>
+                <div>
+                  <input
+                    class="w-full border-b border-white/25 bg-transparent pb-3 text-[18px] text-white outline-none placeholder:text-white/25 focus:border-[#F8D127]"
+                    id="rv-name" placeholder="Nguyễn Văn A" type="text" />
+                </div>
+              </div>
+
+              <!-- SỐ ĐIỆN THOẠI -->
+              <div class="grid grid-cols-[150px_1fr] items-start gap-8 border-t border-white/10 py-7">
+                <label class="pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40" for="rv-phone">Số điện
+                  thoại</label>
+                <div>
+                  <input
+                    class="tnum w-full border-b border-white/25 bg-transparent pb-3 text-[18px] text-white outline-none placeholder:text-white/25 focus:border-[#F8D127]"
+                    id="rv-phone" placeholder="0988 888 999" type="tel" />
+                </div>
+              </div>
+
+              <!-- GHI CHÚ DỊ ỨNG & YÊU CẦU ĐẶC BIỆT -->
+              <div class="grid grid-cols-[150px_1fr] items-start gap-8 border-y border-white/10 py-7">
+                <label class="pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40" for="rv-note">Ghi chú khẩu
+                  vị &amp; Dị ứng</label>
+                <div>
+                  <textarea
+                    class="h-[84px] w-full resize-none border-b border-white/25 bg-transparent pb-3 text-[15px] leading-[1.7] text-white outline-none placeholder:text-white/25 focus:border-[#F8D127]"
+                    id="rv-note"
+                    placeholder="Ví dụ: Dị ứng hải sản vỏ cứng / Dị ứng hạt / Ăn kiêng / Sinh nhật, kỷ niệm ngày cưới..."></textarea>
+
+                  <!-- KHỐI LƯU Ý DỊ ỨNG NỔI BẬT THEO YÊU CẦU -->
+                  <div class="mt-4 border border-[#F8D127]/40 bg-[#F8D127]/10 p-5 chamfer">
+                    <div class="flex items-start gap-3.5">
+                      <i class="ph ph-warning-circle text-[22px] text-[#F8D127] shrink-0 mt-0.5"></i>
+                      <div class="text-[13px] leading-[1.8] text-white/85">
+                        <strong class="text-[#F8D127] font-semibold uppercase tracking-[0.08em]">Lưu ý quan trọng về Dị
+                          ứng &amp; Chế độ ăn uống:</strong><br>
+                        Nếu quý khách hoặc người đi cùng có bất kỳ <span class="text-[#F8D127] font-medium">tiền sử dị
+                          ứng thực phẩm</span> nào (như dị ứng hải sản có vỏ, các loại hạt, gluten, lactose, trứng,
+                        nấm...), hoặc chế độ ăn kiêng riêng (chay thuần, phụ nữ mang thai, không dùng rượu vang...),
+                        <strong class="text-white font-medium underline decoration-[#F8D127]">xin vui lòng ghi rõ vào ô
+                          ghi chú phía trên hoặc thông báo trực tiếp cho nhà hàng trước 24 giờ</strong>.<br>
+                        Bếp trưởng Kenjiro Nguyễn và đội ngũ bếp sẽ chuẩn bị riêng nguyên liệu thay thế đồng cấp, đảm
+                        bảo an toàn tuyệt đối và trọn vẹn hương vị mỹ vị cho quý khách.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SUBMIT BUTTON -->
+              <button
+                class="mt-9 flex w-full items-center justify-between bg-[#F8D127] px-9 py-5 text-[12px] font-medium uppercase tracking-[0.22em] text-[#1D1312] hover:bg-white transition"
+                type="submit">
+                <span>Xác nhận gửi yêu cầu đặt bàn</span>
+                <i class="ph ph-arrow-right text-[16px]"></i>
+              </button>
+              <p class="mt-4 flex items-center gap-2.5 text-[12px] text-white/40">
+                <i class="ph ph-phone text-[14px] text-[#F8D127]"></i>
+                Concierge sẽ gọi xác nhận trong 30 phút. Đặt cọc 500.000₫/khách để giữ nguyên liệu trong ngày.
+              </p>
+            </form>
+
+            <!-- TẤM TÓM TẮT ĐẶT BÀN & THỰC ĐƠN (SUMMARY CARD) -->
+            <aside class="sticky top-[100px]">
+              <div class="plate bg-[#F8D127] p-[10px] chamfer">
+                <div class="border border-[#1D1312]/25 px-8 py-7 text-[#1D1312]">
+                  <div class="flex items-baseline justify-between border-b border-[#1D1312]/30 pb-4">
+                    <span class="text-[10px] uppercase tracking-[0.24em] text-[#1D1312]/60">Tóm tắt đặt bàn</span>
+                    <span class="font-display text-[14px] font-bold tracking-[0.2em]">NOCTURNE</span>
+                  </div>
+
+                  <div class="space-y-3 pt-5 text-[14px]">
+                    <div class="flex items-baseline justify-between py-1 border-b border-[#1D1312]/15">
+                      <span class="text-[10px] uppercase tracking-[0.2em] text-[#1D1312]/60">Ngày</span>
+                      <span class="tnum font-medium text-[#1D1312]" id="sum-date">Thứ Bảy, 07/11/2026</span>
+                    </div>
+                    <div class="flex items-baseline justify-between py-1 border-b border-[#1D1312]/15">
+                      <span class="text-[10px] uppercase tracking-[0.2em] text-[#1D1312]/60">Giờ tiệc</span>
+                      <span class="tnum font-medium text-[#1D1312]" id="sum-time">19:30</span>
+                    </div>
+                    <div class="flex items-baseline justify-between py-1 border-b border-[#1D1312]/15">
+                      <span class="text-[10px] uppercase tracking-[0.2em] text-[#1D1312]/60">Số khách</span>
+                      <span class="tnum font-medium text-[#1D1312]" id="sum-guests">2 khách</span>
+                    </div>
+                    <div class="flex items-baseline justify-between py-1 border-b border-[#1D1312]/15">
+                      <span class="text-[10px] uppercase tracking-[0.2em] text-[#1D1312]/60">Không gian</span>
+                      <span class="text-right font-medium text-[#1D1312]" id="sum-space">Bàn cửa sổ view thành
+                        phố</span>
+                    </div>
+                    <div class="py-2 border-b border-[#1D1312]/15">
+                      <span class="block text-[10px] uppercase tracking-[0.2em] text-[#1D1312]/60 mb-1">Thực đơn quy
+                        chuẩn</span>
+                      <span class="block font-bold text-[14px] text-[#941E21]" id="sum-menu-course">Thực đơn 12 món nếm
+                        thử tinh hoa</span>
+                      <span class="block text-[12px] text-[#1D1312]/70 mt-0.5" id="sum-menu-rate">2.850.000₫ /
+                        khách</span>
+                    </div>
+                    <div class="py-1 border-b border-[#1D1312]/15">
+                      <span class="block text-[10px] uppercase tracking-[0.2em] text-[#1D1312]/60 mb-0.5">Khẩu vị tùy
+                        chỉnh</span>
+                      <span class="block text-[13px] font-medium text-[#1D1312]" id="sum-pref">Tiêu chuẩn Bếp
+                        trưởng</span>
+                    </div>
+                    <div class="py-1">
+                      <span class="block text-[10px] uppercase tracking-[0.2em] text-[#1D1312]/60 mb-0.5">Thức uống
+                        pairing</span>
+                      <span class="block text-[13px] font-medium text-[#1D1312]" id="sum-wine">Wine Pairing 6 ly chọn
+                        lọc</span>
+                    </div>
+                    <div class="py-1.5 border-t border-[#1D1312]/15">
+                      <span class="block text-[10px] uppercase tracking-[0.2em] text-[#941E21] font-semibold mb-0.5">Lưu
+                        ý dị ứng &amp; Khẩu vị</span>
+                      <span class="block text-[12px] italic text-[#1D1312]/85" id="sum-note-text">Chưa ghi nhận dị ứng
+                        (Báo trước 24h)</span>
+                    </div>
+                  </div>
+
+                  <!-- TIỀN CỌC GIỮ BÀN -->
+                  <div class="mt-5 border-t border-[#1D1312]/30 pt-4">
+                    <div class="flex items-end justify-between">
+                      <div>
+                        <div class="text-[10px] uppercase tracking-[0.2em] text-[#1D1312]/60">Cọc giữ bàn (500k/k)</div>
+                        <div class="text-[11px] text-[#1D1312]/60 mt-0.5">Hoàn 100% nếu hủy trước 24h</div>
+                      </div>
+                      <div class="tnum font-display text-[26px] font-bold text-[#1D1312]" id="sum-deposit">1.000.000₫
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mt-5 border-t border-[#1D1312]/20 pt-4 text-center">
+                    <a class="text-[12px] font-medium border-b border-[#1D1312]/40 pb-0.5 hover:text-[#941E21]"
+                      href="/thuc-don.html">
+                      ← Xem chi tiết từng món ăn trong menu
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+          </div>
+        </section>
+
+        <!-- TERMS SECTION -->
+        <section class="bg-[#941E21] py-[80px]">
+          <div class="mx-auto grid w-full max-w-[1440px] grid-cols-[320px_1fr] items-start gap-[80px] px-[64px]">
+            <div>
+              <h2 class="font-display text-[42px] leading-[1.15] text-[#FFED3E]">Điều kiện đặt tiệc</h2>
+              <p class="mt-6 text-[15px] leading-[1.85] text-white/85">
+                Mọi chi tiết hỗ trợ riêng hoặc tiệc sự kiện doanh nghiệp, vui lòng liên hệ trực tiếp concierge qua
+                hotline <a class="tnum border-b border-[#FFED3E]/50 pb-0.5 text-[#FFED3E]" href="tel:0988888999">0988
+                  888 999</a>.
+              </p>
+            </div>
+            <div class="border-t border-[#FFED3E]/25">
+              <div class="grid grid-cols-[190px_1fr] gap-8 border-b border-[#FFED3E]/20 py-5">
+                <div class="text-[11px] uppercase tracking-[0.2em] text-[#FFED3E]/70">Giữ bàn</div>
+                <div class="text-[15px] leading-[1.7] text-white/90">Tối đa 15 phút kể từ giờ hẹn nhận bàn để đảm bảo độ
+                  giòn và nhiệt độ món khai vị.</div>
+              </div>
+              <div class="grid grid-cols-[190px_1fr] gap-8 border-b border-[#FFED3E]/20 py-5">
+                <div class="text-[11px] uppercase tracking-[0.2em] text-[#FFED3E]/70">Quy chuẩn nhóm lớn</div>
+                <div class="text-[15px] leading-[1.7] text-white/90">Bàn 8 khách mặc định ưu tiên tại phòng VIP The
+                  Obsidian Vault. Nhóm từ 16 khách được tư vấn thực đơn Bespoke thiết kế riêng.</div>
+              </div>
+              <div class="grid grid-cols-[190px_1fr] gap-8 border-b border-[#FFED3E]/20 py-5">
+                <div class="text-[11px] uppercase tracking-[0.2em] text-[#FFED3E]/70">Trang phục</div>
+                <div class="text-[15px] leading-[1.7] text-white/90">Smart Elegant (Áo có cổ, quần dài, giày kín mũi).
+                  Không mang dép lê hoặc trang phục thể thao.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- FOOTER ĐỒNG BỘ MỤC LỤC TRANG -->
+      <footer class="border-t border-white/12 bg-[#1D1312]" id="thong-tin">
+        <div class="mx-auto grid w-full max-w-[1440px] grid-cols-[1.6fr_1fr_1fr] gap-16 px-[64px] py-16">
+          <div>
+            <div class="font-display text-[30px] tracking-[0.22em] text-[#F8D127]">NOCTURNE</div>
+            <p class="mt-5 max-w-[320px] text-[13px] leading-[1.8] text-white/45">Nhà hàng nếm thực đơn trên tầng 48.
+              Nhận bàn từ 17:30, mỗi tối tối đa 24 khách.</p>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.24em] text-white/35">Mục lục trang</div>
+            <ul class="mt-5 space-y-3 text-[14px] text-white/70">
+              <li><a class="hover:text-[#F8D127]" href="/">Trang chủ</a></li>
+              <li><a class="hover:text-[#F8D127]" href="/thuc-don.html">Thực đơn nếm</a></li>
+              <li><a class="hover:text-[#F8D127]" href="/bep-truong.html">Bếp trưởng</a></li>
+              <li><a class="hover:text-[#F8D127]" href="/dat-ban.html">Đặt bàn trực tuyến</a></li>
+              <li><a class="hover:text-[#F8D127]" href="/lien-he.html">Thông tin liên hệ</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.24em] text-white/35">Liên hệ trực tiếp</div>
+            <div class="mt-5 space-y-3 text-[14px] leading-[1.7] text-white/70">
+              <div>Tầng 48, Lê Duẩn, Quận 1, TP. Hồ Chí Minh</div>
+              <div class="tnum font-medium text-[#F8D127]">0988 888 999</div>
+              <div class="tnum text-white/50">reserve@nocturne.vn</div>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-white/10">
+          <div
+            class="mx-auto flex w-full max-w-[1440px] items-center justify-between px-[64px] py-6 text-[11px] tracking-[0.06em] text-white/30">
+            <span>© 2026 NOCTURNE</span>
+            <span class="tnum">17:30 – 01:00 · Tầng 48, Quận 1</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- SCRIPT QUẢN LÝ ĐẶT BÀN & ĐỒNG BỘ THỰC ĐƠN THEO SỐ KHÁCH -->
+  <script>
+    (function () {
+      var fmt = new Intl.NumberFormat('vi-VN');
+      var vnd = function (n) { return fmt.format(n) + '₫'; };
+      var depositPerGuest = 500000;
+
+      var sumDate = document.getElementById('sum-date');
+      var sumTime = document.getElementById('sum-time');
+      var sumGuests = document.getElementById('sum-guests');
+      var sumSpace = document.getElementById('sum-space');
+      var sumDeposit = document.getElementById('sum-deposit');
+      var sumMenuCourse = document.getElementById('sum-menu-course');
+      var sumMenuRate = document.getElementById('sum-menu-rate');
+      var sumPref = document.getElementById('sum-pref');
+      var sumWine = document.getElementById('sum-wine');
+      var guestTierTipText = document.getElementById('guest-tier-tip-text');
+
+      var dateInput = document.getElementById('rv-date');
+      var prefSelect = document.getElementById('rv-pref-select');
+      var wineSelect = document.getElementById('rv-wine-select');
+
+      var state = {
+        time: '19:30',
+        guests: 2,
+        space: 'Bàn cửa sổ view thành phố',
+        pref: 'Tiêu chuẩn Bếp trưởng',
+        wine: 'Wine Pairing 6 ly chọn lọc'
+      };
+
+      function updateMenuByGuests(guests) {
+        if (guests === 2) {
+          sumMenuCourse.textContent = 'Thực đơn 12 món nếm thử tinh hoa';
+          sumMenuRate.textContent = '2.850.000₫ / khách (Khẩu phần đôi cá nhân)';
+          guestTierTipText.textContent = 'Bàn 2 khách được phục vụ Thực đơn 12 món nếm thử tinh hoa (2.850.000₫/khách).';
+        } else if (guests >= 4 && guests < 8) {
+          sumMenuCourse.textContent = 'Thực đơn 12 món nếm thử Salon cao cấp';
+          sumMenuRate.textContent = '2.850.000₫ / khách (Phục vụ đồng thời tại bàn)';
+          guestTierTipText.textContent = 'Bàn 4–6 khách được phục vụ Thực đơn 12 món tiêu chuẩn Salon (2.850.000₫/khách).';
+        } else if (guests >= 8 && guests < 16) {
+          sumMenuCourse.textContent = 'Thực đơn 14 món The Obsidian Vault';
+          sumMenuRate.textContent = '3.450.000₫ / khách (12 món Signature + 2 Thớt Wagyu & Cua Hoàng Đế)';
+          guestTierTipText.textContent = 'Bàn 8 khách nhận đặc quyền Thực đơn 14 món & phục vụ riêng tại phòng The Obsidian Vault.';
+        } else {
+          sumMenuCourse.textContent = 'Đại yến 16 món Hoàng gia Bespoke';
+          sumMenuRate.textContent = '4.200.000₫ / khách (Thiết kế độc bản 100% · Bao trọn tầng 48)';
+          guestTierTipText.textContent = 'Đại tiệc 16+ khách: Thực đơn 16 món ẩm thực đỉnh cao do Bếp trưởng Kenjiro thiết kế riêng.';
+        }
+      }
+
+      function paint() {
+        if (sumTime) sumTime.textContent = state.time;
+        if (sumGuests) sumGuests.textContent = state.guests >= 16 ? '16+ khách' : (state.guests >= 8 ? state.guests + ' khách (VIP)' : state.guests + ' khách');
+        if (sumSpace) sumSpace.textContent = state.space;
+        if (sumDeposit) sumDeposit.textContent = vnd(state.guests * depositPerGuest);
+        if (sumPref) sumPref.textContent = state.pref;
+        if (sumWine) sumWine.textContent = state.wine.split('(')[0].trim();
+        updateMenuByGuests(state.guests);
+      }
+
+      function paintDateFrom(value) {
+        if (!value || !sumDate) return;
+        var parts = value.split('-');
+        var d = new Date(value + 'T12:00:00');
+        var names = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
+        sumDate.textContent = names[d.getDay()] + ', ' + parts[2] + '/' + parts[1] + '/' + parts[0];
+      }
+
+      function selectInGroup(nodes, active) {
+        nodes.forEach(function (node) {
+          var on = node === active;
+          node.classList.toggle('bg-[#F8D127]', on);
+          node.classList.toggle('border-[#F8D127]', on);
+          node.classList.toggle('text-[#1D1312]', on);
+          node.classList.toggle('font-medium', on);
+          node.classList.toggle('text-white/70', !on);
+        });
+      }
+
+      var slots = Array.prototype.slice.call(document.querySelectorAll('.slot'));
+      var guestBtns = Array.prototype.slice.call(document.querySelectorAll('.guest'));
+      var spaceBtns = Array.prototype.slice.call(document.querySelectorAll('.space-opt'));
+
+      slots.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.time = btn.getAttribute('data-time');
+          selectInGroup(slots, btn);
+          paint();
+        });
+      });
+
+      guestBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var g = parseInt(btn.getAttribute('data-guests'), 10);
+          state.guests = g;
+          selectInGroup(guestBtns, btn);
+
+          // Auto suggest space based on guest count
+          if (g === 2 && spaceBtns[1]) {
+            spaceBtns[1].click();
+          } else if (g === 4 && spaceBtns[2]) {
+            spaceBtns[2].click();
+          } else if (g === 8 && spaceBtns[3]) {
+            spaceBtns[3].click();
+          } else if (g >= 16 && spaceBtns[4]) {
+            spaceBtns[4].click();
+          }
+
+          paint();
+        });
+      });
+
+      spaceBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var name = btn.getAttribute('data-space');
+          state.space = name;
+          spaceBtns.forEach(function (node) {
+            var on = node === btn;
+            node.classList.toggle('border-[#F8D127]', on);
+            node.classList.toggle('bg-[#F8D127]/10', on);
+            node.classList.toggle('border-white/15', !on);
+            var title = node.querySelector('span');
+            if (title) {
+              title.classList.toggle('text-[#F8D127]', on);
+              title.classList.toggle('text-white/85', !on);
+            }
+          });
+          paint();
+        });
+      });
+
+      if (prefSelect) {
+        prefSelect.addEventListener('change', function () {
+          state.pref = prefSelect.value;
+          paint();
+        });
+      }
+
+      if (wineSelect) {
+        wineSelect.addEventListener('change', function () {
+          state.wine = wineSelect.value;
+          paint();
+        });
+      }
+
+      if (dateInput) {
+        paintDateFrom(dateInput.value);
+        dateInput.addEventListener('change', function () { paintDateFrom(dateInput.value); });
+      }
+
+      var noteInput = document.getElementById('rv-note');
+      var sumNoteText = document.getElementById('sum-note-text');
+      if (noteInput && sumNoteText) {
+        noteInput.addEventListener('input', function () {
+          if (noteInput.value.trim().length > 0) {
+            sumNoteText.textContent = noteInput.value.trim().substring(0, 42) + (noteInput.value.trim().length > 42 ? '...' : '');
+            sumNoteText.classList.remove('italic');
+            sumNoteText.classList.add('font-medium', 'text-[#941E21]');
+          } else {
+            sumNoteText.textContent = 'Chưa ghi nhận dị ứng (Báo trước 24h)';
+            sumNoteText.classList.add('italic');
+            sumNoteText.classList.remove('font-medium', 'text-[#941E21]');
+          }
+        });
+      }
+
+      // Check URL search params for pre-filling
+      var urlParams = new URLSearchParams(window.location.search);
+      var gParam = parseInt(urlParams.get('guests'), 10);
+      var prefParam = urlParams.get('pref');
+      var wineParam = urlParams.get('wine');
+
+      if (prefParam && prefSelect) {
+        for (var i = 0; i < prefSelect.options.length; i++) {
+          if (prefSelect.options[i].value.indexOf(prefParam) !== -1 || prefParam.indexOf(prefSelect.options[i].value) !== -1) {
+            prefSelect.selectedIndex = i;
+            state.pref = prefSelect.options[i].value;
+            break;
+          }
+        }
+      }
+
+      if (wineParam && wineSelect) {
+        for (var j = 0; j < wineSelect.options.length; j++) {
+          if (wineSelect.options[j].value.indexOf(wineParam) !== -1 || wineParam.indexOf(wineSelect.options[j].value) !== -1) {
+            wineSelect.selectedIndex = j;
+            state.wine = wineSelect.options[j].value;
+            break;
+          }
+        }
+      }
+
+      if (slots[3]) selectInGroup(slots, slots[3]);
+
+      if (gParam === 8) {
+        if (guestBtns[2]) guestBtns[2].click();
+      } else if (gParam === 16 || gParam > 10) {
+        if (guestBtns[3]) guestBtns[3].click();
+      } else if (gParam === 4 || gParam === 6) {
+        if (guestBtns[1]) guestBtns[1].click();
+      } else {
+        if (guestBtns[0]) guestBtns[0].click();
+      }
+
+      paint();
+
+      var bookingForm = document.getElementById('booking-form');
+      if (bookingForm) {
+        bookingForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var name = document.getElementById('rv-name').value || 'Quý Khách';
+          var phone = document.getElementById('rv-phone').value || '0988 888 999';
+          var noteVal = document.getElementById('rv-note').value || '';
+
+          // Gửi dữ liệu về Backend API
+          fetch('/api/bookings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: name,
+              phone: phone,
+              date: (document.getElementById('rv-date') || {}).value || '',
+              time: state.time,
+              guests: state.guests,
+              space: state.space,
+              preference: state.pref,
+              wine: state.wine,
+              note: noteVal
+            })
+          }).catch(function(err) { console.log('Booking API log:', err); });
+
+          alert('CẢM ƠN QUÝ KHÁCH ' + name.toUpperCase() + '!\n\n' +
+            '✦ Yêu cầu đặt bàn: ' + state.guests + ' khách vào lúc ' + state.time + '\n' +
+            '✦ Không gian: ' + state.space + '\n' +
+            '✦ ' + sumMenuCourse.textContent + '\n' +
+            '✦ Phong cách: ' + state.pref + '\n' +
+            '✦ Thức uống: ' + state.wine + '\n' +
+            (noteVal ? ('✦ Ghi chú/Dị ứng: ' + noteVal + '\n') : '') +
+            '✦ Cọc giữ bàn tạm tính: ' + vnd(state.guests * depositPerGuest) + '\n\n' +
+            'Ban Quản lý & Concierge NOCTURNE sẽ liên hệ số ' + phone + ' trong 30 phút để xác nhận và hoàn tất chu đáo!');
+        });
+      }
+    })();
+  </script>
+</body>
+
+</html>

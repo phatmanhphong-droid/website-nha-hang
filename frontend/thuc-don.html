@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOCTURNE · Thực Đơn Nếm Thử & Tùy Chỉnh Theo Số Khách</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Be+Vietnam+Pro:wght@200;300;400;500;600;700&display=swap');
+    @import url("https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css");
+    html, body { margin: 0; padding: 0; }
+    #root { display: contents; }
+    .font-display { font-family: 'Playfair Display', Georgia, serif; }
+    .font-body { font-family: 'Be Vietnam Pro', 'Helvetica Neue', sans-serif; }
+    .tnum { font-variant-numeric: tabular-nums; }
+    .chamfer { clip-path: polygon(24px 0, 100% 0, 100% 100%, 0 100%, 0 24px); }
+    .no-bar { scrollbar-width: none; -ms-overflow-style: none; }
+    .no-bar::-webkit-scrollbar { display: none; }
+    .gold-gradient { background: linear-gradient(135deg, #F8D127 0%, #D4AF37 100%); }
+    .active-tier-btn {
+      background-color: #F8D127 !important;
+      color: #1D1312 !important;
+      border-color: #F8D127 !important;
+    }
+    .custom-pill.active {
+      border-color: #F8D127;
+      background-color: rgba(248, 209, 39, 0.15);
+      color: #F8D127;
+    }
+  </style>
+</head>
+<body class="bg-[#1a1a1a] text-white selection:bg-[#F8D127] selection:text-[#1D1312]">
+  <div id="root">
+    <div class="font-body bg-[#1a1a1a] text-white">
+
+      <!-- HEADER ĐỒNG BỘ CHUẨN TẤT CẢ CÁC TRANG -->
+      <header class="sticky top-0 z-50 border-b border-[#F8D127]/25 bg-[#1D1312]/90 backdrop-blur-xl">
+        <div class="mx-auto flex h-[78px] w-full max-w-[1440px] items-center justify-between px-[64px]">
+          <a class="flex items-baseline gap-3" href="/">
+            <span class="font-display text-[25px] leading-none tracking-[0.24em] text-[#F8D127]">NOCTURNE</span>
+            <span class="text-[9px] uppercase tracking-[0.3em] text-white/40">Tầng 48 · Quận 1</span>
+          </a>
+          <nav class="flex items-center gap-9 text-[11px] uppercase tracking-[0.18em]">
+            <a class="text-white/65 hover:text-[#F8D127] transition" href="/">Trang chủ</a>
+            <a class="text-[#F8D127] border-b border-[#F8D127] pb-1.5" href="/thuc-don.html">Thực đơn</a>
+            <a class="text-white/65 hover:text-[#F8D127] transition" href="/bep-truong.html">Bếp trưởng</a>
+            <a class="text-white/65 hover:text-[#F8D127] transition" href="/dat-ban.html">Đặt bàn</a>
+            <a class="text-white/65 hover:text-[#F8D127] transition" href="/lien-he.html">Liên hệ</a>
+          </nav>
+          <div class="flex items-center gap-7">
+            <a class="tnum text-[13px] font-light tracking-[0.04em] text-white/65 hover:text-[#F8D127] transition" href="tel:0988888999">0988 888 999</a>
+            <a class="bg-[#F8D127] px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.2em] text-[#1D1312] transition hover:bg-white" href="/dat-ban.html">Đặt bàn</a>
+          </div>
+        </div>
+      </header>
+
+      <main id="top">
+        <!-- INTRO SECTION -->
+        <section class="mx-auto grid w-full max-w-[1440px] grid-cols-[1fr_420px] items-start gap-[88px] px-[64px] pt-[84px] pb-[76px]">
+          <div class="pt-4">
+            <div class="h-px w-[104px] bg-[#F8D127]"></div>
+            <div class="mt-6 inline-flex items-center gap-2 border border-[#F8D127]/30 bg-[#F8D127]/10 px-3.5 py-1 text-[11px] uppercase tracking-[0.2em] text-[#F8D127]">
+              <i class="ph ph-sparkle"></i> Quy cách định chuẩn nếm thử tầng 48
+            </div>
+            <h1 class="mt-6 font-display text-[72px] leading-[1.05] text-white">
+              Thực đơn tinh hoa <br><span class="italic text-[#F8D127] font-normal">định lượng theo số khách</span>
+            </h1>
+            <p class="mt-7 max-w-[520px] text-[16px] font-light leading-[1.9] text-white/65">
+              Tại NOCTURNE, số lượng món và cấu trúc thực đơn được thiết kế riêng biệt dựa trên quy mô bàn tiệc: từ sự tinh tế riêng tư của bàn <strong class="text-[#F8D127] font-medium">2 khách (12 món)</strong>, bàn hội ngộ <strong class="text-[#F8D127] font-medium">8 khách (14 món thượng hạng)</strong>, cho đến đại yến <strong class="text-[#F8D127] font-medium">16 khách (16 món hoàng gia tùy biến độc bản)</strong>.
+            </p>
+            <div class="mt-12 grid grid-cols-3 border-t border-white/12">
+              <div class="border-r border-white/10 pr-6 pt-6">
+                <div class="text-[10px] uppercase tracking-[0.24em] text-white/40">Bếp than nướng</div>
+                <div class="mt-2 text-[15px] text-white/85">Binchotan Wakayama</div>
+                <div class="tnum mt-1 text-[13px] text-white/45">1.200°C không khói</div>
+              </div>
+              <div class="border-r border-white/10 px-6 pt-6">
+                <div class="text-[10px] uppercase tracking-[0.24em] text-white/40">Thời lượng tiệc</div>
+                <div class="tnum mt-2 text-[15px] text-white/85">2 giờ 30 phút</div>
+                <div class="mt-1 text-[13px] text-white/45">Nhịp phục vụ chuẩn xác</div>
+              </div>
+              <div class="pl-6 pt-6">
+                <div class="text-[10px] uppercase tracking-[0.24em] text-white/40">Giới hạn nhận khách</div>
+                <div class="tnum mt-2 text-[15px] text-white/85">24 khách / đêm</div>
+                <div class="mt-1 text-[13px] text-white/45">Đóng đơn lúc 15:00</div>
+              </div>
+            </div>
+          </div>
+          <div class="border border-[#F8D127]/30 p-3">
+            <img alt="Wagyu A5 Miyazaki và Hàu Gillardeau" class="h-[480px] w-full object-cover" decoding="async" loading="lazy" src="https://images.pexels.com/photos/8112979/pexels-photo-8112979.jpeg?auto=compress&cs=tinysrgb&w=900&q=80"/>
+          </div>
+        </section>
+
+        <!-- SECTION 3 CỘT: NÓI RÕ 2 KHÁCH, 8 KHÁCH, 16 KHÁCH ĐƯỢC BAO NHIÊU MÓN -->
+        <section class="border-y border-[#F8D127]/25 bg-[#171110] py-[80px]" id="phan-hang-khach">
+          <div class="mx-auto w-full max-w-[1440px] px-[64px]">
+            <div class="flex items-end justify-between border-b border-white/12 pb-6">
+              <div>
+                <span class="text-[11px] uppercase tracking-[0.24em] text-[#F8D127]">Quy chuẩn định suất món ăn</span>
+                <h2 class="mt-3 font-display text-[44px] text-white">Bạn đi bao nhiêu người? Chọn thực đơn tương ứng</h2>
+              </div>
+              <p class="max-w-[420px] text-right text-[13px] leading-[1.8] text-white/50">
+                Thực đơn thay đổi theo số lượng thực khách để đảm bảo nhịp thưởng thức, nhiệt độ than nướng và trải nghiệm phục vụ hoàn mỹ nhất.
+              </p>
+            </div>
+
+            <!-- 3 CARD CỘT TƯƠNG ỨNG 2 KHÁCH, 8 KHÁCH, 16 KHÁCH -->
+            <div class="mt-12 grid grid-cols-3 gap-8">
+              
+              <!-- CARD 1: 2 KHÁCH (12 MÓN) -->
+              <div class="chamfer flex flex-col border border-white/15 bg-[#1D1312] p-8 transition hover:border-[#F8D127]/60">
+                <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                  <span class="inline-block border border-[#F8D127]/40 bg-[#F8D127]/10 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-[#F8D127]">Bàn đôi & Đối tác</span>
+                  <span class="tnum text-[13px] text-white/50">2 Khách</span>
+                </div>
+                <div class="mt-6">
+                  <h3 class="font-display text-[30px] text-white">Thực Đơn Nếm 12 Món</h3>
+                  <div class="tnum mt-2 font-display text-[26px] text-[#F8D127]">2.850.000₫ <span class="text-[13px] font-sans font-light text-white/50">/ khách</span></div>
+                </div>
+                <p class="mt-4 text-[14px] leading-[1.8] text-white/65">
+                  Thiết kế khẩu phần tinh xảo phục vụ theo từng đĩa đơn (Individual Plating). Tạo nhịp điệu thưởng thức sâu lắng, lãng mạn bên cửa sổ kính ngắm toàn cảnh Sài Gòn hoặc quầy bar bếp than.
+                </p>
+                <div class="mt-6 space-y-3 border-t border-white/10 pt-5 text-[13px] text-white/80">
+                  <div class="flex items-center gap-2"><i class="ph ph-check-circle text-[#F8D127]"></i> <span><strong>12 món ăn</strong>: 3 Khai vị, 3 Hải sản, 3 Than hoa, 3 Tráng miệng</span></div>
+                  <div class="flex items-center gap-2"><i class="ph ph-check-circle text-[#F8D127]"></i> <span>Hàu Gillardeau No.1 & Bò A5 Miyazaki trứ danh</span></div>
+                  <div class="flex items-center gap-2"><i class="ph ph-check-circle text-[#F8D127]"></i> <span>Tùy chọn Pairing 6 ly rượu vang chọn lọc</span></div>
+                  <div class="flex items-center gap-2"><i class="ph ph-check-circle text-[#F8D127]"></i> <span>Không gian: Bàn cửa kính view skyline hoặc Quầy bar</span></div>
+                </div>
+                <div class="mt-8 pt-4 border-t border-white/10">
+                  <button onclick="selectGuestTier('2')" class="w-full bg-white/10 py-3 text-center text-[11px] uppercase tracking-[0.2em] text-white hover:bg-[#F8D127] hover:text-[#1D1312] transition">
+                    Xem chi tiết 12 món này
+                  </button>
+                </div>
+              </div>
+
+              <!-- CARD 2: 8 KHÁCH (14 MÓN) -->
+              <div class="chamfer relative flex flex-col border-2 border-[#F8D127] bg-[#221614] p-8 shadow-2xl">
+                <div class="absolute -top-3.5 right-6 bg-[#F8D127] px-3.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#1D1312]">
+                  Đặc quyền riêng tư
+                </div>
+                <div class="flex items-center justify-between border-b border-[#F8D127]/30 pb-4">
+                  <span class="inline-block border border-[#F8D127]/40 bg-[#F8D127]/20 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-[#F8D127]">Phòng VIP Vault</span>
+                  <span class="tnum text-[13px] text-[#F8D127]">8 Khách (hoặc 6–10)</span>
+                </div>
+                <div class="mt-6">
+                  <h3 class="font-display text-[30px] text-[#F8D127]">Thực Đơn Thượng Hạng 14 Món</h3>
+                  <div class="tnum mt-2 font-display text-[26px] text-white">3.450.000₫ <span class="text-[13px] font-sans font-light text-white/50">/ khách</span></div>
+                </div>
+                <p class="mt-4 text-[14px] leading-[1.8] text-white/75">
+                  Phục vụ tại phòng riêng biệt lập The Obsidian Vault. Bao gồm 12 món cá nhân và bổ sung thêm <strong>02 thớt chia sẻ hoàng gia</strong>: Sườn Wagyu Tomahawk nguyên tảng và Cua Hoàng Đế nướng than Wakayama tại bàn.
+                </p>
+                <div class="mt-6 space-y-3 border-t border-[#F8D127]/20 pt-5 text-[13px] text-white/85">
+                  <div class="flex items-center gap-2"><i class="ph ph-check-circle text-[#F8D127]"></i> <span><strong>14 món ăn</strong>: 12 món Signature + 2 Thớt đại tiệc chia sẻ</span></div>
+                  <div class="flex items-center gap-2"><i class="ph ph-check-circle text-[#F8D127]"></i> <span><strong>Tảng Tomahawk A5</strong> &amp; <strong>Cua Hoàng Đế Kamchatka</strong></span></div>
+                  <div class="flex items-center gap-2"><i class="ph ph-check-circle text-[#F8D127]"></i> <span>Sommelier và Đầu bếp riêng phục vụ, xẻ thịt tại bàn</span></div>
+                  <div class="flex items-center gap-2"><i class="ph ph-check-circle text-[#F8D127]"></i> <span>Phòng The Obsidian Vault cách âm, cigar lounge</span></div>
+                </div>
+                <div class="mt-8 pt-4 border-t border-[#F8D127]/20">
+                  <button onclick="selectGuestTier('8')" class="w-full bg-[#F8D127] py-3 text-center text-[11px] font-medium uppercase tracking-[0.2em] text-[#1D1312] hover:bg-white transition">
+                    Xem chi tiết 14 món này
+                  </button>
+                </div>
+              </div>
+
+              <!-- CARD 3: 16 KHÁCH (16 MÓN) -->
+              <div class="chamfer flex flex-col border border-white/15 bg-[#1D1312] p-8 transition hover:border-[#F8D127]/60">
+                <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                  <span class="inline-block border border-[#F8D127]/40 bg-[#F8D127]/10 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-[#F8D127]">Bao trọn Penthouse</span>
+                  <span class="tnum text-[13px] text-white/50">16 Khách (hoặc 12–24)</span>
+                </div>
+                <div class="mt-6">
+                  <h3 class="font-display text-[30px] text-white">Đại Yến Bespoke 16 Món</h3>
+                  <div class="tnum mt-2 font-display text-[26px] text-[#F8D127]">4.200.000₫ <span class="text-[13px] font-sans font-light text-white/50">/ khách</span></div>
+                </div>
+                <p class="mt-4 text-[14px] leading-[1.8] text-white/65">
+                  Thực đơn vương giả thiết kế độc bản 100% theo chủ đề bữa tiệc của quý khách. Bếp trưởng Kenjiro Nguyễn trực tiếp điều hành toàn bộ đội ngũ, xẻ cá Ngừ Đại Dương và bào Truffle tươi tại bàn tiệc.
+                </p>
+                <div class="mt-6 space-y-3 border-t border-white/10 pt-5 text-[13px] text-white/80">
+                  <div class="flex items-center gap-2"><i class="ph ph-check-circle text-[#F8D127]"></i> <span><strong>16 món hoàng gia</strong>: 4 Khai vị, 4 Hải sản, 4 Than hoa, 4 Tráng miệng</span></div>
+                  <div class="flex items-center gap-2"><i class="ph ph-check-circle text-[#F8D127]"></i> <span>Caviar Beluga Hoàng Đế, Bào Ngư Úc, Wagyu Matsusaka</span></div>
+                  <div class="flex items-center gap-2"><i class="ph ph-check-circle text-[#F8D127]"></i> <span>Thiết kế menu riêng, in tên thực khách thiệp dát vàng</span></div>
+                  <div class="flex items-center gap-2"><i class="ph ph-check-circle text-[#F8D127]"></i> <span>Bao trọn không gian tầng 48, quầy Bar Cocktail riêng</span></div>
+                </div>
+                <div class="mt-8 pt-4 border-t border-white/10">
+                  <button onclick="selectGuestTier('16')" class="w-full bg-white/10 py-3 text-center text-[11px] uppercase tracking-[0.2em] text-white hover:bg-[#F8D127] hover:text-[#1D1312] transition">
+                    Xem chi tiết 16 món này
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- BỘ CHUYỂN ĐỔI VÀ TÙY CHỈNH THỰC ĐƠN TƯƠNG TÁC (INTERACTIVE CUSTOMIZER) -->
+        <section class="mx-auto w-full max-w-[1440px] px-[64px] py-[80px]" id="chi-tiet-thuc-don">
+          <!-- NAVIGATION TABS CHO 2, 8, 16 KHÁCH -->
+          <div class="flex flex-wrap items-center justify-between gap-6 border-b border-white/15 pb-6">
+            <div>
+              <span class="text-[11px] uppercase tracking-[0.24em] text-[#F8D127]">Xem & Tùy Chỉnh Theo Bàn Đặt</span>
+              <h2 class="mt-2 font-display text-[40px] text-white" id="current-menu-title">Thực Đơn Bàn 2 Khách · 12 Món Nếm Thử</h2>
+            </div>
+            
+            <!-- NÚT CHỌN TAB SỐ KHÁCH -->
+            <div class="flex gap-2">
+              <button id="btn-tier-2" onclick="selectGuestTier('2')" class="active-tier-btn border border-white/20 px-6 py-3.5 text-[12px] font-medium uppercase tracking-[0.16em] transition">
+                2 Khách (12 Món)
+              </button>
+              <button id="btn-tier-8" onclick="selectGuestTier('8')" class="border border-white/20 bg-white/5 px-6 py-3.5 text-[12px] font-medium uppercase tracking-[0.16em] text-white/70 hover:border-[#F8D127] hover:text-white transition">
+                8 Khách (14 Món)
+              </button>
+              <button id="btn-tier-16" onclick="selectGuestTier('16')" class="border border-white/20 bg-white/5 px-6 py-3.5 text-[12px] font-medium uppercase tracking-[0.16em] text-white/70 hover:border-[#F8D127] hover:text-white transition">
+                16 Khách (16 Món Bespoke)
+              </button>
+            </div>
+          </div>
+
+          <!-- BẢNG TÙY BIẾN KHẨU VỊ (CUSTOMIZER CONTROLS) -->
+          <div class="mt-8 border border-[#F8D127]/30 bg-[#1D1312] p-8 chamfer">
+            <div class="flex flex-wrap items-center justify-between gap-6 border-b border-white/10 pb-6">
+              <div>
+                <span class="text-[10px] uppercase tracking-[0.22em] text-[#F8D127]">Cá nhân hóa thực đơn bàn của bạn</span>
+                <h4 class="mt-1 font-display text-[22px] text-white">Tùy Chọn Phong Cách Ẩm Thực &amp; Nước Uống</h4>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-[12px] text-white/50">Đã chọn:</span>
+                <span id="custom-badge-pref" class="border border-[#F8D127]/40 bg-[#F8D127]/10 px-3 py-1 text-[11px] text-[#F8D127]">Tiêu chuẩn Bếp trưởng</span>
+                <span id="custom-badge-wine" class="border border-white/20 bg-white/5 px-3 py-1 text-[11px] text-white/80">Wine Pairing 6 ly</span>
+              </div>
+            </div>
+
+            <!-- CÁC LỰA CHỌN TÙY CHỈNH -->
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <label class="block text-[11px] uppercase tracking-[0.2em] text-white/40 mb-3">1. Khẩu vị chủ đạo</label>
+                <div class="flex flex-col gap-2">
+                  <button type="button" onclick="setPreference('Tiêu chuẩn Bếp trưởng')" class="pref-btn active text-left border border-white/15 px-4 py-3 text-[13px] text-white/80 hover:border-[#F8D127] transition">
+                    ✦ Cân bằng hải sản & thịt đỏ Wagyu (Khuyên dùng)
+                  </button>
+                  <button type="button" onclick="setPreference('Thiên về Bò Wagyu A5')" class="pref-btn text-left border border-white/15 px-4 py-3 text-[13px] text-white/80 hover:border-[#F8D127] transition">
+                    🥩 Ưu tiên Bò Wagyu Miyazaki A5 nướng than
+                  </button>
+                  <button type="button" onclick="setPreference('Thiên về Hải sản & Tôm Hùm')" class="pref-btn text-left border border-white/15 px-4 py-3 text-[13px] text-white/80 hover:border-[#F8D127] transition">
+                    🦞 Ưu tiên Hải sản sâu, Hàu Gillardeau & Tôm hùm
+                  </button>
+                  <button type="button" onclick="setPreference('Haute Cuisine Chay')" class="pref-btn text-left border border-white/15 px-4 py-3 text-[13px] text-white/80 hover:border-[#F8D127] transition">
+                    🌱 Thực đơn Chay Cao Cấp nướng than Wakayama
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-[11px] uppercase tracking-[0.2em] text-white/40 mb-3">2. Rượu vang & Thức uống đi kèm</label>
+                <div class="flex flex-col gap-2">
+                  <button type="button" onclick="setWine('Pairing 6 ly vang chọn lọc (+1.250.000₫/khách)')" class="wine-btn active text-left border border-white/15 px-4 py-3 text-[13px] text-white/80 hover:border-[#F8D127] transition">
+                    🍷 Signature Wine Pairing (6 ly kinh điển Pháp & Ý)
+                  </button>
+                  <button type="button" onclick="setWine('Grand Cru Reserve 8 ly (+2.400.000₫/khách)')" class="wine-btn text-left border border-white/15 px-4 py-3 text-[13px] text-white/80 hover:border-[#F8D127] transition">
+                    🍾 Grand Cru Reserve Pairing (8 ly hầm rượu quý hiếm)
+                  </button>
+                  <button type="button" onclick="setWine('Pairing Trà & Mocktail thảo mộc (+650.000₫/khách)')" class="wine-btn text-left border border-white/15 px-4 py-3 text-[13px] text-white/80 hover:border-[#F8D127] transition">
+                    🍵 Non-Alcoholic Pairing (Trà hoa thủ công & Mocktail)
+                  </button>
+                </div>
+              </div>
+
+              <div class="flex flex-col justify-between bg-black/30 p-6 border border-white/10">
+                <div>
+                  <div class="text-[11px] uppercase tracking-[0.2em] text-[#F8D127]">Tóm lược tùy chỉnh</div>
+                  <div class="mt-3 font-display text-[22px] text-white" id="summary-menu-name">Thực đơn 12 món · 2 khách</div>
+                  <p class="mt-2 text-[13px] leading-[1.6] text-white/60" id="summary-menu-desc">Đã bao gồm 12 món nếm thử phục vụ song hành tại bàn đôi hoặc quầy bar bếp than.</p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                  <div>
+                    <span class="block text-[10px] uppercase text-white/40">Dự kiến mỗi khách</span>
+                    <span class="tnum font-display text-[22px] text-[#F8D127]" id="summary-price-display">2.850.000₫</span>
+                  </div>
+                  <a id="btn-apply-booking" href="/dat-ban.html?guests=2" class="bg-[#F8D127] px-6 py-3.5 text-[11px] font-medium uppercase tracking-[0.18em] text-[#1D1312] hover:bg-white transition flex items-center gap-2">
+                    <span>Đặt bàn thực đơn này</span>
+                    <i class="ph ph-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- KHỐI LƯU Ý DỊ ỨNG & YÊU CẦU ẨM THỰC ĐẶC BIỆT -->
+          <div class="mt-8 border border-[#F8D127]/40 bg-[#221614] p-7 chamfer">
+            <div class="flex items-start gap-4">
+              <div class="grid h-11 w-11 shrink-0 place-items-center bg-[#F8D127] text-[#1D1312]">
+                <i class="ph ph-shield-warning text-[24px]"></i>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center gap-3">
+                  <span class="text-[11px] uppercase tracking-[0.2em] text-[#F8D127] font-semibold">Lưu ý quan trọng dành cho thực khách</span>
+                  <span class="border border-[#F8D127]/30 bg-[#F8D127]/15 px-2.5 py-0.5 text-[10px] text-[#F8D127] uppercase">Thông báo trước 24 giờ</span>
+                </div>
+                <h4 class="mt-1.5 font-display text-[22px] text-white">Bạn hoặc người đi cùng có tiền sử dị ứng thực phẩm hoặc kiêng ăn đặc biệt?</h4>
+                <p class="mt-2 text-[14px] leading-[1.8] text-white/75">
+                  Tại NOCTURNE, mọi nguyên liệu đều được nhập khẩu tươi sống và chuẩn bị riêng theo từng bàn. <strong class="text-[#F8D127]">Nếu quý khách hoặc bạn bè, người thân có bất kỳ dị ứng thực phẩm nào</strong> (như hải sản có vỏ, các loại hạt, đậu phộng, gluten, sữa/lactose, nấm, trứng...), hoặc yêu cầu đặc biệt (chế độ ăn chay, phụ nữ đang mang thai, kiêng rượu bia), <strong class="text-white underline decoration-[#F8D127]">xin vui lòng báo trước cho nhà hàng qua mục ghi chú khi đặt bàn hoặc gọi trực tiếp Hotline 0988 888 999 tối thiểu 24 giờ</strong>.<br>
+                  Bếp trưởng Kenjiro Nguyễn và đội ngũ bếp sẽ chuẩn bị riêng nguyên liệu thay thế tương đương cùng đẳng cấp, đảm bảo an toàn tuyệt đối và trọn vẹn hương vị mỹ vị cho quý khách.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- DANH SÁCH MÓN ĂN CHI TIẾT (DYNAMIC COURSE LISTING) -->
+          <div class="mt-14" id="courses-container">
+
+            <!-- NHÓM KHAI VỊ -->
+            <div class="grid grid-cols-[200px_1fr] gap-[48px] border-t border-white/10 pt-10">
+              <div class="text-[11px] uppercase tracking-[0.24em] text-[#F8D127]">Khai vị</div>
+              <div class="space-y-6" id="appetizer-courses">
+                <!-- 01 -->
+                <div class="grid grid-cols-[44px_1fr_1.1fr] items-baseline gap-6 border-b border-white/10 pb-6">
+                  <span class="tnum text-[12px] text-[#F8D127]">01</span>
+                  <h3 class="font-display text-[25px] leading-[1.3] text-white">Hàu hoàng gia Gillardeau số 1</h3>
+                  <p class="text-[14px] leading-[1.7] text-white/50">Hàu Pháp số 1, táo xanh Granny Smith bào nhuyễn, dấm vang trắng lên men thủ công.</p>
+                </div>
+                <!-- 02 -->
+                <div class="grid grid-cols-[44px_1fr_1.1fr] items-baseline gap-6 border-b border-white/10 pb-6">
+                  <span class="tnum text-[12px] text-[#F8D127]">02</span>
+                  <h3 class="font-display text-[25px] leading-[1.3] text-white">Bò Tartare Wagyu & Caviar Oscietra</h3>
+                  <p class="text-[14px] leading-[1.7] text-white/50">Wagyu băm tay tại chỗ, trứng cá muối Oscietra hảo hạng, bánh mì brioche nướng than Binchotan.</p>
+                </div>
+                <!-- 03 -->
+                <div class="grid grid-cols-[44px_1fr_1.1fr] items-baseline gap-6 border-b border-white/10 pb-6">
+                  <span class="tnum text-[12px] text-[#F8D127]">03</span>
+                  <h3 class="font-display text-[25px] leading-[1.3] text-white">Nhím biển Hokkaido & Tủy bò hun khói</h3>
+                  <p class="text-[14px] leading-[1.7] text-white/50">Uni Bafun vùng Rishiri tươi sống, tủy bò xông khói gỗ sồi, nước dùng dashi nấm truffle.</p>
+                </div>
+                <!-- 04 EXTRA (HIỂN THỊ KHI 16 KHÁCH) -->
+                <div class="extra-16 hidden grid-cols-[44px_1fr_1.1fr] items-baseline gap-6 border-b border-[#F8D127]/30 bg-[#F8D127]/5 p-4 pb-6">
+                  <span class="tnum text-[12px] text-[#F8D127]">04 ★</span>
+                  <div>
+                    <span class="inline-block text-[10px] uppercase tracking-[0.2em] text-[#F8D127] bg-[#F8D127]/20 px-2 py-0.5 mb-1">Món độc bản 16 khách</span>
+                    <h3 class="font-display text-[25px] leading-[1.3] text-[#F8D127]">Bào Ngư Úc Hầm Dashi 12 Tiếng & Caviar Beluga</h3>
+                  </div>
+                  <p class="text-[14px] leading-[1.7] text-white/70">Bào ngư đen đảo Tasmania ninh chậm cùng rượu saké Junmai Daiginjo, trứng cá tầm Beluga Hoàng gia.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- NHÓM HẢI SẢN -->
+            <div class="mt-14 grid grid-cols-[200px_1fr] gap-[48px] border-t border-white/10 pt-10">
+              <div class="text-[11px] uppercase tracking-[0.24em] text-[#F8D127]">Hải sản sâu</div>
+              <div class="space-y-6" id="seafood-courses">
+                <!-- 04 / 05 -->
+                <div class="grid grid-cols-[44px_1fr_1.1fr] items-baseline gap-6 border-b border-white/10 pb-6">
+                  <span class="tnum text-[12px] text-[#F8D127] course-num">04</span>
+                  <h3 class="font-display text-[25px] leading-[1.3] text-white">Cá hồi Na Uy khò lửa than</h3>
+                  <p class="text-[14px] leading-[1.7] text-white/50">Khò lửa lướt nhanh mặt cá, sốt tiêu chanh yuzu kosho, trứng cá chuồn giòn ướp mirin.</p>
+                </div>
+                <!-- 05 / 06 -->
+                <div class="grid grid-cols-[44px_1fr_1.1fr] items-baseline gap-6 border-b border-white/10 pb-6">
+                  <span class="tnum text-[12px] text-[#F8D127] course-num">05</span>
+                  <h3 class="font-display text-[25px] leading-[1.3] text-white">Tôm hùm xanh Brittany</h3>
+                  <p class="text-[14px] leading-[1.7] text-white/50">Hấp vang Chablis Premier Cru, mì pasta sợi dẹt bơ nấm kim cương đen, trứng cá tầm.</p>
+                </div>
+                <!-- 06 / 07 -->
+                <div class="grid grid-cols-[44px_1fr_1.1fr] items-baseline gap-6 border-b border-white/10 pb-6">
+                  <span class="tnum text-[12px] text-[#F8D127] course-num">06</span>
+                  <h3 class="font-display text-[25px] leading-[1.3] text-white">Sò điệp Hokkaido áp chảo</h3>
+                  <p class="text-[14px] leading-[1.7] text-white/50">Áp chảo bơ nâu Normandy béo ngậy, bọt dashi nấm truffle trắng, muối biển xám Brittany.</p>
+                </div>
+                <!-- MÓN CHIA SẺ ĐẶC BIỆT 8 KHÁCH & 16 KHÁCH -->
+                <div class="extra-8-16 hidden grid-cols-[44px_1fr_1.1fr] items-baseline gap-6 border-b border-[#F8D127]/40 bg-[#261514] p-4 pb-6">
+                  <span class="tnum text-[12px] text-[#F8D127]">★ CỰC PHẨM</span>
+                  <div>
+                    <span class="inline-block text-[10px] uppercase tracking-[0.2em] text-[#F8D127] bg-[#F8D127]/25 px-2 py-0.5 mb-1">Món thớt chia sẻ (Bàn 8 & 16 Khách)</span>
+                    <h3 class="font-display text-[25px] leading-[1.3] text-[#F8D127]">Cua Hoàng Đế Kamchatka Nướng Bơ Tỏi Đen</h3>
+                  </div>
+                  <p class="text-[14px] leading-[1.7] text-white/80">Cua Hoàng Đế nguyên con nướng trực tiếp trên giàn than Binchotan, sốt tỏi đen lên men 60 ngày và trứng cá chuồn tobiko.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- NHÓM THAN HOA & BÒ WAGYU -->
+            <div class="mt-14 grid grid-cols-[200px_1fr] gap-[48px] border-t border-white/10 pt-10">
+              <div class="text-[11px] uppercase tracking-[0.24em] text-[#F8D127]">Bếp than hoa</div>
+              <div class="space-y-6" id="grill-courses">
+                <!-- 07 / 08 -->
+                <div class="grid grid-cols-[44px_1fr_1.1fr] items-baseline gap-6 border-b border-white/10 pb-6">
+                  <span class="tnum text-[12px] text-[#F8D127] course-num">07</span>
+                  <h3 class="font-display text-[25px] leading-[1.3] text-white">Bò A5 Miyazaki nướng than</h3>
+                  <p class="text-[14px] leading-[1.7] text-white/50">Nướng trên than trắng Wakayama 1.200°C, sốt tiêu Sansho Nhật Bản, tỏi đen lên men.</p>
+                </div>
+                <!-- 08 / 09 -->
+                <div class="grid grid-cols-[44px_1fr_1.1fr] items-baseline gap-6 border-b border-white/10 pb-6">
+                  <span class="tnum text-[12px] text-[#F8D127] course-num">08</span>
+                  <h3 class="font-display text-[25px] leading-[1.3] text-white">Sườn cừu non Pháp thảo mộc</h3>
+                  <p class="text-[14px] leading-[1.7] text-white/50">Sườn cừu ướp lá hương thảo nướng than hồng, sốt rượu vang đỏ Bourgogne đậm đặc, hành tím confit.</p>
+                </div>
+                <!-- 09 / 10 -->
+                <div class="grid grid-cols-[44px_1fr_1.1fr] items-baseline gap-6 border-b border-white/10 pb-6">
+                  <span class="tnum text-[12px] text-[#F8D127] course-num">09</span>
+                  <h3 class="font-display text-[25px] leading-[1.3] text-white">Nấm Maitake nguyên cụm</h3>
+                  <p class="text-[14px] leading-[1.7] text-white/50">Nấm Maitake rừng nướng bơ nâu, giấm gạo đen lên men 12 tháng, muối khoáng tuyết.</p>
+                </div>
+                <!-- MÓN THỚT CHIA SẺ 8 & 16 KHÁCH -->
+                <div class="extra-8-16 hidden grid-cols-[44px_1fr_1.1fr] items-baseline gap-6 border-b border-[#F8D127]/40 bg-[#261514] p-4 pb-6">
+                  <span class="tnum text-[12px] text-[#F8D127]">★ CỰC PHẨM</span>
+                  <div>
+                    <span class="inline-block text-[10px] uppercase tracking-[0.2em] text-[#F8D127] bg-[#F8D127]/25 px-2 py-0.5 mb-1">Món thớt chia sẻ (Bàn 8 & 16 Khách)</span>
+                    <h3 class="font-display text-[25px] leading-[1.3] text-[#F8D127]">Đại Tảng Tomahawk Wagyu A5 Nướng Than Binchotan</h3>
+                  </div>
+                  <p class="text-[14px] leading-[1.7] text-white/80">Sườn bò Wagyu có xương ủ khô Dry-Aged 45 ngày nướng xém cạnh trên than trắng, đầu bếp xẻ tại bàn phục vụ kèm 5 loại muối quý tộc.</p>
+                </div>
+                <!-- 16 KHÁCH EXTRA WAGYU MATSUSAKA -->
+                <div class="extra-16 hidden grid-cols-[44px_1fr_1.1fr] items-baseline gap-6 border-b border-[#F8D127]/30 bg-[#F8D127]/5 p-4 pb-6">
+                  <span class="tnum text-[12px] text-[#F8D127]">★ BESPOKE</span>
+                  <div>
+                    <span class="inline-block text-[10px] uppercase tracking-[0.2em] text-[#F8D127] bg-[#F8D127]/20 px-2 py-0.5 mb-1">Món độc bản 16 khách</span>
+                    <h3 class="font-display text-[25px] leading-[1.3] text-[#F8D127]">Thăn Nội Wagyu Matsusaka A5 BMS 12 & Nấm Morels</h3>
+                  </div>
+                  <p class="text-[14px] leading-[1.7] text-white/70">Tuyệt phẩm vân mỡ cấp độ 12 cao nhất Nhật Bản, sốt bơ nấm Morels rừng và rượu Cognac XO.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- NHÓM TRÁNG MIỆNG -->
+            <div class="mt-14 grid grid-cols-[200px_1fr] gap-[48px] border-t border-white/10 pt-10">
+              <div class="text-[11px] uppercase tracking-[0.24em] text-[#F8D127]">Tráng miệng & Tiệc trà</div>
+              <div class="space-y-6" id="dessert-courses">
+                <!-- 10 / 11 -->
+                <div class="grid grid-cols-[44px_1fr_1.1fr] items-baseline gap-6 border-b border-white/10 pb-6">
+                  <span class="tnum text-[12px] text-[#F8D127] course-num">10</span>
+                  <h3 class="font-display text-[25px] leading-[1.3] text-white">Thiên thạch Matcha Uji vụ đầu</h3>
+                  <p class="text-[14px] leading-[1.7] text-white/50">Vỏ sô-cô-la mỏng giòn, matcha Uji Kyoto vụ thu hoạch đầu tiên, sốt caramel bơ ấm rót tại bàn.</p>
+                </div>
+                <!-- 11 / 12 -->
+                <div class="grid grid-cols-[44px_1fr_1.1fr] items-baseline gap-6 border-b border-white/10 pb-6">
+                  <span class="tnum text-[12px] text-[#F8D127] course-num">11</span>
+                  <h3 class="font-display text-[25px] leading-[1.3] text-white">Kem tuyết muối hồng & Yuzu Nhật</h3>
+                  <p class="text-[14px] leading-[1.7] text-white/50">Kem sorbet tuyết muối khoáng hồng Himalaya, nước ép quả yuzu tươi thanh khiết, vụn bánh hạnh nhân nướng.</p>
+                </div>
+                <!-- 12 -->
+                <div class="grid grid-cols-[44px_1fr_1.1fr] items-baseline gap-6 border-b border-white/10 pb-6">
+                  <span class="tnum text-[12px] text-[#F8D127] course-num">12</span>
+                  <h3 class="font-display text-[25px] leading-[1.3] text-white">Petits Fours & Trà thảo mộc Pháp</h3>
+                  <p class="text-[14px] leading-[1.7] text-white/50">Sô-cô-la đen 70% nguyên chất, kẹo dẻo pâte de fruits trái cây tươi, bánh madeleine mật ong nướng nóng hổi.</p>
+                </div>
+                <!-- TRÁNG MIỆNG ĐẠI YẾN 16 KHÁCH -->
+                <div class="extra-16 hidden grid-cols-[44px_1fr_1.1fr] items-baseline gap-6 border-b border-[#F8D127]/30 bg-[#F8D127]/5 p-4 pb-6">
+                  <span class="tnum text-[12px] text-[#F8D127]">★ CUNG ĐÌNH</span>
+                  <div>
+                    <span class="inline-block text-[10px] uppercase tracking-[0.2em] text-[#F8D127] bg-[#F8D127]/20 px-2 py-0.5 mb-1">Món độc bản 16 khách</span>
+                    <h3 class="font-display text-[25px] leading-[1.3] text-[#F8D127]">Tháp Kim Tự Tháp Vàng Sương Khói Ni-tơ & Champagne Dom Pérignon</h3>
+                  </div>
+                  <p class="text-[14px] leading-[1.7] text-white/70">Mille-feuille dát vàng lá 24K, kem tuyết Champagne Dom Pérignon sương khói ni-tơ lỏng huyền ảo tại bàn.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- WINE LISTING SECTION -->
+        <section class="border-t border-white/10 bg-[#161413] px-[64px] py-[96px]">
+          <div class="mx-auto grid w-full max-w-[1440px] grid-cols-[380px_1fr] items-start gap-[88px]">
+            <div>
+              <span class="text-[11px] uppercase tracking-[0.24em] text-[#F8D127]">Hầm rượu trên mây</span>
+              <h2 class="mt-3 font-display text-[44px] leading-[1.15] text-white">Rượu Vang Đi Kèm Thực Đơn</h2>
+              <p class="mt-6 text-[15px] font-light leading-[1.9] text-white/60">
+                Hầm rượu bảo quản 1.500 chai vang danh tiếng từ Bourgogne, Champagne và Piedmont. Trưởng ban Sommelier luôn sẵn sàng tư vấn danh mục phối rượu chuẩn xác cho số lượng khách của bạn.
+              </p>
+              <div class="mt-8 border-t border-[#F8D127]/30 pt-5">
+                <div class="text-[11px] uppercase tracking-[0.22em] text-white/40">Gói Pairing Khuyên Dùng</div>
+                <div class="tnum mt-1 text-[20px] font-medium text-[#F8D127]">6 ly vang tuyển chọn · 1.250.000₫/khách</div>
+              </div>
+            </div>
+            <div>
+              <div class="grid grid-cols-[1fr_130px_150px] gap-6 border-b border-white/15 pb-4">
+                <div class="text-[10px] uppercase tracking-[0.24em] text-white/40">Loại vang hảo hạng</div>
+                <div class="tnum text-[10px] uppercase tracking-[0.24em] text-white/40">Ly 5 cl</div>
+                <div class="tnum text-right text-[10px] uppercase tracking-[0.24em] text-white/40">Chai 75 cl</div>
+              </div>
+              <div class="grid grid-cols-[1fr_130px_150px] items-baseline gap-6 border-b border-white/10 py-6">
+                <div>
+                  <h3 class="font-display text-[22px] text-white">Champagne Blanc de Blancs</h3>
+                  <p class="mt-1 text-[13px] text-white/45">Champagne, Pháp · Phù hợp hàu & hải sản</p>
+                </div>
+                <div class="tnum text-[16px] text-white/80">480.000₫</div>
+                <div class="tnum text-right text-[16px] text-white/80">3.200.000₫</div>
+              </div>
+              <div class="grid grid-cols-[1fr_130px_150px] items-baseline gap-6 border-b border-white/10 py-6">
+                <div>
+                  <h3 class="font-display text-[22px] text-white">Chablis Premier Cru</h3>
+                  <p class="mt-1 text-[13px] text-white/45">Bourgogne, Pháp · Phù hợp tôm hùm & cá hồi</p>
+                </div>
+                <div class="tnum text-[16px] text-white/80">420.000₫</div>
+                <div class="tnum text-right text-[16px] text-white/80">2.400.000₫</div>
+              </div>
+              <div class="grid grid-cols-[1fr_130px_150px] items-baseline gap-6 border-b border-white/10 py-6">
+                <div>
+                  <h3 class="font-display text-[22px] text-white">Barolo Riserva 2016</h3>
+                  <p class="mt-1 text-[13px] text-white/45">Piedmont, Ý · Phù hợp Bò Wagyu A5 Miyazaki</p>
+                </div>
+                <div class="tnum text-[16px] text-white/80">520.000₫</div>
+                <div class="tnum text-right text-[16px] text-white/80">3.100.000₫</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA ĐẶT BÀN VỚI THỰC ĐƠN ĐÃ CHỌN -->
+        <section class="border-t border-white/12 bg-[#1D1312] px-[64px] py-[80px]">
+          <div class="mx-auto flex w-full max-w-[1440px] items-end justify-between gap-12">
+            <div>
+              <span class="text-[11px] uppercase tracking-[0.24em] text-[#F8D127]">Đặt bàn trước để chuẩn bị nguyên liệu</span>
+              <h2 class="mt-3 font-display text-[48px] text-white">Khởi đầu bữa tiệc hoàn hảo tại tầng 48</h2>
+              <p class="mt-4 max-w-[560px] text-[15px] font-light leading-[1.8] text-white/55">
+                Nhà hàng chuẩn bị nguyên liệu tươi sống nhập khẩu theo đúng số lượng khách đã xác nhận. Vui lòng đặt bàn trước tối thiểu 24 giờ.
+              </p>
+            </div>
+            <div class="flex items-center gap-6">
+              <a class="tnum text-[16px] text-white/70 hover:text-[#F8D127]" href="tel:0988888999">0988 888 999</a>
+              <a id="btn-bottom-cta" class="inline-flex items-center gap-3 bg-[#F8D127] px-8 py-4 text-[12px] font-medium uppercase tracking-[0.2em] text-[#1D1312] hover:bg-white transition" href="/dat-ban.html">
+                <span>Đặt bàn trực tuyến</span>
+                <i class="ph ph-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- FOOTER ĐỒNG BỘ MỤC LỤC TRANG -->
+      <footer class="border-t border-white/12 bg-[#140E0D]" id="thong-tin">
+        <div class="mx-auto grid w-full max-w-[1440px] grid-cols-[1.6fr_1fr_1fr] gap-16 px-[64px] py-16">
+          <div>
+            <div class="font-display text-[30px] tracking-[0.22em] text-[#F8D127]">NOCTURNE</div>
+            <p class="mt-5 max-w-[320px] text-[13px] leading-[1.8] text-white/45">Nhà hàng nếm thực đơn trên tầng 48. Nhận bàn từ 17:30, mỗi tối tối đa 24 khách.</p>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.24em] text-white/35">Mục lục trang</div>
+            <ul class="mt-5 space-y-3 text-[14px] text-white/70">
+              <li><a class="hover:text-[#F8D127]" href="/">Trang chủ</a></li>
+              <li><a class="hover:text-[#F8D127]" href="/thuc-don.html">Thực đơn nếm</a></li>
+              <li><a class="hover:text-[#F8D127]" href="/bep-truong.html">Bếp trưởng</a></li>
+              <li><a class="hover:text-[#F8D127]" href="/dat-ban.html">Đặt bàn trực tuyến</a></li>
+              <li><a class="hover:text-[#F8D127]" href="/lien-he.html">Thông tin liên hệ</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase tracking-[0.24em] text-white/35">Liên hệ trực tiếp</div>
+            <div class="mt-5 space-y-3 text-[14px] leading-[1.7] text-white/70">
+              <div>Tầng 48, Lê Duẩn, Quận 1, TP. Hồ Chí Minh</div>
+              <div class="tnum font-medium text-[#F8D127]">0988 888 999</div>
+              <div class="tnum text-white/50">reserve@nocturne.vn</div>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-white/10">
+          <div class="mx-auto flex w-full max-w-[1440px] items-center justify-between px-[64px] py-6 text-[11px] tracking-[0.06em] text-white/30">
+            <span>© 2026 NOCTURNE</span>
+            <span class="tnum">17:30 – 01:00 · Tầng 48, Quận 1</span>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- SCRIPT LOGIC ĐIỀU KHIỂN BỘ TÙY CHỈNH THỰC ĐƠN THEO SỐ KHÁCH -->
+  <script>
+    let currentTier = '2';
+    let currentPreference = 'Tiêu chuẩn Bếp trưởng';
+    let currentWine = 'Wine Pairing 6 ly';
+
+    const tierData = {
+      '2': {
+        title: 'Thực Đơn Bàn 2 Khách · 12 Món Nếm Thử Tinh Hoa',
+        shortName: 'Thực đơn 12 món · 2 khách',
+        desc: 'Thiết kế riêng biệt cho cặp đôi hoặc đối tác, phục vụ từng đĩa tinh xảo bên view cửa sổ kính skyline.',
+        price: '2.850.000₫',
+        guests: 2
+      },
+      '8': {
+        title: 'Thực Đơn Bàn 8 Khách · 14 Món Thượng Hạng (The Obsidian Vault)',
+        shortName: 'Thực đơn 14 món thượng hạng · 8 khách',
+        desc: 'Phòng tiệc riêng The Obsidian Vault với 12 món Signature cá nhân + 02 thớt chia sẻ hoàng gia Tomahawk & Cua Hoàng Đế.',
+        price: '3.450.000₫',
+        guests: 8
+      },
+      '16': {
+        title: 'Đại Yến Bàn 16 Khách · 16 Món Hoàng Gia Tùy Biến Độc Bản',
+        shortName: 'Thực đơn 16 món đại yến bespoke · 16 khách',
+        desc: 'Bao trọn không gian tầng 48, thực đơn thiết kế độc bản 100% cùng các nguyên liệu quý tộc Beluga Caviar & Wagyu Matsusaka.',
+        price: '4.200.000₫',
+        guests: 16
+      }
+    };
+
+    function selectGuestTier(tier) {
+      currentTier = tier;
+      
+      // Update buttons style
+      ['2', '8', '16'].forEach(t => {
+        const btn = document.getElementById('btn-tier-' + t);
+        if (t === tier) {
+          btn.className = 'active-tier-btn border border-[#F8D127] px-6 py-3.5 text-[12px] font-medium uppercase tracking-[0.16em] transition';
+        } else {
+          btn.className = 'border border-white/20 bg-white/5 px-6 py-3.5 text-[12px] font-medium uppercase tracking-[0.16em] text-white/70 hover:border-[#F8D127] hover:text-white transition';
+        }
+      });
+
+      // Update text titles and summary
+      const d = tierData[tier];
+      document.getElementById('current-menu-title').textContent = d.title;
+      document.getElementById('summary-menu-name').textContent = d.shortName;
+      document.getElementById('summary-menu-desc').textContent = d.desc;
+      document.getElementById('summary-price-display').textContent = d.price;
+
+      // Toggle extra dishes for 8 & 16
+      const extra8_16 = document.querySelectorAll('.extra-8-16');
+      const extra16 = document.querySelectorAll('.extra-16');
+
+      if (tier === '2') {
+        extra8_16.forEach(el => el.classList.add('hidden'));
+        extra16.forEach(el => el.classList.add('hidden'));
+      } else if (tier === '8') {
+        extra8_16.forEach(el => el.classList.remove('hidden'));
+        extra16.forEach(el => el.classList.add('hidden'));
+      } else if (tier === '16') {
+        extra8_16.forEach(el => el.classList.remove('hidden'));
+        extra16.forEach(el => el.classList.remove('hidden'));
+      }
+
+      // Update booking link
+      updateBookingLink();
+    }
+
+    function setPreference(pref) {
+      currentPreference = pref;
+      document.getElementById('custom-badge-pref').textContent = pref;
+      document.querySelectorAll('.pref-btn').forEach(btn => {
+        if (btn.textContent.includes(pref.substring(0, 8))) {
+          btn.classList.add('border-[#F8D127]', 'bg-[#F8D127]/15', 'text-[#F8D127]');
+        } else {
+          btn.classList.remove('border-[#F8D127]', 'bg-[#F8D127]/15', 'text-[#F8D127]');
+        }
+      });
+      updateBookingLink();
+    }
+
+    function setWine(wine) {
+      currentWine = wine;
+      const shortWine = wine.split('(')[0].trim();
+      document.getElementById('custom-badge-wine').textContent = shortWine;
+      document.querySelectorAll('.wine-btn').forEach(btn => {
+        if (btn.textContent.includes(shortWine.substring(0, 9))) {
+          btn.classList.add('border-[#F8D127]', 'bg-[#F8D127]/15', 'text-[#F8D127]');
+        } else {
+          btn.classList.remove('border-[#F8D127]', 'bg-[#F8D127]/15', 'text-[#F8D127]');
+        }
+      });
+      updateBookingLink();
+    }
+
+    function updateBookingLink() {
+      const link = `/dat-ban.html?guests=${tierData[currentTier].guests}&tier=${currentTier}&pref=${encodeURIComponent(currentPreference)}&wine=${encodeURIComponent(currentWine)}`;
+      document.getElementById('btn-apply-booking').href = link;
+      document.getElementById('btn-bottom-cta').href = link;
+    }
+
+    // Check URL parameters on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const guests = urlParams.get('guests');
+      if (guests === '8' || guests === '10') {
+        selectGuestTier('8');
+      } else if (guests === '16' || guests === '12' || guests === '20') {
+        selectGuestTier('16');
+      } else {
+        selectGuestTier('2');
+      }
+    });
+  </script>
+</body>
+</html>
