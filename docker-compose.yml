@@ -9,4 +9,6 @@ services:
     restart: always
     volumes:
       - ./backend/data:/app/backend/data
+      - ./frontend:/app/frontend
+      - ./backend:/app/backend
 

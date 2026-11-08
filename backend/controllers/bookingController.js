@@ -106,6 +106,12 @@ exports.handleUpdateStatus = (req, res) => {
       }
 
       booking.status = status;
+      if (payload.arrivedAt) {
+        booking.arrivedAt = payload.arrivedAt;
+      } else if (status === 'Đã đến' && !booking.arrivedAt) {
+        const vnTime = new Date(Date.now() + 7 * 60 * 60 * 1000);
+        booking.arrivedAt = vnTime.toISOString().substring(11, 16);
+      }
       booking.updatedAt = new Date().toISOString();
       saveBookings(bookings);
 
