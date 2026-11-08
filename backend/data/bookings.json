@@ -1,5 +1,23 @@
 [
   {
+    "id": "BK-199724",
+    "name": "vũ anh thư ",
+    "phone": "0933089270",
+    "email": "",
+    "date": "2026-11-07",
+    "time": "19:30",
+    "guests": 2,
+    "tier": "12 Món Nếm Thử Tinh Hoa",
+    "space": "The Obsidian Vault",
+    "preference": "Tiêu chuẩn Bếp trưởng",
+    "wine": "Wine Pairing 6 ly chọn lọc",
+    "note": "dị ứng các loại hạt ",
+    "deposit": 1000000,
+    "status": "Đã xác nhận",
+    "createdAt": "2026-11-08T17:49:59.724Z",
+    "updatedAt": "2026-11-08T17:50:42.641Z"
+  },
+  {
     "id": "BK-732689",
     "name": "trần đức mạnh ",
     "phone": "0933089277770",
@@ -15,7 +33,7 @@
     "deposit": 1000000,
     "status": "Đã hủy",
     "createdAt": "2026-11-08T17:42:12.690Z",
-    "updatedAt": "2026-11-08T17:42:45.260Z"
+    "updatedAt": "2026-11-08T17:46:57.536Z"
   },
   {
     "id": "BK-20261109-001",
@@ -50,10 +68,10 @@
     "wine": "Wine Pairing 6 ly chọn lọc",
     "note": "Khách thích bàn nhìn thẳng về đại lộ Lê Duẩn",
     "deposit": 1000000,
-    "status": "Đã nhận cọc",
+    "status": "Đã xác nhận",
     "arrivedAt": "17:33",
     "createdAt": "2026-11-07T14:30:00.000Z",
-    "updatedAt": "2026-11-09T10:33:00.000Z"
+    "updatedAt": "2026-11-08T17:52:59.956Z"
   },
   {
     "id": "BK-20261109-003",
@@ -86,8 +104,9 @@
     "wine": "Pairing Trà & Mocktail thảo mộc (+650.000₫/khách)",
     "note": "Dị ứng đậu phộng và hạt phỉ nặng",
     "deposit": 1000000,
-    "status": "Chờ xác nhận",
-    "createdAt": "2026-11-09T02:12:00.000Z"
+    "status": "Đã hủy",
+    "createdAt": "2026-11-09T02:12:00.000Z",
+    "updatedAt": "2026-11-08T17:46:26.407Z"
   },
   {
     "id": "BK-20261109-005",
@@ -138,8 +157,9 @@
     "wine": "Wine Pairing 6 ly chọn lọc",
     "note": "Khách kén ăn cay, không ăn được ớt tiêu xanh",
     "deposit": 1000000,
-    "status": "Chờ xác nhận",
-    "createdAt": "2026-11-09T04:40:00.000Z"
+    "status": "Đã xác nhận",
+    "createdAt": "2026-11-09T04:40:00.000Z",
+    "updatedAt": "2026-11-08T17:46:36.487Z"
   },
   {
     "id": "BK-20261109-008",
@@ -174,7 +194,8 @@
     "wine": "Grand Cru Reserve 8 ly (+2.400.000₫/khách)",
     "note": "Tiệc cuối năm công ty. 2 khách ăn chay, 1 khách dị ứng sữa. Cần máy chiếu và micro phát biểu.",
     "deposit": 9000000,
-    "status": "Chờ xác nhận",
-    "createdAt": "2026-11-09T08:48:00.000Z"
+    "status": "Đã nhận cọc",
+    "createdAt": "2026-11-09T08:48:00.000Z",
+    "updatedAt": "2026-11-08T17:46:49.488Z"
   }
 ]

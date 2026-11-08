@@ -1,7 +1,18 @@
 // backend/routes/apiRoutes.js
 const bookingController = require('../controllers/bookingController');
+const authController = require('../controllers/authController');
 
 exports.handleApiRequest = (req, res, reqUrl) => {
+  // POST /api/auth/login -> đăng nhập xác thực
+  if (reqUrl === '/api/auth/login' && req.method === 'POST') {
+    return authController.handleLogin(req, res);
+  }
+
+  // GET /api/auth/accounts -> danh sách tài khoản demo
+  if (reqUrl === '/api/auth/accounts' && req.method === 'GET') {
+    return authController.handleGetAccounts(req, res);
+  }
+
   // GET /api/health -> kiểm tra trạng thái backend
   if (reqUrl === '/api/health' && req.method === 'GET') {
     res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });

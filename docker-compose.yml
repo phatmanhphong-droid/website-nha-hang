@@ -11,4 +11,5 @@ services:
       - ./backend/data:/app/backend/data
       - ./frontend:/app/frontend
       - ./backend:/app/backend
+      - ./server.js:/app/server.js
 
