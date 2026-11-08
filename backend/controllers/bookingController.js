@@ -147,7 +147,10 @@ exports.handleDeleteBooking = (req, res) => {
 // 5. Thống kê KPI cho trang Admin Dashboard
 exports.handleGetStats = (req, res) => {
   const bookings = getBookings();
-  const todayStr = new Date().toISOString().split('T')[0];
+  // Tính theo múi giờ Việt Nam (UTC+7)
+  const now = new Date();
+  const vnTime = new Date(now.getTime() + 7 * 60 * 60 * 1000);
+  const todayStr = vnTime.toISOString().split('T')[0];
 
   const totalBookings = bookings.length;
   const pendingCount = bookings.filter(b => b.status === 'Chờ xác nhận' || b.status === 'Chờ xác nhận Concierge').length;
