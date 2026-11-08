@@ -38,7 +38,7 @@ const server = http.createServer((req, res) => {
   }
 
   // 2. Phân luồng FRONTEND TĨNH (thư mục ./frontend)
-  let relativePath = reqUrl === '/' ? 'index.html' : reqUrl.replace(/^\//, '');
+  let relativePath = reqUrl === '/' ? 'index.html' : (reqUrl === '/admin' || reqUrl === '/admin/' ? 'admin.html' : reqUrl.replace(/^\//, ''));
   let filePath = path.join(FRONTEND_DIR, relativePath);
 
   // An toàn đường dẫn chống path traversal
