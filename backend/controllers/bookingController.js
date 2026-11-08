@@ -106,12 +106,38 @@ exports.handleUpdateStatus = (req, res) => {
       }
 
       booking.status = status;
+      const vnTime = new Date(Date.now() + 7 * 60 * 60 * 1000);
+      const currentTimeStr = vnTime.toISOString().substring(11, 16);
+
       if (payload.arrivedAt) {
         booking.arrivedAt = payload.arrivedAt;
       } else if (status === 'Đã đến' && !booking.arrivedAt) {
-        const vnTime = new Date(Date.now() + 7 * 60 * 60 * 1000);
-        booking.arrivedAt = vnTime.toISOString().substring(11, 16);
+        booking.arrivedAt = currentTimeStr;
       }
+
+      // Xử lý khi khách ăn xong / trả bàn (Check-out)
+      if (status === 'Đã hoàn tất') {
+        booking.completedAt = payload.completedAt || currentTimeStr;
+        if (booking.arrivedAt) {
+          const [inH, inM] = booking.arrivedAt.split(':').map(Number);
+          const [outH, outM] = booking.completedAt.split(':').map(Number);
+          let diffM = (outH * 60 + outM) - (inH * 60 + inM);
+          if (diffM < 0) diffM += 24 * 60;
+          const h = Math.floor(diffM / 60);
+          const m = diffM % 60;
+          booking.diningDuration = h > 0 ? `${h}h ${m}p` : `${m} phút`;
+        } else {
+          booking.diningDuration = '2h 15p (Tiêu chuẩn)';
+        }
+      }
+
+      // Xử lý khi hủy đơn (Cancellation Audit & Deposit Policy)
+      if (status === 'Đã hủy') {
+        booking.cancelReason = payload.cancelReason || 'Khách bận đột xuất';
+        booking.depositPolicy = payload.depositPolicy || 'Bảo lưu tiền cọc 30 ngày';
+        booking.cancelledAt = vnTime.toISOString();
+      }
+
       booking.updatedAt = new Date().toISOString();
       saveBookings(bookings);
 
@@ -178,6 +204,12 @@ exports.handleGetStats = (req, res) => {
     }
   });
 
+  const todayActive = bookings.filter(b => b.date === todayStr && b.status !== 'Đã hủy');
+  const diningNowCount = todayActive.filter(b => b.status === 'Đã đến').length;
+  const completedCount = todayActive.filter(b => b.status === 'Đã hoàn tất').length;
+  const totalPhysicalTables = 8; // Tổng số bàn vật lý tầng 48
+  const availableTablesNow = Math.max(0, totalPhysicalTables - diningNowCount);
+
   res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
   res.end(JSON.stringify({
     success: true,
@@ -188,7 +220,10 @@ exports.handleGetStats = (req, res) => {
       todayGuests,
       maxCapacity: 24,
       totalDeposit,
-      allergyCount
+      allergyCount,
+      diningNowCount,
+      completedCount,
+      availableTablesNow
     }
   }));
 };

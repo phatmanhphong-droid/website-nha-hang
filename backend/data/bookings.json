@@ -1,41 +1,5 @@
 [
   {
-    "id": "BK-199724",
-    "name": "vũ anh thư ",
-    "phone": "0933089270",
-    "email": "",
-    "date": "2026-11-07",
-    "time": "19:30",
-    "guests": 2,
-    "tier": "12 Món Nếm Thử Tinh Hoa",
-    "space": "The Obsidian Vault",
-    "preference": "Tiêu chuẩn Bếp trưởng",
-    "wine": "Wine Pairing 6 ly chọn lọc",
-    "note": "dị ứng các loại hạt ",
-    "deposit": 1000000,
-    "status": "Đã xác nhận",
-    "createdAt": "2026-11-08T17:49:59.724Z",
-    "updatedAt": "2026-11-08T17:50:42.641Z"
-  },
-  {
-    "id": "BK-732689",
-    "name": "trần đức mạnh ",
-    "phone": "0933089277770",
-    "email": "",
-    "date": "2026-11-07",
-    "time": "19:30",
-    "guests": 2,
-    "tier": "12 Món Nếm Thử Tinh Hoa",
-    "space": "The Obsidian Vault",
-    "preference": "Tiêu chuẩn Bếp trưởng",
-    "wine": "Wine Pairing 6 ly chọn lọc",
-    "note": "",
-    "deposit": 1000000,
-    "status": "Đã hủy",
-    "createdAt": "2026-11-08T17:42:12.690Z",
-    "updatedAt": "2026-11-08T17:46:57.536Z"
-  },
-  {
     "id": "BK-20261109-001",
     "name": "Lê Quang Vinh",
     "phone": "0912 345 678",
@@ -49,10 +13,12 @@
     "wine": "Wine Pairing 6 ly chọn lọc",
     "note": "",
     "deposit": 1000000,
-    "status": "Đã xác nhận",
+    "status": "Đã hoàn tất",
     "arrivedAt": "17:24",
+    "completedAt": "19:40",
+    "diningDuration": "2h 16p",
     "createdAt": "2026-11-08T09:00:00.000Z",
-    "updatedAt": "2026-11-09T10:24:00.000Z"
+    "updatedAt": "2026-11-09T12:40:00.000Z"
   },
   {
     "id": "BK-20261109-002",
@@ -68,10 +34,10 @@
     "wine": "Wine Pairing 6 ly chọn lọc",
     "note": "Khách thích bàn nhìn thẳng về đại lộ Lê Duẩn",
     "deposit": 1000000,
-    "status": "Đã xác nhận",
+    "status": "Đã đến",
     "arrivedAt": "17:33",
     "createdAt": "2026-11-07T14:30:00.000Z",
-    "updatedAt": "2026-11-08T17:52:59.956Z"
+    "updatedAt": "2026-11-09T10:33:00.000Z"
   },
   {
     "id": "BK-20261109-003",
@@ -104,9 +70,8 @@
     "wine": "Pairing Trà & Mocktail thảo mộc (+650.000₫/khách)",
     "note": "Dị ứng đậu phộng và hạt phỉ nặng",
     "deposit": 1000000,
-    "status": "Đã hủy",
-    "createdAt": "2026-11-09T02:12:00.000Z",
-    "updatedAt": "2026-11-08T17:46:26.407Z"
+    "status": "Chờ xác nhận",
+    "createdAt": "2026-11-09T02:12:00.000Z"
   },
   {
     "id": "BK-20261109-005",
@@ -157,9 +122,8 @@
     "wine": "Wine Pairing 6 ly chọn lọc",
     "note": "Khách kén ăn cay, không ăn được ớt tiêu xanh",
     "deposit": 1000000,
-    "status": "Đã xác nhận",
-    "createdAt": "2026-11-09T04:40:00.000Z",
-    "updatedAt": "2026-11-08T17:46:36.487Z"
+    "status": "Chờ xác nhận",
+    "createdAt": "2026-11-09T04:40:00.000Z"
   },
   {
     "id": "BK-20261109-008",
@@ -176,6 +140,8 @@
     "note": "Khách đổi lịch bay nên xin hủy ca tối nay",
     "deposit": 1000000,
     "status": "Đã hủy",
+    "cancelReason": "Khách đổi lịch bay, không kịp về Sài Gòn",
+    "depositPolicy": "Bảo lưu 100% tiền cọc 30 ngày",
     "createdAt": "2026-11-07T10:00:00.000Z",
     "updatedAt": "2026-11-09T08:30:00.000Z"
   },
@@ -194,8 +160,7 @@
     "wine": "Grand Cru Reserve 8 ly (+2.400.000₫/khách)",
     "note": "Tiệc cuối năm công ty. 2 khách ăn chay, 1 khách dị ứng sữa. Cần máy chiếu và micro phát biểu.",
     "deposit": 9000000,
-    "status": "Đã nhận cọc",
-    "createdAt": "2026-11-09T08:48:00.000Z",
-    "updatedAt": "2026-11-08T17:46:49.488Z"
+    "status": "Chờ xác nhận",
+    "createdAt": "2026-11-09T08:48:00.000Z"
   }
 ]

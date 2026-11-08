@@ -78,7 +78,7 @@
           <div id="staff-name" class="text-[13px] text-white/95 font-medium">Kenji Phạm</div>
           <div id="staff-role" class="text-[11px] text-[#F8D127]/80">Quản trị viên (Admin)</div>
         </div>
-        <button onclick="handleLogout()" title="Đăng xuất" class="p-1.5 border border-white/15 hover:border-red-500 hover:text-red-400 text-white/50 transition ml-1 cursor-pointer">
+        <button onclick="handleLogout()" title="Đăng xuất khỏi hệ thống" class="p-1.5 border border-white/15 hover:border-red-500 hover:text-red-400 text-white/50 transition ml-1 cursor-pointer">
           <i class="ph ph-sign-out text-[16px]"></i>
         </button>
       </div>
@@ -184,19 +184,26 @@
           </button>
         </div>
 
-        <!-- Count Line Stats Bar (Kombai V1) -->
-        <div class="tnum flex h-[44px] shrink-0 items-center gap-7 border-y border-white/10 text-[13px] mt-2 overflow-x-auto no-bar">
+        <!-- Count Line Stats Bar (Kombai V1 Enhanced with Available Tables) -->
+        <div class="tnum flex h-[44px] shrink-0 items-center gap-6 border-y border-white/10 text-[13px] mt-2 overflow-x-auto no-bar">
           <div class="flex items-center gap-3 shrink-0">
             <span class="text-white/55">Khách</span>
             <span class="font-semibold text-white text-[15px]"><span id="stat-bar-today-guests">22</span><span class="font-normal text-white/45 text-[13px]">/24</span></span>
-            <span class="flex h-[6px] w-[96px] gap-[2px] bg-white/15 rounded-xs overflow-hidden">
+            <span class="flex h-[6px] w-[80px] gap-[2px] bg-white/15 rounded-xs overflow-hidden">
               <span id="stat-bar-progress" class="bg-[#F8D127] h-full" style="width: 91.6%;"></span>
             </span>
           </div>
           <div class="shrink-0"><span class="text-white/55">Bàn đặt:</span> <span id="stat-bar-tables" class="ml-1 font-semibold text-white">7</span></div>
+          <div class="shrink-0"><span class="text-white/55">Đang dùng bữa:</span> <span id="stat-bar-dining" class="ml-1 font-semibold text-amber-400">1</span></div>
+          <div class="shrink-0"><span class="text-white/55">Đã ăn xong:</span> <span id="stat-bar-completed" class="ml-1 font-semibold text-[#9CC79A]">1</span></div>
+          
+          <!-- BÀN TRỐNG SẴN SÀNG HIỆN TẠI (YẾU TỐ 3) -->
+          <div class="shrink-0 bg-[#9CC79A]/15 border border-[#9CC79A]/40 px-2.5 py-0.5 flex items-center gap-1.5">
+            <span class="text-[#9CC79A] font-medium">Bàn trống sẵn sàng:</span> 
+            <span id="stat-bar-available-tables" class="font-bold text-[#9CC79A]">7/8 bàn 🟢</span>
+          </div>
+
           <div class="shrink-0"><span class="text-white/55">Chờ xác nhận:</span> <span id="stat-bar-pending" class="ml-1 font-semibold text-[#F8D127]">2</span></div>
-          <div class="shrink-0"><span class="text-white/55">Có ghi chú/Dị ứng:</span> <span id="stat-bar-notes" class="ml-1 font-semibold text-red-400">5</span></div>
-          <div class="shrink-0"><span class="text-white/55">Đã đến:</span> <span id="stat-bar-arrived" class="ml-1 font-semibold text-[#9CC79A]">2</span></div>
           <div class="shrink-0"><span class="text-white/55">Đã hủy:</span> <span id="stat-bar-cancelled" class="ml-1 font-semibold text-white/50">1</span></div>
         </div>
 
@@ -212,7 +219,8 @@
             <option value="Chờ xác nhận">Chờ xác nhận</option>
             <option value="Đã xác nhận">Đã xác nhận</option>
             <option value="Đã nhận cọc">Đã nhận cọc</option>
-            <option value="Đã đến">Đã đến</option>
+            <option value="Đã đến">Đang dùng bữa (Đã đến)</option>
+            <option value="Đã hoàn tất">Đã hoàn tất (Trả bàn)</option>
             <option value="Đã hủy">Đã hủy</option>
           </select>
 
@@ -274,7 +282,7 @@
             <div class="tnum flex items-center gap-6 text-[13px]">
               <span><span class="text-white/55">Khách:</span> <b class="ml-1 text-[15px] font-semibold text-white"><span id="floorplan-today-guests">22</span>/24</b></span>
               <span><span class="text-white/55">Bàn đặt:</span> <b class="ml-1 font-semibold text-white" id="floorplan-table-count">7</b></span>
-              <span><span class="text-white/55">Chờ xác nhận:</span> <b class="ml-1 font-semibold text-[#F8D127]" id="floorplan-pending-count">2</b></span>
+              <span class="text-[#9CC79A] bg-[#9CC79A]/10 border border-[#9CC79A]/30 px-2 py-0.5 font-medium">Bàn trống hiện tại: <b id="floorplan-available-tables">7/8 bàn</b></span>
             </div>
           </div>
 
@@ -540,6 +548,54 @@
     </div>
   </div>
 
+  <!-- ==================== MODAL: HỦY ĐẶT BÀN & CHÍNH SÁCH TIỀN CỌC (YẾU TỐ 2) ==================== -->
+  <div id="modal-cancel-booking" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="chamfer border border-[#941E21] bg-[#1A1312] p-6 w-full max-w-[500px] text-white">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <div class="flex items-center gap-2 text-red-400">
+          <i class="ph ph-warning-circle text-[22px]"></i>
+          <h3 class="font-display text-[20px] font-semibold">Xác Nhận Hủy Đặt Bàn</h3>
+        </div>
+        <button onclick="closeCancelModal()" class="text-white/40 hover:text-white text-[20px]">&times;</button>
+      </div>
+
+      <div class="mt-4 text-[13px] text-white/80">
+        Bạn đang thực hiện hủy lượt đặt bàn của: <b id="cancel-modal-guest-name" class="text-white text-[15px]">...</b>
+        <div class="text-[12px] text-white/50 mt-1">Khi hủy, hệ thống sẽ tự động giải phóng số ghế trên thanh công suất 24 khách/đêm để đón tiếp khách khác.</div>
+      </div>
+
+      <div class="mt-4 space-y-3 text-[13px]">
+        <div>
+          <label class="block text-white/70 mb-1 font-medium">Lý do khách hủy bàn *</label>
+          <select id="cancel-reason-select" class="w-full bg-[#141010] border border-white/20 p-2.5 text-white focus:outline-none focus:border-[#F8D127]">
+            <option value="Khách đổi lịch bay / Di chuyển trễ">Khách đổi lịch bay / Di chuyển trễ</option>
+            <option value="Kẹt việc bận đột xuất">Kẹt việc bận đột xuất</option>
+            <option value="Sức khỏe / Không đủ điều kiện dùng bữa">Sức khỏe / Không đủ điều kiện dùng bữa</option>
+            <option value="Không liên lạc được (No-Show quá 30p)">Không liên lạc được (No-Show quá 30p)</option>
+            <option value="Yêu cầu hủy từ phía khách hàng">Yêu cầu hủy từ phía khách hàng</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-white/70 mb-1 font-medium">Chính sách xử lý tiền cọc *</label>
+          <select id="cancel-deposit-select" class="w-full bg-[#141010] border border-white/20 p-2.5 text-white focus:outline-none focus:border-[#F8D127]">
+            <option value="Bảo lưu 100% tiền cọc trong 30 ngày (Khách báo trước)">Bảo lưu 100% tiền cọc trong 30 ngày (Khách báo trước)</option>
+            <option value="Giữ lại tiền cọc 500k/khách bù chi phí Bếp (Hủy sát giờ <12h / No-Show)">Giữ lại tiền cọc 500k/khách bù chi phí Bếp (Hủy sát giờ &lt;12h / No-Show)</option>
+            <option value="Hoàn tiền 100% chuyển khoản lại cho khách">Hoàn tiền 100% chuyển khoản lại cho khách</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-3 pt-5 mt-4 border-t border-white/10">
+        <button type="button" onclick="closeCancelModal()" class="px-4 py-2 border border-white/20 text-white/70 hover:text-white text-[13px]">Đóng</button>
+        <button type="button" onclick="confirmCancelBookingSubmit()" class="px-5 py-2 bg-[#941E21] text-white font-semibold hover:bg-red-600 transition text-[13px] flex items-center gap-1.5 cursor-pointer">
+          <i class="ph ph-x text-[16px]"></i>
+          <span>Xác Nhận Hủy &amp; Trả Ghế</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- ==================== MODAL: PHIẾU BẾP TRƯỞNG KENJIRO (PRINT PREP SHEET) ==================== -->
   <div id="kitchen-print-modal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
     <div class="chamfer border border-[#F8D127] bg-[#181110] p-8 w-full max-w-[900px] max-h-[90vh] overflow-y-auto thin-scroll text-white">
@@ -580,12 +636,67 @@
     let showCancelled = true;
     let approvalFilter = 'Chờ xác nhận';
     let approvalSortOldest = true;
-    let currentStaffRole = 'reception'; // 'reception' | 'admin'
+    let currentUser = null;
+    let bookingToCancelId = null;
 
     const fmt = new Intl.NumberFormat('vi-VN');
 
-    // 1. CHUYỂN ĐỔI GIAO DIỆN CHÍNH (3 TABS)
+    // 1. AUTHENTICATION & ROLE-BASED ACCESS CONTROL (RBAC) (YẾU TỐ 1)
+    function checkAuth() {
+      const saved = localStorage.getItem('nocturne_user');
+      if (!saved) {
+        window.location.href = '/login';
+        return false;
+      }
+      try {
+        currentUser = JSON.parse(saved);
+        if (!currentUser || !currentUser.role) {
+          localStorage.removeItem('nocturne_user');
+          window.location.href = '/login';
+          return false;
+        }
+
+        // Cập nhật thông tin hiển thị trên Header
+        const avatarEl = document.getElementById('staff-avatar');
+        avatarEl.textContent = currentUser.avatar || (currentUser.role === 'admin' ? 'KP' : 'PT');
+        avatarEl.className = `grid size-9 place-items-center rounded-full ${currentUser.role === 'admin' ? 'bg-[#941E21] text-white' : 'bg-[#1E3A2B] text-[#9CC79A]'} text-[13px] font-semibold`;
+        
+        document.getElementById('staff-name').textContent = currentUser.name || (currentUser.role === 'admin' ? 'Kenji Phạm' : 'Mai Phương Thảo');
+        document.getElementById('staff-role').textContent = currentUser.roleTitle || (currentUser.role === 'admin' ? 'Quản trị viên (Admin)' : 'Lễ tân tầng 48');
+
+        // Phân quyền giao diện
+        if (currentUser.role === 'reception') {
+          // Lễ tân mặc định vào Ca phục vụ
+          if (currentView === 'approval') {
+            switchView('shift');
+          }
+        }
+        return true;
+      } catch (e) {
+        localStorage.removeItem('nocturne_user');
+        window.location.href = '/login';
+        return false;
+      }
+    }
+
+    function handleLogout() {
+      if (confirm('Bạn có chắc muốn đăng xuất khỏi phiên làm việc này?')) {
+        localStorage.removeItem('nocturne_user');
+        window.location.href = '/login';
+      }
+    }
+
+    function handleSwitchAccount() {
+      localStorage.removeItem('nocturne_user');
+      window.location.href = '/login';
+    }
+
+    // 2. CHUYỂN ĐỔI GIAO DIỆN CHÍNH (3 TABS)
     function switchView(viewName) {
+      if (viewName === 'approval' && currentUser && currentUser.role === 'reception') {
+        alert('LƯU Ý: Phân hệ "Duyệt yêu cầu & Công suất đêm" thuộc thẩm quyền của Quản trị viên (Admin) để quyết định nhận các tiệc lớn.');
+      }
+
       currentView = viewName;
       
       document.getElementById('view-shift').classList.add('hidden');
@@ -624,7 +735,7 @@
       }
     }
 
-    // 2. TẢI DỮ LIỆU TỪ SERVER
+    // 3. TẢI DỮ LIỆU TỪ SERVER
     async function loadBookings() {
       try {
         const res = await fetch('/api/bookings');
@@ -632,7 +743,6 @@
         if (json.success && json.data) {
           allBookings = json.data;
           
-          // Tự chọn booking đầu tiên nếu chưa có
           if (!selectedShiftBookingId && allBookings.length > 0) {
             selectedShiftBookingId = allBookings[0].id;
           }
@@ -663,7 +773,7 @@
       if (navBadge) navBadge.textContent = pendingCount;
     }
 
-    // 3. XỬ LÝ NGÀY THÁNG
+    // 4. XỬ LÝ NGÀY THÁNG
     function getSelectedDateStr() {
       const d = new Date();
       d.setDate(d.getDate() + dateOffsetDays);
@@ -713,7 +823,6 @@
       // Lọc danh sách đặt bàn
       let list = allBookings.filter(b => {
         if (b.date !== targetDate && dateOffsetDays !== 0) {
-          // Khi xem ngày khác, chỉ hiện đơn ngày đó
           return b.date === targetDate;
         }
         return true;
@@ -742,6 +851,8 @@
       let pendingCount = 0;
       let notesCount = 0;
       let arrivedCount = 0;
+      let diningNowCount = 0;
+      let completedCount = 0;
       let cancelledCount = 0;
 
       allBookings.forEach(b => {
@@ -749,7 +860,13 @@
           totalGuests += (b.guests || 0);
           tablesCount++;
           if (b.status === 'Chờ xác nhận') pendingCount++;
-          if (b.status === 'Đã đến' || b.arrivedAt) arrivedCount++;
+          if (b.status === 'Đã đến') {
+            arrivedCount++;
+            diningNowCount++;
+          }
+          if (b.status === 'Đã hoàn tất') {
+            completedCount++;
+          }
         } else {
           cancelledCount++;
         }
@@ -759,9 +876,16 @@
       document.getElementById('stat-bar-today-guests').textContent = totalGuests;
       document.getElementById('stat-bar-tables').textContent = tablesCount;
       document.getElementById('stat-bar-pending').textContent = pendingCount;
-      document.getElementById('stat-bar-notes').textContent = notesCount;
-      document.getElementById('stat-bar-arrived').textContent = arrivedCount;
+      document.getElementById('stat-bar-dining').textContent = diningNowCount;
+      document.getElementById('stat-bar-completed').textContent = completedCount;
       document.getElementById('stat-bar-cancelled').textContent = cancelledCount;
+
+      // Tính số bàn trống sẵn sàng đón khách (Tổng 8 bàn tiêu chuẩn - số bàn đang ngồi ăn)
+      const availableTablesNow = Math.max(0, 8 - diningNowCount);
+      const availEl = document.getElementById('stat-bar-available-tables');
+      if (availEl) {
+        availEl.textContent = `${availableTablesNow}/8 bàn 🟢`;
+      }
 
       const pct = Math.min(100, Math.round((totalGuests / 24) * 100));
       document.getElementById('stat-bar-progress').style.width = pct + '%';
@@ -788,10 +912,22 @@
           const rowsHtml = items.map(b => {
             const isSelected = (b.id === selectedShiftBookingId);
             const isCancelled = (b.status === 'Đã hủy');
+            const isCompleted = (b.status === 'Đã hoàn tất');
+            const isDining = (b.status === 'Đã đến');
             
             let statusDot = 'size-2 rounded-full border border-white/70';
             let statusTextColor = 'text-white/80';
-            if (b.status === 'Đã nhận cọc' || b.status === 'Đã đến') {
+            let statusDisplay = b.status;
+
+            if (isDining) {
+              statusDot = 'size-2 rounded-full bg-amber-400 animate-pulse';
+              statusTextColor = 'text-amber-400 font-medium';
+              statusDisplay = 'Đang dùng bữa';
+            } else if (isCompleted) {
+              statusDot = 'size-2 rounded-full bg-[#9CC79A]';
+              statusTextColor = 'text-[#9CC79A]';
+              statusDisplay = 'Đã trả bàn';
+            } else if (b.status === 'Đã nhận cọc') {
               statusDot = 'size-2 rounded-full bg-[#9CC79A]';
               statusTextColor = 'text-white/90';
             } else if (b.status === 'Chờ xác nhận') {
@@ -812,7 +948,7 @@
                 <span class="${isCancelled ? 'text-white/40' : 'text-white/75'} truncate">${b.space}</span>
                 <span class="flex items-center gap-2 text-[13px] ${statusTextColor}">
                   <span class="${statusDot}"></span>
-                  ${b.status}
+                  ${statusDisplay}
                 </span>
                 <span class="tnum text-[13px] ${b.arrivedAt ? 'text-[#9CC79A]' : 'text-white/35'}">${b.arrivedAt || '—'}</span>
                 <div class="text-right">
@@ -856,6 +992,8 @@
 
       const depositAmount = b.deposit || (b.guests * 500000);
       const isCancelled = (b.status === 'Đã hủy');
+      const isCompleted = (b.status === 'Đã hoàn tất');
+      const isDining = (b.status === 'Đã đến');
 
       drawer.innerHTML = `
         <!-- Chamfer Gold Header -->
@@ -878,16 +1016,50 @@
 
         <!-- Scrollable Detail Body -->
         <div class="thin-scroll min-h-0 flex-1 overflow-y-auto px-5 py-4 space-y-4">
-          <!-- Status Line -->
-          <div class="flex items-center justify-between border-b border-white/10 pb-3">
-            <span class="flex items-center gap-2 text-[14px] text-white/90">
-              <span class="size-2 rounded-full ${b.status === 'Đã nhận cọc' || b.status === 'Đã đến' ? 'bg-[#9CC79A]' : (b.status === 'Chờ xác nhận' ? 'bg-[#F8D127]' : 'bg-[#941E21]')}"></span>
-              ${b.status}
-            </span>
-            <span class="text-[13px] ${b.arrivedAt ? 'text-[#9CC79A] font-medium' : 'text-white/45'}">
-              ${b.arrivedAt ? `Đã đến lúc ${b.arrivedAt}` : 'Chưa đến'}
-            </span>
-          </div>
+          
+          <!-- BÁO CÁO TRẠNG THÁI BÀN (YẾU TỐ 2 & 3) -->
+          ${isCompleted ? `
+            <div class="border border-[#9CC79A]/40 bg-[#9CC79A]/10 p-3 text-[13px]">
+              <div class="flex items-center justify-between text-[#9CC79A] font-semibold mb-1">
+                <span class="flex items-center gap-1.5"><i class="ph ph-check-circle text-[17px]"></i> Khách đã ăn xong &amp; trả bàn</span>
+                <span class="text-[11px] bg-[#9CC79A] text-[#1D1312] px-2 py-0.5 font-bold">🟢 BÀN TRỐNG</span>
+              </div>
+              <div class="text-[12px] text-white/80">
+                Đến lúc: <b>${b.arrivedAt || '—'}</b> · Về lúc: <b>${b.completedAt || '—'}</b> (Thời gian ngồi: <b>${b.diningDuration || '2h 16p'}</b>)
+              </div>
+            </div>
+          ` : (isDining ? `
+            <div class="border border-amber-500/40 bg-amber-500/10 p-3 text-[13px]">
+              <div class="flex items-center justify-between text-amber-400 font-semibold mb-1">
+                <span class="flex items-center gap-1.5"><i class="ph ph-fork-knife text-[17px]"></i> Khách đang dùng bữa tại bàn</span>
+                <span class="text-[11px] bg-amber-500 text-[#1D1312] px-2 py-0.5 font-bold">🔴 ĐANG CÓ KHÁCH</span>
+              </div>
+              <div class="text-[12px] text-white/80">
+                Khách vào lúc: <b>${b.arrivedAt || '—'}</b> · Thời lượng trung bình: <b>2h – 2h30p</b>
+              </div>
+            </div>
+          ` : (isCancelled ? `
+            <div class="border border-red-500/40 bg-red-950/40 p-3 text-[13px]">
+              <div class="flex items-center justify-between text-red-400 font-semibold mb-1">
+                <span class="flex items-center gap-1.5"><i class="ph ph-x-circle text-[17px]"></i> Đơn đã hủy</span>
+                <span class="text-[11px] text-white/50">Đã giải phóng ghế vào công suất</span>
+              </div>
+              <div class="text-[12px] text-white/90">
+                Lý do hủy: <b>${b.cancelReason || 'Khách báo bận đột xuất'}</b>
+              </div>
+              <div class="text-[11px] text-[#F8D127] mt-1">
+                Xử lý tiền cọc: <b>${b.depositPolicy || 'Bảo lưu cọc 30 ngày'}</b>
+              </div>
+            </div>
+          ` : `
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+              <span class="flex items-center gap-2 text-[14px] text-white/90">
+                <span class="size-2 rounded-full ${b.status === 'Đã nhận cọc' ? 'bg-[#9CC79A]' : 'bg-[#F8D127]'}"></span>
+                ${b.status}
+              </span>
+              <span class="text-[13px] text-white/45">Chưa đến</span>
+            </div>
+          `))}
 
           <!-- Contact Details -->
           <div class="space-y-2 border-b border-white/10 pb-3 text-[14px]">
@@ -941,9 +1113,14 @@
           </dl>
         </div>
 
-        <!-- Action Buttons Footer -->
+        <!-- Action Buttons Footer (YẾU TỐ 2 & 3) -->
         <div class="flex h-[64px] shrink-0 items-center gap-2 border-t border-white/10 px-5 bg-[#1A1312]">
-          ${!b.arrivedAt && b.status !== 'Đã hủy' ? `
+          ${isDining ? `
+            <button onclick="checkoutBooking('${b.id}')" class="flex h-10 flex-1 items-center justify-center gap-2 bg-[#9CC79A] text-[13px] font-bold text-[#1D1312] hover:bg-white transition cursor-pointer shadow-md">
+              <i class="ph ph-door-open text-[18px]"></i>
+              <span>Khách đã về / Trả bàn</span>
+            </button>
+          ` : (!b.arrivedAt && !isCancelled && !isCompleted ? `
             <button onclick="markGuestArrived('${b.id}')" class="flex h-10 flex-1 items-center justify-center gap-2 bg-[#F8D127] text-[13px] font-semibold text-[#1D1312] hover:bg-white transition cursor-pointer">
               <i class="ph ph-check-circle text-[17px]"></i>
               <span>Ghi nhận khách đến</span>
@@ -951,21 +1128,21 @@
           ` : `
             <button onclick="updateBookingStatus('${b.id}', 'Đã nhận cọc')" class="flex h-10 flex-1 items-center justify-center gap-2 border border-[#9CC79A] text-[13px] font-medium text-[#9CC79A] hover:bg-[#9CC79A] hover:text-[#1D1312] transition">
               <i class="ph ph-hand-coins text-[16px]"></i>
-              <span>Đã nhận cọc</span>
+              <span>${isCompleted ? '🟢 Đã trả bàn xong' : 'Đã nhận cọc'}</span>
             </button>
-          `}
+          `)}
 
-          ${b.status !== 'Đã hủy' ? `
-            <button onclick="updateBookingStatus('${b.id}', 'Đã hủy')" class="h-10 px-3 text-[13px] text-[#E0656A] hover:bg-[#941E21]/20 border border-[#941E21]/30 transition">
+          ${!isCancelled && !isCompleted ? `
+            <button onclick="openCancelModal('${b.id}')" class="h-10 px-3 text-[13px] text-[#E0656A] hover:bg-[#941E21]/20 border border-[#941E21]/30 transition cursor-pointer">
               Hủy đặt
             </button>
-          ` : `
-            <button onclick="updateBookingStatus('${b.id}', 'Đã xác nhận')" class="h-10 px-3 text-[13px] text-[#F8D127] border border-[#F8D127]/30 hover:bg-[#F8D127]/10 transition">
+          ` : (isCancelled ? `
+            <button onclick="restoreBooking('${b.id}')" class="h-10 px-3 text-[13px] text-[#F8D127] border border-[#F8D127]/30 hover:bg-[#F8D127]/10 transition cursor-pointer">
               Khôi phục
             </button>
-          `}
+          ` : '')}
 
-          <button onclick="deleteBookingPermanent('${b.id}')" title="Xóa vĩnh viễn" class="grid size-10 place-items-center border border-white/15 text-white/50 hover:border-red-500 hover:text-red-400 transition">
+          <button onclick="deleteBookingPermanent('${b.id}')" title="Xóa vĩnh viễn (Chỉ Admin)" class="grid size-10 place-items-center border border-white/15 text-white/50 hover:border-red-500 hover:text-red-400 transition cursor-pointer">
             <i class="ph ph-trash text-[16px]"></i>
           </button>
         </div>
@@ -981,10 +1158,12 @@
 
       const todayBookings = allBookings.filter(b => b.date === targetDate && b.status !== 'Đã hủy');
       const totalGuests = todayBookings.reduce((sum, b) => sum + (b.guests || 0), 0);
+      const diningNowCount = todayBookings.filter(b => b.status === 'Đã đến').length;
+      const availableTablesNow = Math.max(0, 8 - diningNowCount);
       
       document.getElementById('floorplan-today-guests').textContent = totalGuests;
       document.getElementById('floorplan-table-count').textContent = todayBookings.length;
-      document.getElementById('floorplan-pending-count').textContent = todayBookings.filter(b => b.status === 'Chờ xác nhận').length;
+      document.getElementById('floorplan-available-tables').textContent = `${availableTablesNow}/8 bàn trống 🟢`;
 
       // Phân bổ đơn vào từng khu vực
       const zoneMap = {
@@ -997,32 +1176,44 @@
 
       // 1. Quầy bar bếp lửa
       const barRes = document.getElementById('zone-reservations-bar');
-      barRes.innerHTML = (zoneMap['Quầy bar bếp lửa'] || []).slice(0, 3).map(b => `
-        <span class="${b.status === 'Đã hủy' ? 'text-white/35 line-through' : ''}">
-          ${b.time} ${b.name} <span class="text-white/45">(${b.guests})</span>
-        </span>
-      `).join('') || '<span class="text-white/30 italic">Chưa có khách đặt quầy</span>';
+      barRes.innerHTML = (zoneMap['Quầy bar bếp lửa'] || []).slice(0, 3).map(b => {
+        let tag = '';
+        if (b.status === 'Đã hoàn tất') tag = '<span class="text-[#9CC79A] text-[10px] ml-1">🟢 Trống</span>';
+        else if (b.status === 'Đã đến') tag = '<span class="text-amber-400 text-[10px] ml-1">🔴 Đang ăn</span>';
+        return `
+          <span class="${b.status === 'Đã hủy' ? 'text-white/35 line-through' : ''}">
+            ${b.time} ${b.name} <span class="text-white/45">(${b.guests})</span> ${tag}
+          </span>
+        `;
+      }).join('') || '<span class="text-[#9CC79A] italic">🟢 Quầy bar đang trống sẵn sàng</span>';
 
       // 2. Bàn cửa sổ view thành phố
       const winRes = document.getElementById('zone-reservations-window');
-      winRes.innerHTML = (zoneMap['Bàn cửa sổ view thành phố'] || []).slice(0, 3).map(b => `
-        <div class="flex items-center justify-between border-b border-white/5 pb-1">
-          <span class="truncate">${b.time} ${b.name}</span>
-          <span class="flex items-center gap-1.5 text-white/50 text-[11px] shrink-0">
-            ${b.guests} khách
-            ${b.note ? '<i class="ph ph-note text-[#F8D127]"></i>' : ''}
-          </span>
-        </div>
-      `).join('') || '<div class="text-white/30 italic">Chưa có đơn đặt bàn cửa sổ</div>';
+      winRes.innerHTML = (zoneMap['Bàn cửa sổ view thành phố'] || []).slice(0, 3).map(b => {
+        let statusBadge = '';
+        if (b.status === 'Đã hoàn tất') statusBadge = '<span class="text-[#9CC79A] text-[11px] font-bold">🟢 Đã trả bàn</span>';
+        else if (b.status === 'Đã đến') statusBadge = '<span class="text-amber-400 text-[11px] font-bold">🔴 Đang ăn</span>';
+        else if (b.status === 'Đã nhận cọc') statusBadge = '<span class="text-white/60 text-[11px]">🟡 Sắp đến</span>';
+
+        return `
+          <div class="flex items-center justify-between border-b border-white/5 pb-1">
+            <span class="truncate">${b.time} ${b.name}</span>
+            <div class="flex items-center gap-2">
+              ${statusBadge}
+              <span class="text-white/50 text-[11px] shrink-0">${b.guests}k</span>
+            </div>
+          </div>
+        `;
+      }).join('') || '<div class="text-[#9CC79A] italic">🟢 3 bàn cửa sổ đang trống</div>';
 
       // 3. Sofa lounge
       const sofaRes = document.getElementById('zone-reservations-sofa');
       sofaRes.innerHTML = (zoneMap['Sofa lounge'] || []).slice(0, 2).map(b => `
         <div class="flex items-center justify-between">
           <span>${b.time} ${b.name}</span>
-          <span class="text-white/50 text-[11px]">${b.guests} khách</span>
+          <span class="text-white/50 text-[11px]">${b.guests} khách ${b.status === 'Đã đến' ? '🔴' : '🟡'}</span>
         </div>
-      `).join('') || '<span class="text-white/30 italic">Chưa có đơn sofa</span>';
+      `).join('') || '<span class="text-[#9CC79A] italic">🟢 Sofa lounge đang trống</span>';
 
       // 4. The Obsidian Vault
       const vaultRes = document.getElementById('zone-reservations-vault');
@@ -1031,7 +1222,7 @@
           <span class="font-medium text-white">${b.time} ${b.name}</span>
           <span class="text-white/60 text-[11px]">${b.guests} khách VIP</span>
         </div>
-      `).join('') || '<span class="text-white/30 italic">Phòng Obsidian còn trống</span>';
+      `).join('') || '<span class="text-[#9CC79A] italic">🟢 Phòng Obsidian còn trống</span>';
 
       // 5. Penthouse summary
       const pentRes = document.getElementById('zone-reservations-penthouse-summary');
@@ -1039,7 +1230,7 @@
       if (pentList.length > 0) {
         pentRes.innerHTML = `<b class="text-[#F8D127]">${pentList[0].name} (${pentList[0].guests} khách)</b> · Đã đặt trọn tầng 48`;
       } else {
-        pentRes.textContent = '0 đặt bàn trọn tầng';
+        pentRes.innerHTML = '<span class="text-[#9CC79A]">🟢 Chưa có tiệc bao tầng · Tầng 48 phục vụ các bàn lẻ</span>';
       }
 
       // 6. Timeline Arrival Strip (Kombai V2a)
@@ -1047,7 +1238,7 @@
       const hours = ['17:30', '18:00', '19:00', '19:30', '21:00'];
       
       let stripHtml = `
-        <button onclick="filterFloorByHour('all')" class="flex flex-col justify-center border-r border-white/10 bg-white/[0.06] px-4 text-left">
+        <button onclick="renderFloorPlanView()" class="flex flex-col justify-center border-r border-white/10 bg-white/[0.06] px-4 text-left">
           <span class="text-[13px] font-medium text-white">Tất cả giờ</span>
           <span class="tnum mt-0.5 text-[11px] text-white/55">${todayBookings.length} bàn, ${totalGuests} khách</span>
         </button>
@@ -1056,10 +1247,10 @@
       hours.forEach(hr => {
         const atHour = todayBookings.filter(b => b.time === hr);
         const atGuests = atHour.reduce((sum, b) => sum + b.guests, 0);
-        const arrivedCount = atHour.filter(b => b.arrivedAt).length;
+        const arrivedCount = atHour.filter(b => b.status === 'Đã đến' || b.status === 'Đã hoàn tất').length;
 
         stripHtml += `
-          <button onclick="filterFloorByHour('${hr}')" class="flex flex-col justify-center border-r border-white/10 px-4 text-left hover:bg-white/[0.04] transition">
+          <button onclick="selectFloorHour('${hr}')" class="flex flex-col justify-center border-r border-white/10 px-4 text-left hover:bg-white/[0.04] transition">
             <span class="tnum text-[18px] font-bold text-white">${hr}</span>
             <span class="tnum text-[11px] text-white/55">${atHour.length} bàn, ${atGuests} khách</span>
             <span class="mt-0.5 text-[11px] ${arrivedCount > 0 ? 'text-[#9CC79A]' : 'text-white/40'}">
@@ -1076,6 +1267,11 @@
     function selectFloorZone(zoneName) {
       selectedFloorZone = zoneName;
       renderFloorSpacePanel();
+    }
+
+    function selectFloorHour(hr) {
+      document.getElementById('shift-filter-search').value = hr;
+      switchView('shift');
     }
 
     function renderFloorSpacePanel() {
@@ -1095,57 +1291,73 @@
           ${zoneBookings.length === 0 ? `
             <div class="p-8 text-center text-white/40">
               Chưa có đơn đặt bàn nào tại khu vực này trong ngày.
+              <div class="mt-2 text-[#9CC79A] font-semibold text-[13px]">🟢 Khu vực đang hoàn toàn trống sẵn sàng!</div>
             </div>
           ` : `
             <ul class="divide-y divide-white/[0.06] text-[13px]">
-              ${zoneBookings.map(b => `
-                <li class="p-4 ${b.status === 'Chờ xác nhận' ? 'bg-[#F8D127]/[0.06]' : ''}">
-                  <div class="flex items-center justify-between">
-                    <span class="tnum text-[#F8D127] font-semibold text-[15px]">${b.time}</span>
-                    <span class="flex items-center gap-1.5 text-[12px]">
-                      <span class="size-2 rounded-full ${b.status === 'Đã nhận cọc' || b.status === 'Đã đến' ? 'bg-[#9CC79A]' : (b.status === 'Chờ xác nhận' ? 'bg-[#F8D127]' : 'bg-[#941E21]')}"></span>
-                      ${b.status}
-                    </span>
-                  </div>
+              ${zoneBookings.map(b => {
+                const isCompleted = (b.status === 'Đã hoàn tất');
+                const isDining = (b.status === 'Đã đến');
 
-                  <div class="mt-2 font-medium text-white text-[15px] flex items-center justify-between">
-                    <span>${b.name} (${b.guests} khách)</span>
-                    <span class="tnum text-[12px] text-white/40 font-normal">${b.id}</span>
-                  </div>
-
-                  <div class="mt-2 flex items-center gap-2 text-white/70">
-                    <i class="ph ph-phone text-[#F8D127]"></i>
-                    <a href="tel:${b.phone}" class="hover:underline">${b.phone}</a>
-                  </div>
-
-                  ${b.note ? `
-                    <div class="mt-2.5 border border-[#F8D127]/30 bg-[#F8D127]/10 p-2.5 text-[12px] text-white/90">
-                      <span class="text-[#F8D127] font-bold block mb-0.5">Lưu ý:</span>
-                      ${b.note}
+                return `
+                  <li class="p-4 ${isDining ? 'bg-amber-500/[0.08]' : (isCompleted ? 'bg-[#9CC79A]/[0.06]' : '')}">
+                    <div class="flex items-center justify-between">
+                      <span class="tnum text-[#F8D127] font-semibold text-[15px]">${b.time}</span>
+                      <span class="flex items-center gap-1.5 text-[12px]">
+                        <span class="size-2 rounded-full ${isDining ? 'bg-amber-400 animate-pulse' : (isCompleted ? 'bg-[#9CC79A]' : 'bg-[#F8D127]')}"></span>
+                        <b class="${isDining ? 'text-amber-400' : (isCompleted ? 'text-[#9CC79A]' : 'text-white')}">${isDining ? 'Đang dùng bữa' : (isCompleted ? 'Đã trả bàn 🟢' : b.status)}</b>
+                      </span>
                     </div>
-                  ` : ''}
 
-                  <div class="mt-3 flex gap-2">
-                    ${b.status !== 'Đã đến' && b.status !== 'Đã hủy' ? `
-                      <button onclick="markGuestArrived('${b.id}')" class="flex-1 bg-[#F8D127] text-[#1D1312] py-1.5 text-[12px] font-bold hover:bg-white transition cursor-pointer">
-                        Ghi nhận khách đến
-                      </button>
+                    <div class="mt-2 font-medium text-white text-[15px] flex items-center justify-between">
+                      <span>${b.name} (${b.guests} khách)</span>
+                      <span class="tnum text-[12px] text-white/40 font-normal">${b.id}</span>
+                    </div>
+
+                    <div class="mt-2 flex items-center gap-2 text-white/70">
+                      <i class="ph ph-phone text-[#F8D127]"></i>
+                      <a href="tel:${b.phone}" class="hover:underline">${b.phone}</a>
+                    </div>
+
+                    ${isCompleted ? `
+                      <div class="mt-2 text-[11px] text-[#9CC79A] bg-[#9CC79A]/10 p-2 border border-[#9CC79A]/30">
+                        Đã dọn dẹp sạch sẽ lúc <b>${b.completedAt || '19:40'}</b> (Ngồi: ${b.diningDuration || '2h16p'}) · Sẵn sàng đón khách mới!
+                      </div>
                     ` : ''}
-                    <button onclick="selectShiftBooking('${b.id}'); switchView('shift');" class="border border-white/20 text-white/80 px-3 py-1.5 text-[12px] hover:border-white transition">
-                      Xem hồ sơ
-                    </button>
-                  </div>
-                </li>
-              `).join('')}
+
+                    ${isDining ? `
+                      <div class="mt-2 text-[11px] text-amber-300 bg-amber-500/10 p-2 border border-amber-500/30">
+                        Đang dùng bữa từ <b>${b.arrivedAt || '17:33'}</b>
+                      </div>
+                    ` : ''}
+
+                    <div class="mt-3 flex gap-2">
+                      ${isDining ? `
+                        <button onclick="checkoutBooking('${b.id}')" class="flex-1 bg-[#9CC79A] text-[#1D1312] py-1.5 text-[12px] font-bold hover:bg-white transition cursor-pointer">
+                          Khách đã về / Trả bàn
+                        </button>
+                      ` : (!b.arrivedAt && b.status !== 'Đã hủy' && !isCompleted ? `
+                        <button onclick="markGuestArrived('${b.id}')" class="flex-1 bg-[#F8D127] text-[#1D1312] py-1.5 text-[12px] font-bold hover:bg-white transition cursor-pointer">
+                          Ghi nhận khách đến
+                        </button>
+                      ` : '')}
+                      
+                      <button onclick="selectShiftBooking('${b.id}'); switchView('shift');" class="border border-white/20 text-white/80 px-3 py-1.5 text-[12px] hover:border-white transition">
+                        Xem hồ sơ
+                      </button>
+                    </div>
+                  </li>
+                `;
+              }).join('')}
             </ul>
           `}
         </div>
 
         <!-- Legend Footer -->
         <div class="border-t border-white/10 px-4 py-3 flex items-center gap-4 text-[11px] text-white/50 bg-[#171110]">
-          <span class="flex items-center gap-1.5"><span class="size-2 rounded-full bg-[#F8D127]"></span>Chờ xác nhận</span>
-          <span class="flex items-center gap-1.5"><span class="size-2 rounded-full bg-[#9CC79A]"></span>Đã cọc/Đã đến</span>
-          <span class="flex items-center gap-1.5"><span class="size-2 rounded-full bg-[#941E21]"></span>Đã hủy</span>
+          <span class="flex items-center gap-1.5"><span class="size-2 rounded-full bg-amber-400"></span>Đang ăn</span>
+          <span class="flex items-center gap-1.5"><span class="size-2 rounded-full bg-[#9CC79A]"></span>Đã trả bàn (Trống)</span>
+          <span class="flex items-center gap-1.5"><span class="size-2 rounded-full bg-[#F8D127]"></span>Khách sắp đến</span>
         </div>
       `;
     }
@@ -1268,7 +1480,6 @@
         return;
       }
 
-      // Đánh giá bối cảnh công suất đêm
       const sameDayBookings = allBookings.filter(x => x.date === b.date && x.id !== b.id && x.status !== 'Đã hủy');
       const alreadyBookedGuests = sameDayBookings.reduce((sum, x) => sum + x.guests, 0);
       const afterApprovalGuests = alreadyBookedGuests + b.guests;
@@ -1352,7 +1563,6 @@
               </span>
             </div>
 
-            <!-- Segmented Bar -->
             <div class="mt-3 flex h-[10px] gap-[2px] bg-white/10 rounded-xs overflow-hidden">
               <span class="bg-white/70 h-full" style="width: ${(alreadyBookedGuests/24)*100}%;" title="Đã đặt: ${alreadyBookedGuests}"></span>
               <span class="bg-[#F8D127] h-full" style="width: ${(b.guests/24)*100}%;" title="Đơn này: ${b.guests}"></span>
@@ -1364,7 +1574,6 @@
               <span class="flex items-center gap-1.5"><span class="h-2 w-3 bg-white/15"></span>Còn trống: ${Math.max(0, 24 - afterApprovalGuests)}</span>
             </div>
 
-            <!-- Conflicts Alert -->
             ${isPenthouseConflict ? `
               <div class="mt-3 flex items-center gap-2 border border-[#941E21]/60 bg-[#941E21]/20 px-3 py-2 text-[12px] text-red-300">
                 <i class="ph ph-warning-circle text-[16px] text-red-400"></i>
@@ -1379,7 +1588,6 @@
               </div>
             ` : ''}
 
-            <!-- Other same day bookings list -->
             ${sameDayBookings.length > 0 ? `
               <div class="mt-3">
                 <span class="text-[11px] uppercase tracking-[0.1em] text-white/40 block mb-1">Các đơn khác cùng ngày (${sameDayBookings.length} bàn):</span>
@@ -1413,11 +1621,11 @@
           <button onclick="updateBookingStatus('${b.id}', 'Đã xác nhận')" class="h-10 flex-1 bg-[#F8D127] text-[13px] font-bold text-[#1D1312] hover:bg-white transition cursor-pointer">
             Xác nhận đặt bàn
           </button>
-          <button onclick="updateBookingStatus('${b.id}', 'Đã nhận cọc')" class="flex h-10 items-center gap-1.5 border border-white/20 px-3 text-[13px] text-white hover:border-[#9CC79A] hover:text-[#9CC79A] transition">
+          <button onclick="updateBookingStatus('${b.id}', 'Đã nhận cọc')" class="flex h-10 items-center gap-1.5 border border-white/20 px-3 text-[13px] text-white hover:border-[#9CC79A] hover:text-[#9CC79A] transition cursor-pointer">
             <i class="ph ph-hand-coins text-[16px]"></i>
             Ghi nhận đã cọc
           </button>
-          <button onclick="updateBookingStatus('${b.id}', 'Đã hủy')" class="h-10 px-3 text-[13px] text-[#E0656A] hover:bg-[#941E21]/20 border border-[#941E21]/30 transition">
+          <button onclick="openCancelModal('${b.id}')" class="h-10 px-3 text-[13px] text-[#E0656A] hover:bg-[#941E21]/20 border border-[#941E21]/30 transition cursor-pointer">
             Hủy đơn
           </button>
         </div>
@@ -1425,14 +1633,14 @@
     }
 
     // ================================================================
-    // API ACTIONS: CẬP NHẬT TRẠNG THÁI, GHI NHẬN ĐẾN, XÓA ĐƠN
+    // API ACTIONS: CẬP NHẬT TRẠNG THÁI, GHI NHẬN ĐẾN, TRẢ BÀN, HỦY ĐƠN
     // ================================================================
-    async function updateBookingStatus(id, newStatus) {
+    async function updateBookingStatus(id, newStatus, extraData = {}) {
       try {
         const res = await fetch('/api/bookings/status', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ id, status: newStatus })
+          body: JSON.stringify({ id, status: newStatus, ...extraData })
         });
         const data = await res.json();
         if (data.success) {
@@ -1445,28 +1653,57 @@
       }
     }
 
+    // Ghi nhận khách đến bàn
     async function markGuestArrived(id) {
       const now = new Date();
       const vnTime = new Date(now.getTime() + 7 * 60 * 60 * 1000);
       const timeStr = vnTime.toISOString().substring(11, 16);
-
-      try {
-        const res = await fetch('/api/bookings/status', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ id, status: 'Đã đến', arrivedAt: timeStr })
-        });
-        const data = await res.json();
-        if (data.success) {
-          await loadBookings();
-        } else {
-          alert('Lỗi: ' + data.message);
-        }
-      } catch (err) {
-        alert('Không thể kết nối đến máy chủ.');
-      }
+      await updateBookingStatus(id, 'Đã đến', { arrivedAt: timeStr });
     }
 
+    // KHÁCH ĂN XONG / TRẢ BÀN (YẾU TỐ 3)
+    async function checkoutBooking(id) {
+      const now = new Date();
+      const vnTime = new Date(now.getTime() + 7 * 60 * 60 * 1000);
+      const timeStr = vnTime.toISOString().substring(11, 16);
+      
+      if (!confirm(`Xác nhận khách đã dùng bữa xong và bàn đã dọn dẹp sẵn sàng đón khách mới lúc ${timeStr}?`)) return;
+
+      await updateBookingStatus(id, 'Đã hoàn tất', { completedAt: timeStr });
+    }
+
+    // XỬ LÝ HỦY BÀN CÓ LÝ DO & CHÍNH SÁCH CỌC (YẾU TỐ 2)
+    function openCancelModal(id) {
+      bookingToCancelId = id;
+      const b = allBookings.find(x => x.id === id);
+      document.getElementById('cancel-modal-guest-name').textContent = b ? `${b.name} (${b.guests} khách · ${b.space})` : id;
+      document.getElementById('modal-cancel-booking').classList.remove('hidden');
+    }
+
+    function closeCancelModal() {
+      document.getElementById('modal-cancel-booking').classList.add('hidden');
+      bookingToCancelId = null;
+    }
+
+    async function confirmCancelBookingSubmit() {
+      if (!bookingToCancelId) return;
+      const reason = document.getElementById('cancel-reason-select').value;
+      const policy = document.getElementById('cancel-deposit-select').value;
+
+      closeCancelModal();
+      await updateBookingStatus(bookingToCancelId, 'Đã hủy', {
+        cancelReason: reason,
+        depositPolicy: policy
+      });
+    }
+
+    // Khôi phục đơn hủy
+    async function restoreBooking(id) {
+      if (!confirm('Khôi phục lại lượt đặt bàn này và tính lại vào công suất?')) return;
+      await updateBookingStatus(id, 'Đã xác nhận');
+    }
+
+    // Xóa vĩnh viễn (Chỉ Admin)
     async function deleteBookingPermanent(id) {
       if (currentUser && currentUser.role !== 'admin') {
         alert('CHỈ QUẢN TRỊ VIÊN (ADMIN) mới có quyền xóa vĩnh viễn đơn đặt bàn khỏi hệ thống.');
@@ -1588,58 +1825,6 @@
       document.getElementById('kitchen-print-modal').classList.add('hidden');
     }
 
-    // AUTHENTICATION & ROLE-BASED ACCESS CONTROL (RBAC)
-    let currentUser = null;
-
-    function checkAuth() {
-      const saved = localStorage.getItem('nocturne_user');
-      if (!saved) {
-        window.location.href = '/login';
-        return false;
-      }
-      try {
-        currentUser = JSON.parse(saved);
-        if (!currentUser || !currentUser.role) {
-          localStorage.removeItem('nocturne_user');
-          window.location.href = '/login';
-          return false;
-        }
-
-        // Cập nhật thông tin hiển thị trên Header
-        const avatarEl = document.getElementById('staff-avatar');
-        avatarEl.textContent = currentUser.avatar || (currentUser.role === 'admin' ? 'KP' : 'PT');
-        avatarEl.className = `grid size-9 place-items-center rounded-full ${currentUser.role === 'admin' ? 'bg-[#941E21] text-white' : 'bg-[#1E3A2B] text-[#9CC79A]'} text-[13px] font-semibold`;
-        
-        document.getElementById('staff-name').textContent = currentUser.name || (currentUser.role === 'admin' ? 'Kenji Phạm' : 'Mai Phương Thảo');
-        document.getElementById('staff-role').textContent = currentUser.roleTitle || (currentUser.role === 'admin' ? 'Quản trị viên (Admin)' : 'Lễ tân tầng 48');
-
-        // Phân quyền giao diện
-        if (currentUser.role === 'reception') {
-          // Lễ tân mặc định vào Ca phục vụ
-          if (currentView === 'approval') {
-            switchView('shift');
-          }
-        }
-        return true;
-      } catch (e) {
-        localStorage.removeItem('nocturne_user');
-        window.location.href = '/login';
-        return false;
-      }
-    }
-
-    function handleLogout() {
-      if (confirm('Bạn có chắc muốn đăng xuất khỏi phiên làm việc này?')) {
-        localStorage.removeItem('nocturne_user');
-        window.location.href = '/login';
-      }
-    }
-
-    function handleSwitchAccount() {
-      localStorage.removeItem('nocturne_user');
-      window.location.href = '/login';
-    }
-
     function toggleNoteFilter() {
       showNotesOnly = !showNotesOnly;
       const btn = document.getElementById('btn-filter-notes');
@@ -1675,14 +1860,6 @@
       document.getElementById('shift-filter-search').value = val;
       document.getElementById('approval-search-input').value = val;
       renderCurrentView();
-    }
-
-    function filterFloorByHour(hr) {
-      if (hr === 'all') {
-        renderFloorPlanView();
-        return;
-      }
-      renderFloorPlanView();
     }
 
     // KHỞI ĐỘNG KHI TẢI TRANG
