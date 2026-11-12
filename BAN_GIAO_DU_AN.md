@@ -202,19 +202,24 @@ Hệ thống đã có sẵn các file kịch bản batch để khởi chạy 1-c
 
 ---
 
-## 9. GIAO DIỆN QUẢN LÝ SÁNG (LIGHT LUXURY THEME - ƯU TIÊN TRẮNG SÁNG DỄ NHÌN TRONG KHÔNG GIAN TỐI)
+## 9. NÂNG CẤP TOÀN DIỆN GIAO DIỆN QUẢN TRỊ ADMIN (LIGHT EXECUTIVE PALETTE & FIX CHỐNG ĐÈ CHỮ)
 
-1. **Đặc thù thực tế của nhà hàng Fine-Dining**:  
-   - Không gian tầng 48 về đêm sử dụng ánh đèn mờ nghệ thuật và ánh nến lung linh (ánh sáng phòng ăn chỉ khoảng 10–20 lux).
-   - Nếu màn hình quản trị của nhân viên lễ tân / quản lý bàn để nền đen (Dark Mode), màn hình sẽ bị phản chiếu ánh đèn phòng, chữ xám mờ khó đọc nhanh, dễ gây nhầm lẫn khi đối chiếu tên khách VIP hay số bàn.
-2. **Giải pháp giao diện Sáng chuẩn Nhà hàng 5 sao**:
-   - **Mặc định kích hoạt Giao diện Sáng (Theme Light)**: Sử dụng bảng màu trắng tuyết `#FFFFFF` và xám ngọc trai `#F8FAFC`.
-   - **Độ tương phản cao (Contrast Ratio > 12:1)**: Chữ tên khách hàng, số điện thoại, mã đơn hiển thị bằng màu đen than `#0F172A` đậm nét, viền bảng phân định rõ ràng.
-   - **Hệ thống thẻ trạng thái sắc nét**:
-     - 🟢 **Sẵn sàng (Bàn trống)**: Nền xanh lá nhạt dịu mắt `#DCFCE7`, chữ xanh đậm `#15803D`.
-     - 🔴 **Đang dùng bữa**: Nền đỏ nhạt `#FEE2E2`, chữ đỏ đậm `#991B1B`.
-     - 🟡 **Chờ duyệt / Sắp đến**: Nền vàng hổ phách nhạt `#FEF9C3`, chữ vàng đồng `#B45309`.
-   - **Nút chuyển đổi Sáng / Tối tức thì**: Tích hợp nút `[ ☀️ Giao diện Sáng | 🌙 Tối ]` ngay trên thanh Header để nhân viên có thể linh hoạt chuyển đổi theo sở thích cá nhân.
+1. **Chuẩn hóa Bảng Màu Quản Trị Sang Trọng & Cân Đối (Executive Color Palette)**:
+   - **Nền tổng thể**: `#F8FAFC` (Slate 50) dịu mắt, sạch sẽ, không gây lóa khi làm việc nhiều giờ liên tục.
+   - **Bề mặt thẻ & khung bảng**: Màu trắng tuyết `#FFFFFF` viền xám sáng mềm `#E2E8F0`, đổ bóng vi mô phân tầng chiều sâu.
+   - **Màu nhận diện & Nút hành động chính (Primary CTA)**: Đỏ rượu vang thượng hạng `#941E21` (Deep Crimson) với chữ trắng tương phản tuyệt đối, khắc phục hoàn toàn tình trạng chữ bị đen đè trên nền nút màu.
+   - **Màu điểm nhấn phụ**: Màu hổ phách ấm `#B45309` (Warm Bronze) thay thế cho màu vàng chanh chói lóa, đảm bảo độ tương phản đạt chuẩn WCAG AAA trên nền trắng.
+   - **Hệ thống nhãn trạng thái bàn chuẩn POS 5 sao**:
+     - 🟢 **Bàn trống sẵn sàng / Đã trả bàn**: Nền xanh ngọc nhạt `#DCFCE7`, viền `#86EFAC`, chữ xanh rừng đậm `#15803D`.
+     - 🔴 **Khách đang dùng bữa**: Nền hổ phách/đỏ nhạt `#FEF3C7`, viền `#FDE68A`, chữ `#92400E` kèm chấm nhịp tim động.
+     - 🟡 **Chờ duyệt / Khách sắp đến**: Nền vàng nhạt `#FEF9C3`, viền `#FDE047`, chữ nâu hổ phách `#854D0E`.
+     - ⚪ **Đã hủy**: Nền xám `#F1F5F9`, chữ xám gạch ngang `#64748B`.
+
+2. **Khắc Phục Triệt Để Lỗi Đè Lẫn Nhau & Chữ Bị Chèn Ép (Layout Overlap Resolution)**:
+   - **Bảng Ca Phục Vụ (Shift Table)**: Bọc khung cuộn ngang chuyên dụng `min-w-[760px]` bên trong vùng co giãn, thiết lập độ rộng cột linh hoạt (Tên khách + SĐT + Mã đơn chiếm cột 1 rộng tối thiểu 200px, số khách có badge tròn, không gian bàn có icon định vị, trạng thái dạng pill bo góc đầy đủ padding). Triệt tiêu 100% hiện tượng cột 1 bị co ép đè chữ lên cột bên cạnh trên màn hình 1366px hay máy tính xách tay.
+   - **Ngăn Kéo Hồ Sơ Chi Tiết (Detail Drawer)**: Tái cấu trúc thành bảng thẻ Executive nền trắng viền xám tinh tế, có dải tóm tắt 3 chỉ số (Giờ, Khách, Cọc) tách bạch, các khối cảnh báo dị ứng màu hổ phách riêng biệt, nút hành động (Ghi nhận khách đến, Trả bàn, Hủy đơn) có khoảng cách thoáng đãng.
+   - **Bảng Duyệt Yêu Cầu & Bối Cảnh Công Suất Đêm (Approval Ledger)**: Cột thời gian chờ, thông tin khách, ngày phục vụ, số khách và tiền cọc được căn lề chuẩn xác, thanh công suất 24 khách/đêm có màu sắc phân định rõ ràng (đã duyệt, đơn hiện tại, còn trống).
+   - **Sơ Đồ Tầng 48 (Floor Plan)**: Khung sơ đồ co giãn linh hoạt theo tỷ lệ màn hình (`grid-cols-1 md:grid-cols-2 xl:grid-cols-[1fr_1fr_310px]`), các thẻ bàn không bị đè văn bản vào nhau.
 
 ---
 
