@@ -202,6 +202,22 @@ Hệ thống đã có sẵn các file kịch bản batch để khởi chạy 1-c
 
 ---
 
+## 9. GIAO DIỆN QUẢN LÝ SÁNG (LIGHT LUXURY THEME - ƯU TIÊN TRẮNG SÁNG DỄ NHÌN TRONG KHÔNG GIAN TỐI)
+
+1. **Đặc thù thực tế của nhà hàng Fine-Dining**:  
+   - Không gian tầng 48 về đêm sử dụng ánh đèn mờ nghệ thuật và ánh nến lung linh (ánh sáng phòng ăn chỉ khoảng 10–20 lux).
+   - Nếu màn hình quản trị của nhân viên lễ tân / quản lý bàn để nền đen (Dark Mode), màn hình sẽ bị phản chiếu ánh đèn phòng, chữ xám mờ khó đọc nhanh, dễ gây nhầm lẫn khi đối chiếu tên khách VIP hay số bàn.
+2. **Giải pháp giao diện Sáng chuẩn Nhà hàng 5 sao**:
+   - **Mặc định kích hoạt Giao diện Sáng (Theme Light)**: Sử dụng bảng màu trắng tuyết `#FFFFFF` và xám ngọc trai `#F8FAFC`.
+   - **Độ tương phản cao (Contrast Ratio > 12:1)**: Chữ tên khách hàng, số điện thoại, mã đơn hiển thị bằng màu đen than `#0F172A` đậm nét, viền bảng phân định rõ ràng.
+   - **Hệ thống thẻ trạng thái sắc nét**:
+     - 🟢 **Sẵn sàng (Bàn trống)**: Nền xanh lá nhạt dịu mắt `#DCFCE7`, chữ xanh đậm `#15803D`.
+     - 🔴 **Đang dùng bữa**: Nền đỏ nhạt `#FEE2E2`, chữ đỏ đậm `#991B1B`.
+     - 🟡 **Chờ duyệt / Sắp đến**: Nền vàng hổ phách nhạt `#FEF9C3`, chữ vàng đồng `#B45309`.
+   - **Nút chuyển đổi Sáng / Tối tức thì**: Tích hợp nút `[ ☀️ Giao diện Sáng | 🌙 Tối ]` ngay trên thanh Header để nhân viên có thể linh hoạt chuyển đổi theo sở thích cá nhân.
+
+---
+
 ### KÝ NHẬN BÀN GIAO
 - **Đại diện Kỹ thuật**: Antigravity AI Engineering Team
 - **Thời gian bàn giao**: Ngày 12 tháng 11 năm 2026

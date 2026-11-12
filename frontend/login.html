@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi" class="scroll-smooth">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,28 +22,47 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Be+Vietnam+Pro:wght@200;300;400;500;600;700&display=swap');
     @import url("https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css");
-    
-    .font-display { font-family: 'Playfair Display', Georgia, serif; }
-    .font-body { font-family: 'Be Vietnam Pro', 'Helvetica Neue', sans-serif; }
-    .tnum { font-variant-numeric: tabular-nums; }
-    .chamfer { clip-path: polygon(18px 0, 100% 0, 100% 100%, 0 100%, 0 18px); }
+
+    .font-display {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    .font-body {
+      font-family: 'Be Vietnam Pro', 'Helvetica Neue', sans-serif;
+    }
+
+    .tnum {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .chamfer {
+      clip-path: polygon(18px 0, 100% 0, 100% 100%, 0 100%, 0 18px);
+    }
   </style>
 </head>
-<body class="bg-[#120E0E] text-white font-body selection:bg-[#F8D127] selection:text-[#1D1312] min-h-screen flex flex-col justify-between relative overflow-x-hidden">
+
+<body
+  class="bg-[#120E0E] text-white font-body selection:bg-[#F8D127] selection:text-[#1D1312] min-h-screen flex flex-col justify-between relative overflow-x-hidden">
 
   <!-- Background decorative glows -->
   <div class="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-    <div class="absolute -top-[20%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-[#941E21]/15 blur-[120px]"></div>
-    <div class="absolute -bottom-[20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#F8D127]/10 blur-[140px]"></div>
+    <div
+      class="absolute -top-[20%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-[#941E21]/15 blur-[120px]">
+    </div>
+    <div class="absolute -bottom-[20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#F8D127]/10 blur-[140px]">
+    </div>
   </div>
 
   <!-- Header minimal -->
-  <header class="relative z-10 w-full px-8 py-6 flex items-center justify-between border-b border-white/10 bg-[#1D1312]/60 backdrop-blur-md">
+  <header
+    class="relative z-10 w-full px-8 py-6 flex items-center justify-between border-b border-white/10 bg-[#1D1312]/60 backdrop-blur-md">
     <a href="/" class="flex items-baseline gap-3">
       <span class="font-display text-[24px] tracking-[0.24em] text-[#F8D127] font-semibold">NOCTURNE</span>
-      <span class="text-[10px] uppercase tracking-[0.2em] text-white/40 hidden sm:inline">Maitre d' Concierge · Tầng 48</span>
+      <span class="text-[10px] uppercase tracking-[0.2em] text-white/40 hidden sm:inline">Maitre d' Concierge · Tầng
+        48</span>
     </a>
-    <a href="/" class="inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.16em] text-white/70 hover:text-[#F8D127] transition">
+    <a href="/"
+      class="inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.16em] text-white/70 hover:text-[#F8D127] transition">
       <i class="ph ph-arrow-left text-[15px]"></i>
       <span>Về Trang Khách</span>
     </a>
@@ -51,21 +71,24 @@
   <!-- Login Card Center -->
   <main class="relative z-10 flex-1 flex items-center justify-center p-6 my-8">
     <div class="w-full max-w-[480px]">
-      
+
       <!-- Card Container -->
       <div class="chamfer border border-[#F8D127]/30 bg-[#1B1413]/95 backdrop-blur-xl p-8 sm:p-10 shadow-2xl relative">
-        
+
         <!-- Brand Header inside card -->
         <div class="text-center pb-6 border-b border-white/10">
-          <div class="inline-flex items-center justify-center size-12 rounded-full bg-[#941E21]/30 border border-[#941E21] text-[#F8D127] mb-3">
+          <div
+            class="inline-flex items-center justify-center size-12 rounded-full bg-[#941E21]/30 border border-[#941E21] text-[#F8D127] mb-3">
             <i class="ph ph-shield-check text-[24px]"></i>
           </div>
           <h1 class="font-display text-[26px] text-white font-medium">Hệ Thống Nội Bộ</h1>
-          <p class="text-[12px] text-white/50 mt-1 uppercase tracking-[0.14em]">Phân quyền Quản Trị &amp; Lễ Tân Điều Phối</p>
+          <p class="text-[12px] text-white/50 mt-1 uppercase tracking-[0.14em]">Phân quyền Quản Trị &amp; Lễ Tân Điều
+            Phối</p>
         </div>
 
         <!-- Error Alert -->
-        <div id="login-error" class="hidden mt-5 p-3 border border-red-500/40 bg-red-950/50 text-red-200 text-[13px] flex items-center gap-2">
+        <div id="login-error"
+          class="hidden mt-5 p-3 border border-red-500/40 bg-red-950/50 text-red-200 text-[13px] flex items-center gap-2">
           <i class="ph ph-warning-circle text-[16px] text-red-400 shrink-0"></i>
           <span id="login-error-msg">Tài khoản hoặc mật khẩu không chính xác.</span>
         </div>
@@ -75,7 +98,8 @@
           <div>
             <label class="block text-white/70 mb-1.5 font-medium">Tên đăng nhập hoặc Email</label>
             <div class="relative">
-              <input type="text" id="username" required placeholder="admin hoặc letan" class="w-full bg-[#130E0E] border border-white/20 px-3.5 py-3 pl-10 text-white placeholder-white/30 focus:outline-none focus:border-[#F8D127] transition" />
+              <input type="text" id="username" required placeholder="admin hoặc letan"
+                class="w-full bg-[#130E0E] border border-white/20 px-3.5 py-3 pl-10 text-white placeholder-white/30 focus:outline-none focus:border-[#F8D127] transition" />
               <i class="ph ph-user absolute left-3.5 top-3.5 text-[16px] text-white/40"></i>
             </div>
           </div>
@@ -86,9 +110,11 @@
               <span class="text-[11px] text-white/40">Mặc định: admin123 / letan123</span>
             </div>
             <div class="relative">
-              <input type="password" id="password" required placeholder="••••••••" class="w-full bg-[#130E0E] border border-white/20 px-3.5 py-3 pl-10 pr-10 text-white placeholder-white/30 focus:outline-none focus:border-[#F8D127] transition" />
+              <input type="password" id="password" required placeholder="••••••••"
+                class="w-full bg-[#130E0E] border border-white/20 px-3.5 py-3 pl-10 pr-10 text-white placeholder-white/30 focus:outline-none focus:border-[#F8D127] transition" />
               <i class="ph ph-lock-key absolute left-3.5 top-3.5 text-[16px] text-white/40"></i>
-              <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3.5 top-3.5 text-white/40 hover:text-white">
+              <button type="button" onclick="togglePasswordVisibility()"
+                class="absolute right-3.5 top-3.5 text-white/40 hover:text-white">
                 <i id="toggle-pwd-icon" class="ph ph-eye text-[16px]"></i>
               </button>
             </div>
@@ -102,7 +128,8 @@
             <a href="tel:0903123456" class="text-[12px] text-[#F8D127] hover:underline">Cần hỗ trợ kỹ thuật?</a>
           </div>
 
-          <button type="submit" id="btn-submit" class="w-full mt-2 py-3.5 bg-[#F8D127] text-[#1D1312] font-semibold uppercase tracking-[0.16em] hover:bg-white transition flex items-center justify-center gap-2 cursor-pointer shadow-lg">
+          <button type="submit" id="btn-submit"
+            class="w-full mt-2 py-3.5 bg-[#F8D127] text-[#1D1312] font-semibold uppercase tracking-[0.16em] hover:bg-white transition flex items-center justify-center gap-2 cursor-pointer shadow-lg">
             <span>Đăng Nhập Vào Hệ Thống</span>
             <i class="ph ph-arrow-right text-[16px]"></i>
           </button>
@@ -116,17 +143,24 @@
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <!-- Account 1: Admin -->
-            <button onclick="quickLogin('admin', 'admin123')" class="flex items-center gap-3 p-3 border border-white/15 bg-white/[0.03] hover:border-[#F8D127] hover:bg-[#F8D127]/10 transition text-left cursor-pointer group">
-              <div class="size-8 rounded-full bg-[#941E21] text-white font-bold grid place-items-center text-[12px] shrink-0">KP</div>
+            <button onclick="quickLogin('admin', 'admin123')"
+              class="flex items-center gap-3 p-3 border border-white/15 bg-white/[0.03] hover:border-[#F8D127] hover:bg-[#F8D127]/10 transition text-left cursor-pointer group">
+              <div
+                class="size-8 rounded-full bg-[#941E21] text-white font-bold grid place-items-center text-[12px] shrink-0">
+                KP</div>
               <div class="min-w-0">
-                <div class="text-[13px] font-medium text-white group-hover:text-[#F8D127] truncate">Quản Trị Viên (Admin)</div>
+                <div class="text-[13px] font-medium text-white group-hover:text-[#F8D127] truncate">Quản Trị Viên
+                  (Admin)</div>
                 <div class="text-[10px] text-white/45 truncate">Kenji Phạm · Toàn quyền</div>
               </div>
             </button>
 
             <!-- Account 2: Reception -->
-            <button onclick="quickLogin('letan', 'letan123')" class="flex items-center gap-3 p-3 border border-white/15 bg-white/[0.03] hover:border-[#9CC79A] hover:bg-[#9CC79A]/10 transition text-left cursor-pointer group">
-              <div class="size-8 rounded-full bg-[#1E3A2B] text-[#9CC79A] font-bold grid place-items-center text-[12px] shrink-0">PT</div>
+            <button onclick="quickLogin('letan', 'letan123')"
+              class="flex items-center gap-3 p-3 border border-white/15 bg-white/[0.03] hover:border-[#9CC79A] hover:bg-[#9CC79A]/10 transition text-left cursor-pointer group">
+              <div
+                class="size-8 rounded-full bg-[#1E3A2B] text-[#9CC79A] font-bold grid place-items-center text-[12px] shrink-0">
+                PT</div>
               <div class="min-w-0">
                 <div class="text-[13px] font-medium text-white group-hover:text-[#9CC79A] truncate">Lễ Tân Tầng 48</div>
                 <div class="text-[10px] text-white/45 truncate">Mai Phương Thảo · Điều phối ca</div>
@@ -137,8 +171,10 @@
 
         <!-- Role Permissions Note -->
         <div class="mt-6 p-3 bg-black/40 border border-white/10 text-[11px] text-white/50 space-y-1">
-          <div><b class="text-[#F8D127]">👑 Quyền Admin:</b> Toàn quyền duyệt yêu cầu, điều phối công suất 24 chỗ, in phiếu bếp trưởng Kenjiro, hủy &amp; xóa đơn.</div>
-          <div><b class="text-[#9CC79A]">🛎️ Quyền Lễ Tân:</b> Theo dõi ca phục vụ theo giờ, sơ đồ không gian mặt bằng tầng 48, check-in khách đến, tạo đặt bàn mới.</div>
+          <div><b class="text-[#F8D127]">👑 Quyền Admin:</b> Toàn quyền duyệt yêu cầu, điều phối công suất 24 chỗ, in
+            phiếu bếp trưởng Kenjiro, hủy &amp; xóa đơn.</div>
+          <div><b class="text-[#9CC79A]">🛎️ Quyền Lễ Tân:</b> Theo dõi ca phục vụ theo giờ, sơ đồ không gian mặt bằng
+            tầng 48, check-in khách đến, tạo đặt bàn mới.</div>
         </div>
 
       </div>
@@ -197,7 +233,7 @@
       const errBox = document.getElementById('login-error');
       const errMsg = document.getElementById('login-error-msg');
       const btn = document.getElementById('btn-submit');
-      
+
       errBox.classList.add('hidden');
       btn.disabled = true;
       btn.innerHTML = '<i class="ph ph-spinner animate-spin text-[18px]"></i> <span>Đang xác thực...</span>';
@@ -213,9 +249,9 @@
         if (data.success && data.user) {
           // Lưu vào localStorage
           localStorage.setItem('nocturne_user', JSON.stringify(data.user));
-          
+
           btn.innerHTML = '<i class="ph ph-check-circle text-[18px] text-[#1D1312]"></i> <span>Thành công! Đang chuyển hướng...</span>';
-          
+
           setTimeout(() => {
             window.location.href = '/admin';
           }, 400);
@@ -234,5 +270,5 @@
     }
   </script>
 </body>
-</html>
 
+</html>

@@ -36,9 +36,153 @@
       #kitchen-print-modal, #kitchen-print-modal * { visibility: visible; }
       #kitchen-print-modal { position: absolute; left: 0; top: 0; width: 100%; }
     }
+
+    /* ==================== THEME LIGHT (GIAO DIỆN SÁNG ƯU TIÊN TRẮNG) ==================== */
+    body.theme-light, html.theme-light body {
+      background-color: #F8FAFC !important;
+      color: #0F172A !important;
+    }
+    body.theme-light header {
+      background-color: #FFFFFF !important;
+      border-color: #E2E8F0 !important;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+    }
+    body.theme-light header .font-display {
+      color: #941E21 !important;
+    }
+    body.theme-light #header-active-view-label {
+      color: #475569 !important;
+    }
+    body.theme-light #quick-phone-input {
+      background-color: #F1F5F9 !important;
+      border-color: #CBD5E1 !important;
+      color: #0F172A !important;
+    }
+    body.theme-light #quick-phone-input::placeholder {
+      color: #94A3B8 !important;
+    }
+    body.theme-light .bg-\[\#1D1312\],
+    body.theme-light .bg-\[\#1A1413\],
+    body.theme-light .bg-\[\#1F1817\],
+    body.theme-light .bg-\[\#151110\],
+    body.theme-light .bg-\[\#141010\],
+    body.theme-light .bg-\[\#171110\],
+    body.theme-light .bg-\[\#221614\],
+    body.theme-light .bg-\[\#161312\],
+    body.theme-light .bg-\[\#181211\] {
+      background-color: #FFFFFF !important;
+      color: #0F172A !important;
+    }
+    body.theme-light .border-white\/10,
+    body.theme-light .border-white\/12,
+    body.theme-light .border-white\/15,
+    body.theme-light .border-white\/20,
+    body.theme-light .border-white\/25,
+    body.theme-light .border-white\/\[0\.06\],
+    body.theme-light .border-white\/\[0\.08\] {
+      border-color: #E2E8F0 !important;
+    }
+    body.theme-light .text-white {
+      color: #0F172A !important;
+    }
+    body.theme-light .text-white\/95,
+    body.theme-light .text-white\/90,
+    body.theme-light .text-white\/85,
+    body.theme-light .text-white\/80 {
+      color: #1E293B !important;
+    }
+    body.theme-light .text-white\/75,
+    body.theme-light .text-white\/70,
+    body.theme-light .text-white\/65,
+    body.theme-light .text-white\/60 {
+      color: #475569 !important;
+    }
+    body.theme-light .text-white\/55,
+    body.theme-light .text-white\/50,
+    body.theme-light .text-white\/45,
+    body.theme-light .text-white\/40,
+    body.theme-light .text-white\/35,
+    body.theme-light .text-white\/30,
+    body.theme-light .text-white\/20 {
+      color: #64748B !important;
+    }
+    body.theme-light input,
+    body.theme-light select,
+    body.theme-light textarea {
+      background-color: #FFFFFF !important;
+      border-color: #CBD5E1 !important;
+      color: #0F172A !important;
+    }
+    body.theme-light input::placeholder,
+    body.theme-light textarea::placeholder {
+      color: #94A3B8 !important;
+    }
+    body.theme-light .hover\:bg-white\/\[0\.03\]:hover,
+    body.theme-light .hover\:bg-white\/\[0\.04\]:hover,
+    body.theme-light .hover\:bg-white\/5:hover,
+    body.theme-light .hover\:bg-white\/10:hover,
+    body.theme-light .hover\:bg-white\/15:hover {
+      background-color: #F8FAFC !important;
+    }
+    body.theme-light .bg-white\/10 {
+      background-color: #F1F5F9 !important;
+    }
+    body.theme-light .bg-white\/5 {
+      background-color: #F8FAFC !important;
+    }
+    body.theme-light .hatch {
+      background-image: repeating-linear-gradient(135deg, rgba(0,0,0,.03) 0 2px, transparent 2px 9px) !important;
+    }
+    body.theme-light .chamfer.bg-\[\#1A1312\],
+    body.theme-light .chamfer.bg-\[\#1F1817\],
+    body.theme-light .chamfer.bg-\[\#1B1413\] {
+      background-color: #FFFFFF !important;
+      border-color: #CBD5E1 !important;
+      color: #0F172A !important;
+    }
+    body.theme-light #shift-schedule-rows > div,
+    body.theme-light #approval-ledger-rows > div {
+      border-bottom-color: #F1F5F9 !important;
+    }
+    body.theme-light #shift-detail-drawer,
+    body.theme-light #approval-review-panel {
+      background-color: #FFFFFF !important;
+      border-color: #E2E8F0 !important;
+    }
+    body.theme-light .bg-\[\#9CC79A\]\/10,
+    body.theme-light .bg-\[\#9CC79A\]\/15 {
+      background-color: #DCFCE7 !important;
+      border-color: #86EFAC !important;
+    }
+    body.theme-light .text-\[\#9CC79A\] {
+      color: #15803D !important;
+    }
+    body.theme-light .bg-amber-400\/10 {
+      background-color: #FEF9C3 !important;
+      border-color: #FDE047 !important;
+    }
+    body.theme-light .text-amber-400 {
+      color: #B45309 !important;
+    }
+    body.theme-light #stat-bar-container {
+      background-color: #FFFFFF !important;
+      border-color: #E2E8F0 !important;
+    }
+    body.theme-light #stat-bar-progress-track {
+      background-color: #E2E8F0 !important;
+    }
   </style>
+  <script>
+    // Khởi tạo ngay lập tức giao diện Sáng trước khi trình duyệt vẽ trang
+    (function() {
+      var t = localStorage.getItem('nocturne_admin_theme') || 'light';
+      if (t === 'light') {
+        document.documentElement.classList.add('theme-light');
+      }
+    })();
+  </script>
 </head>
-<body class="bg-[#141010] text-white font-body selection:bg-[#F8D127] selection:text-[#1D1312] min-h-screen flex flex-col overflow-x-hidden">
+<body class="theme-light bg-[#F8FAFC] text-[#0F172A] font-body selection:bg-[#F8D127] selection:text-[#1D1312] min-h-screen flex flex-col overflow-x-hidden">
 
   <!-- ==================== TOP EXECUTIVE APP HEADER ==================== -->
   <header class="h-[64px] shrink-0 border-b border-[#F8D127]/20 bg-[#1D1312] px-6 flex items-center justify-between sticky top-0 z-40">
@@ -72,6 +216,12 @@
         <input type="text" id="quick-phone-input" onkeyup="handleQuickSearch(this.value)" placeholder="Tra cứu SĐT / Mã đặt bàn..." class="h-9 w-[220px] bg-[#151110] border border-white/15 px-3 pl-8 text-[12px] text-white/90 placeholder-white/35 focus:outline-none focus:border-[#F8D127] transition" />
         <i class="ph ph-magnifying-glass absolute left-2.5 top-2.5 text-[14px] text-white/40"></i>
       </div>
+
+      <!-- Theme Switcher (Chuyển Sáng / Tối, Ưu tiên Trắng Sáng) -->
+      <button id="theme-toggle-btn" onclick="toggleAdminTheme()" title="Chuyển đổi giao diện Sáng / Tối" class="flex h-9 items-center gap-1.5 px-3 text-[12px] font-medium border border-amber-600/30 bg-amber-50/80 text-amber-900 hover:bg-amber-100 transition cursor-pointer">
+        <i id="theme-icon" class="ph ph-sun text-[16px] text-amber-600"></i>
+        <span id="theme-label" class="hidden md:inline font-semibold">Giao diện Sáng</span>
+      </button>
 
       <!-- Kitchen Print & Client Site -->
       <button onclick="openKitchenPrint()" title="In Phiếu Bếp Trưởng" class="flex h-9 items-center gap-1.5 border border-white/15 px-3 text-[12px] text-white/75 hover:border-[#F8D127] hover:text-[#F8D127] transition">
@@ -1879,8 +2029,44 @@
       renderCurrentView();
     }
 
+    // ==================== THEME CONTROLLER (ƯU TIÊN GIAO DIỆN SÁNG TRẮNG) ====================
+    function initAdminTheme() {
+      // Mặc định luôn là 'light' (Giao diện Sáng) để nhân viên dễ nhìn trong không gian tối
+      const savedTheme = localStorage.getItem('nocturne_admin_theme') || 'light';
+      setAdminTheme(savedTheme);
+    }
+
+    function setAdminTheme(theme) {
+      const body = document.body;
+      const btn = document.getElementById('theme-toggle-btn');
+      const icon = document.getElementById('theme-icon');
+      const label = document.getElementById('theme-label');
+
+      if (theme === 'light') {
+        document.documentElement.classList.add('theme-light');
+        body.classList.add('theme-light');
+        localStorage.setItem('nocturne_admin_theme', 'light');
+        if (icon) icon.className = 'ph ph-sun text-[16px] text-amber-600';
+        if (label) label.textContent = 'Giao diện Sáng (Trắng)';
+        if (btn) btn.className = 'flex h-9 items-center gap-1.5 px-3 text-[12px] font-medium border border-amber-600/30 bg-amber-50 text-amber-900 hover:bg-amber-100 transition cursor-pointer';
+      } else {
+        document.documentElement.classList.remove('theme-light');
+        body.classList.remove('theme-light');
+        localStorage.setItem('nocturne_admin_theme', 'dark');
+        if (icon) icon.className = 'ph ph-moon text-[16px] text-[#F8D127]';
+        if (label) label.textContent = 'Giao diện Tối';
+        if (btn) btn.className = 'flex h-9 items-center gap-1.5 px-3 text-[12px] font-medium border border-white/20 bg-white/5 text-white/80 hover:border-[#F8D127] hover:text-[#F8D127] transition cursor-pointer';
+      }
+    }
+
+    function toggleAdminTheme() {
+      const isLight = document.body.classList.contains('theme-light');
+      setAdminTheme(isLight ? 'dark' : 'light');
+    }
+
     // KHỞI ĐỘNG KHI TẢI TRANG
     window.addEventListener('DOMContentLoaded', () => {
+      initAdminTheme();
       if (!checkAuth()) return;
       updateDateDisplays();
       loadBookings();
