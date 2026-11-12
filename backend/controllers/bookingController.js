@@ -17,7 +17,7 @@ function getBookings() {
 
 function saveBookings(bookings) {
   try {
-    fs.writeFileSync(dataFilePath, JSON.stringify(bookings, null, 2), 'utf-8');
+    fs.writeFileSync(dataFilePath, JSON.stringify(bookings, null, 2) + '\n', 'utf-8');
     return true;
   } catch (err) {
     console.error('Error saving bookings:', err);
