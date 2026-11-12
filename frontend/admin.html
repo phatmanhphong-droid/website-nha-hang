@@ -156,7 +156,7 @@
     <main class="flex min-w-0 flex-1 flex-col overflow-y-auto thin-scroll">
 
       <!-- ============================================================== -->
-      <!-- VIEW 1: CA PHỤC VỤ (SHIFT VIEW - KOMBAI V1)                      -->
+      <!-- VIEW 1: CA PHỤC VỤ (SHIFT VIEW)                                  -->
       <!-- ============================================================== -->
       <div id="view-shift" class="flex min-w-0 flex-1 flex-col px-6 pt-5">
         <!-- Heading & Date Control -->
@@ -184,7 +184,7 @@
           </button>
         </div>
 
-        <!-- Count Line Stats Bar (Kombai V1 Enhanced with Available Tables) -->
+        <!-- Count Line Stats Bar with Available Tables -->
         <div class="tnum flex h-[44px] shrink-0 items-center gap-6 border-y border-white/10 text-[13px] mt-2 overflow-x-auto no-bar">
           <div class="flex items-center gap-3 shrink-0">
             <span class="text-white/55">Khách</span>
@@ -207,7 +207,7 @@
           <div class="shrink-0"><span class="text-white/55">Đã hủy:</span> <span id="stat-bar-cancelled" class="ml-1 font-semibold text-white/50">1</span></div>
         </div>
 
-        <!-- Filters Toolbar (Kombai V1) -->
+        <!-- Filters Toolbar -->
         <div class="flex h-[56px] shrink-0 items-center gap-2 mt-2 flex-wrap">
           <label class="flex h-10 w-[300px] items-center gap-2 border border-white/15 bg-[#1D1312] px-3 text-[13px] text-white/70">
             <i class="ph ph-magnifying-glass text-[16px] text-white/45"></i>
@@ -261,7 +261,7 @@
       </div>
 
       <!-- ============================================================== -->
-      <!-- VIEW 2: SƠ ĐỒ KHÔNG GIAN TẦNG 48 (FLOOR PLAN - KOMBAI V2a)       -->
+      <!-- VIEW 2: SƠ ĐỒ KHÔNG GIAN TẦNG 48 (FLOOR PLAN)                   -->
       <!-- ============================================================== -->
       <div id="view-floorplan" class="hidden min-w-0 flex-1 flex-col px-6 pt-5">
         <!-- Floorplan Sub-Header Controls -->
@@ -311,7 +311,7 @@
                 <span class="text-[12px] text-white/40 italic">Nhấn vào từng khu vực để xem bàn &amp; hồ sơ khách</span>
               </div>
 
-              <!-- Schematic Interactive Grid (Kombai V2a layout) -->
+              <!-- Schematic Interactive Grid -->
               <div class="grid grid-cols-[1fr_1fr_320px] grid-rows-[118px_160px_76px] gap-3.5">
                 
                 <!-- Zone 1: Quầy bar bếp lửa + Bếp than Wakayama -->
@@ -385,7 +385,7 @@
               </div>
             </section>
 
-            <!-- Bottom Arrival Timeline Strip (Kombai V2a) -->
+            <!-- Bottom Arrival Timeline Strip -->
             <section id="floorplan-arrival-strip" class="grid grid-cols-[120px_repeat(5,1fr)] border border-white/10 bg-[#1A1413] h-[92px]">
               <!-- Loaded via JS -->
             </section>
@@ -401,7 +401,7 @@
       </div>
 
       <!-- ============================================================== -->
-      <!-- VIEW 3: DUYỆT YÊU CẦU ĐẶT BÀN & CÔNG SUẤT (KOMBAI V3)             -->
+      <!-- VIEW 3: DUYỆT YÊU CẦU ĐẶT BÀN & CÔNG SUẤT                         -->
       <!-- ============================================================== -->
       <div id="view-approval" class="hidden min-w-0 flex-1 flex-col px-6 pt-5">
         <!-- Heading / Filter Region -->
@@ -467,7 +467,7 @@
             </div>
           </section>
 
-          <!-- Right: Request Detail Review & Night Capacity Context (Kombai V3) -->
+          <!-- Right: Request Detail Review & Night Capacity Context -->
           <aside id="approval-review-panel" class="flex min-w-0 flex-1 flex-col border border-white/10 bg-[#1F1817]">
             <!-- Loaded via JS based on selected booking in approval ledger -->
           </aside>
@@ -812,7 +812,7 @@
     }
 
     // ================================================================
-    // VIEW 1: CA PHỤC VỤ (KOMBAI V1 RENDERER)
+    // VIEW 1: CA PHỤC VỤ (SHIFT VIEW RENDERER)
     // ================================================================
     function renderShiftView() {
       updateDateDisplays();
@@ -1150,7 +1150,7 @@
     }
 
     // ================================================================
-    // VIEW 2: SƠ ĐỒ KHÔNG GIAN TẦNG 48 (KOMBAI V2a RENDERER)
+    // VIEW 2: SƠ ĐỒ KHÔNG GIAN TẦNG 48 (FLOOR PLAN RENDERER)
     // ================================================================
     function renderFloorPlanView() {
       updateDateDisplays();
@@ -1233,7 +1233,7 @@
         pentRes.innerHTML = '<span class="text-[#9CC79A]">🟢 Chưa có tiệc bao tầng · Tầng 48 phục vụ các bàn lẻ</span>';
       }
 
-      // 6. Timeline Arrival Strip (Kombai V2a)
+      // 6. Timeline Arrival Strip
       const strip = document.getElementById('floorplan-arrival-strip');
       const hours = ['17:30', '18:00', '19:00', '19:30', '21:00'];
       
@@ -1363,7 +1363,7 @@
     }
 
     // ================================================================
-    // VIEW 3: DUYỆT YÊU CẦU & CÔNG SUẤT (KOMBAI V3 RENDERER)
+    // VIEW 3: DUYỆT YÊU CẦU & CÔNG SUẤT (APPROVAL RENDERER)
     // ================================================================
     function setApprovalFilter(st) {
       approvalFilter = st;
@@ -1551,7 +1551,7 @@
             </dl>
           </div>
 
-          <!-- BỐI CẢNH CÔNG SUẤT ĐÊM (NIGHT CONTEXT & CAPACITY BAR - KOMBAI V3) -->
+          <!-- BỐI CẢNH CÔNG SUẤT ĐÊM (NIGHT CONTEXT & CAPACITY BAR) -->
           <div class="border-b border-white/10 px-5 py-4 bg-[#181211]">
             <div class="flex items-baseline justify-between">
               <h3 class="text-[14px] font-medium text-white flex items-center gap-2">

@@ -37,7 +37,7 @@
     "status": "Đã đến",
     "arrivedAt": "17:33",
     "createdAt": "2026-11-07T14:30:00.000Z",
-    "updatedAt": "2026-11-09T10:33:00.000Z"
+    "updatedAt": "2026-11-12T14:10:40.688Z"
   },
   {
     "id": "BK-20261109-003",
@@ -70,8 +70,9 @@
     "wine": "Pairing Trà & Mocktail thảo mộc (+650.000₫/khách)",
     "note": "Dị ứng đậu phộng và hạt phỉ nặng",
     "deposit": 1000000,
-    "status": "Chờ xác nhận",
-    "createdAt": "2026-11-09T02:12:00.000Z"
+    "status": "Đã xác nhận",
+    "createdAt": "2026-11-09T02:12:00.000Z",
+    "updatedAt": "2026-11-08T18:09:59.518Z"
   },
   {
     "id": "BK-20261109-005",
