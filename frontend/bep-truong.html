@@ -4,11 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NOCTURNE · Bếp Trưởng Kenjiro Nguyễn</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#F8D127',
+            crimson: '#941E21',
+            obsidian: '#151110'
+          }
+        }
+      }
+    }
+  </script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Be+Vietnam+Pro:wght@200;300;400;500;600&display=swap');
     @import url("https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css");
-    html, body { margin: 0; padding: 0; }
+    html, body { margin: 0; padding: 0; overflow-x: hidden; }
     #root { display: contents; }
     .font-display { font-family: 'Playfair Display', Georgia, serif; }
     .font-body { font-family: 'Be Vietnam Pro', 'Helvetica Neue', sans-serif; }
@@ -16,67 +29,90 @@
     .chamfer { clip-path: polygon(26px 0, 100% 0, 100% 100%, 0 100%, 0 26px); }
     .no-bar { scrollbar-width: none; -ms-overflow-style: none; }
     .no-bar::-webkit-scrollbar { display: none; }
-    .plate input[type="date"]::-webkit-calendar-picker-indicator { opacity: .55; cursor: pointer; }
   </style>
 </head>
 <body class="bg-[#1a1a1a] text-white">
   <div id="root">
     <div class="font-body bg-[#1a1a1a] text-white">
       <!-- HEADER CHUẨN ĐỒNG BỘ ĐIỀU HƯỚNG TỪNG TRANG RIÊNG BIỆT -->
-      <header class="sticky top-0 z-50 border-b border-[#F8D127]/25 bg-[#1D1312]/85 backdrop-blur-xl">
-        <div class="mx-auto flex h-[78px] w-full max-w-[1440px] items-center justify-between px-[64px]">
-          <a class="flex items-baseline gap-3" href="/">
-            <span class="font-display text-[25px] leading-none tracking-[0.24em] text-[#F8D127]">NOCTURNE</span>
-            <span class="text-[9px] uppercase tracking-[0.3em] text-white/40">Tầng 48 · Quận 1</span>
+      <header class="sticky top-0 z-50 border-b border-[#F8D127]/25 bg-[#1D1312]/95 backdrop-blur-xl">
+        <div class="mx-auto flex h-[72px] sm:h-[78px] w-full max-w-[1440px] items-center justify-between px-4 sm:px-8 lg:px-[64px]">
+          <a class="flex items-baseline gap-2 sm:gap-3" href="/">
+            <span class="font-display text-[22px] sm:text-[25px] leading-none tracking-[0.22em] sm:tracking-[0.24em] text-[#F8D127]">NOCTURNE</span>
+            <span class="text-[8px] sm:text-[9px] uppercase tracking-[0.25em] sm:tracking-[0.3em] text-white/40">Tầng 48 · Q.1</span>
           </a>
-          <nav class="flex items-center gap-9 text-[11px] uppercase tracking-[0.18em]">
-            <a class="text-white/65 hover:text-[#F8D127]" href="/">Trang chủ</a>
-            <a class="text-white/65 hover:text-[#F8D127]" href="/thuc-don.html">Thực đơn</a>
+          <nav class="hidden lg:flex items-center gap-8 xl:gap-9 text-[11px] uppercase tracking-[0.18em]">
+            <a class="text-white/65 hover:text-[#F8D127] transition" href="/">Trang chủ</a>
+            <a class="text-white/65 hover:text-[#F8D127] transition" href="/thuc-don.html">Thực đơn</a>
             <a class="text-[#F8D127] border-b border-[#F8D127] pb-1.5" href="/bep-truong.html">Bếp trưởng</a>
-            <a class="text-white/65 hover:text-[#F8D127]" href="/dat-ban.html">Đặt bàn</a>
-            <a class="text-white/65 hover:text-[#F8D127]" href="/lien-he.html">Liên hệ</a>
+            <a class="text-white/65 hover:text-[#F8D127] transition" href="/dat-ban.html">Đặt bàn</a>
+            <a class="text-white/65 hover:text-[#F8D127] transition" href="/lien-he.html">Liên hệ</a>
           </nav>
-          <div class="flex items-center gap-7">
-            <a class="tnum text-[13px] font-light tracking-[0.04em] text-white/65" href="tel:0988888999">0988 888 999</a>
-            <a class="bg-[#F8D127] px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.2em] text-[#1D1312] transition hover:bg-white" href="/dat-ban.html">Đặt bàn</a>
+          <div class="hidden sm:flex items-center gap-5 xl:gap-7">
+            <a class="tnum text-[13px] font-light tracking-[0.04em] text-white/65 hover:text-[#F8D127] transition" href="tel:0988888999">0988 888 999</a>
+            <a class="bg-[#F8D127] px-6 sm:px-7 py-3 sm:py-3.5 text-[11px] font-medium uppercase tracking-[0.2em] text-[#1D1312] transition hover:bg-white" href="/dat-ban.html">Đặt bàn</a>
+          </div>
+          <!-- Mobile Controls -->
+          <div class="flex items-center gap-2 sm:gap-3 lg:hidden">
+            <a href="tel:0988888999" class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center border border-[#F8D127]/40 text-[#F8D127] transition hover:bg-[#F8D127]/10" aria-label="Gọi hotline">
+              <i class="ph ph-phone text-[18px]"></i>
+            </a>
+            <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center border border-white/20 text-white transition hover:border-[#F8D127] hover:text-[#F8D127]" aria-label="Mở menu">
+              <i id="mobile-menu-icon" class="ph ph-list text-[20px] sm:text-[22px]"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu-drawer" class="hidden lg:hidden border-t border-white/10 bg-[#151110] px-5 py-5 transition-all">
+          <div class="flex flex-col space-y-3 text-[13px] uppercase tracking-[0.18em]">
+            <a class="py-2 text-white/80 hover:text-[#F8D127] border-b border-white/5" href="/">Trang chủ</a>
+            <a class="py-2 text-white/80 hover:text-[#F8D127] border-b border-white/5" href="/thuc-don.html">Thực đơn</a>
+            <a class="py-2 text-[#F8D127] font-semibold border-b border-white/5" href="/bep-truong.html">Bếp trưởng</a>
+            <a class="py-2 text-white/80 hover:text-[#F8D127] border-b border-white/5" href="/dat-ban.html">Đặt bàn</a>
+            <a class="py-2 text-white/80 hover:text-[#F8D127] border-b border-white/5" href="/lien-he.html">Liên hệ</a>
+            <div class="pt-2 flex flex-col gap-2.5">
+              <div class="text-[11px] text-white/40 tracking-[0.05em] normal-case">Hotline Concierge tầng 48: <b class="text-[#F8D127] text-[13px]">0988 888 999</b></div>
+              <a class="block w-full bg-[#F8D127] py-3 text-center text-[12px] font-semibold uppercase tracking-[0.2em] text-[#1D1312]" href="/dat-ban.html">Đặt bàn ngay</a>
+            </div>
           </div>
         </div>
       </header>
 
       
-<main id="top" class="pb-[120px]">
+<main id="top" class="pb-12 lg:pb-[120px]">
   <!-- Hero Bếp Trưởng -->
-  <section class="bg-[#941E21] py-[110px]">
-    <div class="mx-auto grid w-full max-w-[1320px] grid-cols-[380px_1fr] items-center gap-[80px] px-[64px]">
-      <div class="border border-[#FFED3E]/30 p-3">
-        <img alt="Bếp trưởng Kenjiro Nguyễn tại NOCTURNE" class="h-[474px] w-full object-cover object-[50%_28%]" src="https://images.pexels.com/photos/39576882/pexels-photo-39576882.jpeg?auto=compress&cs=tinysrgb&w=900&q=80"/>
+  <section class="bg-[#941E21] py-12 lg:py-[110px]">
+    <div class="mx-auto grid w-full max-w-[1320px] grid-cols-1 lg:grid-cols-[380px_1fr] items-center gap-8 lg:gap-[80px] px-4 sm:px-8 lg:px-[64px]">
+      <div class="border border-[#FFED3E]/30 p-2 sm:p-3">
+        <img alt="Bếp trưởng Kenjiro Nguyễn tại NOCTURNE" class="h-[340px] sm:h-[474px] w-full object-cover object-[50%_28%]" src="https://images.pexels.com/photos/39576882/pexels-photo-39576882.jpeg?auto=compress&cs=tinysrgb&w=900&q=80"/>
       </div>
       <div>
-        <div class="h-px w-[80px] bg-[#FFED3E]"></div>
-        <h1 class="mt-6 font-display text-[58px] leading-[1.05] text-[#FFED3E]">Kenjiro Nguyễn</h1>
-        <div class="mt-3 text-[11px] uppercase tracking-[0.22em] text-[#FFED3E]/80">Bếp trưởng điều hành · Sáng lập NOCTURNE</div>
+        <div class="h-px w-[60px] sm:w-[80px] bg-[#FFED3E]"></div>
+        <h1 class="mt-4 sm:mt-6 font-display text-4xl sm:text-5xl lg:text-[58px] leading-[1.05] text-[#FFED3E]">Kenjiro Nguyễn</h1>
+        <div class="mt-2 sm:mt-3 text-[11px] uppercase tracking-[0.22em] text-[#FFED3E]/80">Bếp trưởng điều hành · Sáng lập NOCTURNE</div>
         
-        <div class="mt-8 space-y-5 text-[16px] leading-[1.85] text-white/85">
+        <div class="mt-6 sm:mt-8 space-y-4 sm:space-y-5 text-[15px] sm:text-[16px] leading-[1.8] sm:leading-[1.85] text-white/85">
           <p>Sinh năm 1986 tại Đà Nẵng, anh sang Nhật Bản năm 19 tuổi và dành trọn hơn mười năm học tập, rèn giũa tay nghề tại các bếp kaiseki truyền thống ở Kyoto và Tokyo trước khi về Sài Gòn sáng lập NOCTURNE vào năm 2019.</p>
           <p>Tại NOCTURNE tầng 48, anh kết hợp kỹ nghệ ẩm thực đỉnh cao Nhật Bản cùng phong cách bài trí tinh tế Pháp, đưa thực khách qua những hành trình giác quan độc nhất vô nhị.</p>
         </div>
 
-        <blockquote class="mt-10 border-t border-[#FFED3E]/35 pt-8">
-          <p class="font-display text-[27px] leading-[1.45] text-white">“Tôi cần một ngọn lửa sạch. Nó không cho người nấu giấu lỗi.”</p>
-          <div class="mt-4 text-[12px] uppercase tracking-[0.2em] text-[#FFED3E]">Triết lý nấu ăn bằng than trắng Wakayama 1.200°C</div>
+        <blockquote class="mt-8 sm:mt-10 border-t border-[#FFED3E]/35 pt-6 sm:pt-8">
+          <p class="font-display text-xl sm:text-[27px] leading-[1.45] text-white">“Tôi cần một ngọn lửa sạch. Nó không cho người nấu giấu lỗi.”</p>
+          <div class="mt-3 sm:mt-4 text-[11px] uppercase tracking-[0.2em] text-[#FFED3E]">Triết lý nấu ăn bằng than trắng Wakayama 1.200°C</div>
         </blockquote>
 
-        <div class="mt-11 flex gap-12 border-t border-[#FFED3E]/20 pt-8">
+        <div class="mt-8 sm:mt-11 flex flex-wrap gap-8 sm:gap-12 border-t border-[#FFED3E]/20 pt-6 sm:pt-8">
           <div>
-            <div class="font-display text-[34px] text-white">2019</div>
+            <div class="font-display text-2xl sm:text-[34px] text-white">2019</div>
             <div class="mt-1 text-[11px] uppercase tracking-[0.2em] text-white/55">Thành lập NOCTURNE</div>
           </div>
           <div>
-            <div class="font-display text-[34px] text-white">10 Năm</div>
+            <div class="font-display text-2xl sm:text-[34px] text-white">10 Năm</div>
             <div class="mt-1 text-[11px] uppercase tracking-[0.2em] text-white/55">Học nghề tại Kyoto</div>
           </div>
           <div>
-            <div class="font-display text-[34px] text-white">1.200°C</div>
+            <div class="font-display text-2xl sm:text-[34px] text-white">1.200°C</div>
             <div class="mt-1 text-[11px] uppercase tracking-[0.2em] text-white/55">Nhiệt than trắng</div>
           </div>
         </div>
@@ -85,32 +121,32 @@
   </section>
 
   <!-- Triết lý ẩm thực & Bếp than hoa -->
-  <section class="mx-auto w-full max-w-[1440px] px-[64px] pt-[90px]">
-    <div class="grid grid-cols-3 gap-12 border-b border-white/10 pb-[90px]">
-      <div class="space-y-4">
+  <section class="mx-auto w-full max-w-[1440px] px-4 sm:px-8 lg:px-[64px] pt-12 lg:pt-[90px]">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 border-b border-white/10 pb-12 sm:pb-[90px]">
+      <div class="space-y-3 sm:space-y-4">
         <div class="text-[11px] uppercase tracking-[0.24em] text-[#F8D127]">01. Lửa & Than Trắng</div>
-        <h3 class="font-display text-[26px] text-white">Than Binchotan Wakayama</h3>
-        <p class="text-[14px] leading-[1.8] text-white/60">Được làm từ gỗ sồi sồi Ubame, than trắng Binchotan cháy không khói dầu, tỏa nhiệt đều ở 1.200°C giúp giữ nguyên độ mọng nước và vị ngọt nguyên bản của nguyên liệu quý hiếm.</p>
+        <h3 class="font-display text-[22px] sm:text-[26px] text-white">Than Binchotan Wakayama</h3>
+        <p class="text-[13px] sm:text-[14px] leading-[1.8] text-white/60">Được làm từ gỗ sồi Ubame, than trắng Binchotan cháy không khói dầu, tỏa nhiệt đều ở 1.200°C giúp giữ nguyên độ mọng nước và vị ngọt nguyên bản của nguyên liệu quý hiếm.</p>
       </div>
-      <div class="space-y-4">
+      <div class="space-y-3 sm:space-y-4">
         <div class="text-[11px] uppercase tracking-[0.24em] text-[#F8D127]">02. Nguyên Liệu 24H</div>
-        <h3 class="font-display text-[26px] text-white">Chuyến Bay Đêm Hằng Ngày</h3>
-        <p class="text-[14px] leading-[1.8] text-white/60">Bò Wagyu A5 từ tỉnh Miyazaki, nhím biển Uni đảo Rishiri và cá ngừ Oma được vận chuyển thẳng từ Nhật Bản về sân bay Tân Sơn Nhất, chốt thực đơn vào 15:00 hằng ngày.</p>
+        <h3 class="font-display text-[22px] sm:text-[26px] text-white">Chuyến Bay Đêm Hằng Ngày</h3>
+        <p class="text-[13px] sm:text-[14px] leading-[1.8] text-white/60">Bò Wagyu A5 từ tỉnh Miyazaki, nhím biển Uni đảo Rishiri và cá ngừ Oma được vận chuyển thẳng từ Nhật Bản về sân bay Tân Sơn Nhất, chốt thực đơn vào 15:00 hằng ngày.</p>
       </div>
-      <div class="space-y-4">
+      <div class="space-y-3 sm:space-y-4">
         <div class="text-[11px] uppercase tracking-[0.24em] text-[#F8D127]">03. Giới Hạn 24 Ghế</div>
-        <h3 class="font-display text-[26px] text-white">Chăm Chút Từng Thực Khách</h3>
-        <p class="text-[14px] leading-[1.8] text-white/60">Mỗi tối Bếp trưởng chỉ nhận đúng 24 khách và phục vụ cùng lúc, đảm bảo từng đĩa thức ăn khi bưng ra bàn đều đạt chuẩn xác nhiệt độ và hương vị tinh hoa nhất.</p>
+        <h3 class="font-display text-[22px] sm:text-[26px] text-white">Chăm Chút Từng Thực Khách</h3>
+        <p class="text-[13px] sm:text-[14px] leading-[1.8] text-white/60">Mỗi tối Bếp trưởng chỉ nhận đúng 24 khách và phục vụ cùng lúc, đảm bảo từng đĩa thức ăn khi bưng ra bàn đều đạt chuẩn xác nhiệt độ và hương vị tinh hoa nhất.</p>
       </div>
     </div>
 
     <!-- CTA đặt bàn gặp bếp trưởng -->
-    <div class="mt-[80px] flex items-center justify-between rounded-xl border border-white/10 bg-[#1D1312] p-12">
+    <div class="mt-8 sm:mt-[80px] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 rounded-xl border border-white/10 bg-[#1D1312] p-6 sm:p-12">
       <div>
-        <h2 class="font-display text-[38px] text-white">Trải Nghiệm Bàn Bếp Trưởng (Chef's Counter)</h2>
-        <p class="mt-3 text-[15px] text-white/60">Vị trí ghế ngồi trực tiếp đối diện quầy lửa than, thưởng thức trọn vẹn màn trình diễn nghệ thuật nấu nướng của Chef Kenjiro.</p>
+        <h2 class="font-display text-2xl sm:text-[38px] text-white">Trải Nghiệm Bàn Bếp Trưởng (Chef's Counter)</h2>
+        <p class="mt-2 sm:mt-3 text-[14px] sm:text-[15px] text-white/60">Vị trí ghế ngồi trực tiếp đối diện quầy lửa than, thưởng thức trọn vẹn màn trình diễn nghệ thuật nấu nướng của Chef Kenjiro.</p>
       </div>
-      <a href="/dat-ban.html" class="inline-flex shrink-0 items-center gap-3 bg-[#F8D127] px-8 py-4 text-[12px] font-medium uppercase tracking-[0.2em] text-[#1D1312] transition hover:bg-white">
+      <a href="/dat-ban.html" class="inline-flex shrink-0 items-center gap-3 bg-[#F8D127] px-6 sm:px-8 py-3.5 sm:py-4 text-[12px] font-medium uppercase tracking-[0.2em] text-[#1D1312] transition hover:bg-white">
         Đặt Bàn Quầy Bar
         <i class="ph ph-arrow-right text-[16px]"></i>
       </a>
@@ -121,14 +157,14 @@
 
       <!-- FOOTER ĐỒNG BỘ MỤC LỤC TRANG -->
       <footer class="border-t border-white/12 bg-[#1D1312]" id="thong-tin">
-        <div class="mx-auto grid w-full max-w-[1440px] grid-cols-[1.6fr_1fr_1fr] gap-16 px-[64px] py-16">
+        <div class="mx-auto grid w-full max-w-[1440px] grid-cols-1 md:grid-cols-[1.6fr_1fr_1fr] gap-10 lg:gap-16 px-4 sm:px-8 lg:px-[64px] py-12 lg:py-16">
           <div>
-            <div class="font-display text-[30px] tracking-[0.22em] text-[#F8D127]">NOCTURNE</div>
-            <p class="mt-5 max-w-[320px] text-[13px] leading-[1.8] text-white/45">Nhà hàng nếm thực đơn trên tầng 48. Nhận bàn từ 17:30, mỗi tối 24 khách.</p>
+            <div class="font-display text-[26px] sm:text-[30px] tracking-[0.22em] text-[#F8D127]">NOCTURNE</div>
+            <p class="mt-4 sm:mt-5 max-w-[320px] text-[13px] leading-[1.8] text-white/45">Nhà hàng nếm thực đơn trên tầng 48. Nhận bàn từ 17:30, mỗi tối 24 khách.</p>
           </div>
           <div>
             <div class="text-[10px] uppercase tracking-[0.24em] text-white/35">Mục lục trang</div>
-            <ul class="mt-5 space-y-3 text-[14px] text-white/70">
+            <ul class="mt-4 sm:mt-5 space-y-2.5 sm:space-y-3 text-[14px] text-white/70">
               <li><a class="hover:text-[#F8D127]" href="/">Trang chủ</a></li>
               <li><a class="hover:text-[#F8D127]" href="/thuc-don.html">Thực đơn nếm</a></li>
               <li><a class="hover:text-[#F8D127]" href="/bep-truong.html">Bếp trưởng</a></li>
@@ -138,7 +174,7 @@
           </div>
           <div>
             <div class="text-[10px] uppercase tracking-[0.24em] text-white/35">Liên hệ trực tiếp</div>
-            <div class="mt-5 space-y-3 text-[14px] leading-[1.7] text-white/70">
+            <div class="mt-4 sm:mt-5 space-y-2.5 sm:space-y-3 text-[14px] leading-[1.7] text-white/70">
               <div>Tầng 48, Lê Duẩn, Quận 1, TP. Hồ Chí Minh</div>
               <div class="tnum font-medium text-[#F8D127]">0988 888 999</div>
               <div class="tnum text-white/50">reserve@nocturne.vn</div>
@@ -146,7 +182,7 @@
           </div>
         </div>
         <div class="border-t border-white/10">
-          <div class="mx-auto flex w-full max-w-[1440px] items-center justify-between px-[64px] py-6 text-[11px] tracking-[0.06em] text-white/30">
+          <div class="mx-auto flex w-full max-w-[1440px] flex-col sm:flex-row items-center justify-between gap-3 px-4 sm:px-8 lg:px-[64px] py-5 sm:py-6 text-[11px] tracking-[0.06em] text-white/30 text-center sm:text-left">
             <span>© 2026 NOCTURNE</span>
             <span class="tnum">17:30 – 01:00 · Tầng 48, Quận 1</span>
           </div>
@@ -154,6 +190,19 @@
       </footer>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script>
+    function toggleMobileMenu() {
+      var drawer = document.getElementById('mobile-menu-drawer');
+      var icon = document.getElementById('mobile-menu-icon');
+      if (!drawer) return;
+      if (drawer.classList.contains('hidden')) {
+        drawer.classList.remove('hidden');
+        if (icon) icon.className = 'ph ph-x text-[20px] sm:text-[22px] text-[#F8D127]';
+      } else {
+        drawer.classList.add('hidden');
+        if (icon) icon.className = 'ph ph-list text-[20px] sm:text-[22px]';
+      }
+    }
+  </script>
 </body>
 </html>

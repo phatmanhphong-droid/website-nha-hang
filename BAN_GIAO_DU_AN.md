@@ -188,7 +188,22 @@ Hệ thống đã có sẵn các file kịch bản batch để khởi chạy 1-c
 
 ---
 
+## 8. TỐI ƯU HÓA DI ĐỘNG & TƯƠNG THÍCH ĐIỆN THOẠI CŨ (MOBILE RESPONSIVE & BACKWARD COMPATIBILITY)
+
+1. **Chống tràn viền & Chống đè giao diện trên điện thoại (Mobile-First Layout)**:
+   - Thay thế toàn bộ lề cứng `px-[64px]` thành lề co dãn linh hoạt: `px-4 sm:px-8 lg:px-[64px]`.
+   - Các khối cột form cố định chuyển đổi thông minh: `grid-cols-1 lg:grid-cols-[1fr_440px]`, trên điện thoại form đặt bàn nằm trên và bảng tóm tắt tiền cọc tự động xếp xuống dưới mượt mà, không bị chèn ép hay tràn ngang.
+   - Các nút bấm chọn giờ (`rv-times`) và số khách (`rv-guests`) tự động co giãn 2–3 cột trên màn hình nhỏ.
+   - Bổ sung thanh điều hướng ngăn kéo di động (**Mobile Drawer Navigation Menu**) với nút 3 gạch vàng đồng và nút gọi hotline tức thì trên mọi trang khách hàng.
+2. **Tương thích triệt để với Điện thoại cũ & Trình duyệt cũ (Backward Compatibility)**:
+   - Thay thế script Tailwind v4 mới (vốn kén trình duyệt cũ) sang **Tailwind CSS v3 Play CDN** tương thích tối đa với các hệ điều hành cũ: **iOS 12+ (iPhone 6, 7, 8)** và **Android 7, 8+**.
+   - Bổ sung cơ chế chống tràn ngang toàn trang: `overflow-x: hidden`, thiết kế linh hoạt từ 360px (iPhone mini / SE) đến 4K màn hình lớn.
+   - Các bảng danh sách trong trang Admin được bọc khung cuộn ngang `overflow-x-auto` và chia cột dọc `flex-col lg:flex-row`, cho phép điều phối bàn mượt mà trên cả iPad và điện thoại thông minh.
+
+---
+
 ### KÝ NHẬN BÀN GIAO
 - **Đại diện Kỹ thuật**: Antigravity AI Engineering Team
 - **Thời gian bàn giao**: Ngày 12 tháng 11 năm 2026
 - **Cam kết**: Hệ thống đã được kiểm thử end-to-end, không có lỗi tiềm ẩn, dữ liệu lưu trữ ổn định và bảo toàn nguyên vẹn.
+

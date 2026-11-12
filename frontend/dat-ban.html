@@ -5,7 +5,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NOCTURNE · Đặt Bàn & Tùy Biến Thực Đơn Tầng 48</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#F8D127',
+            crimson: '#941E21',
+            obsidian: '#151110'
+          }
+        }
+      }
+    }
+  </script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Be+Vietnam+Pro:wght@200;300;400;500;600;700&display=swap');
     @import url("https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css");
@@ -56,35 +69,59 @@
   <div id="root">
     <div class="font-body bg-[#1a1a1a] text-white">
       <!-- HEADER CHUẨN ĐỒNG BỘ ĐIỀU HƯỚNG TỪNG TRANG RIÊNG BIỆT -->
-      <header class="sticky top-0 z-50 border-b border-[#F8D127]/25 bg-[#1D1312]/90 backdrop-blur-xl">
-        <div class="mx-auto flex h-[78px] w-full max-w-[1440px] items-center justify-between px-[64px]">
-          <a class="flex items-baseline gap-3" href="/">
-            <span class="font-display text-[25px] leading-none tracking-[0.24em] text-[#F8D127]">NOCTURNE</span>
-            <span class="text-[9px] uppercase tracking-[0.3em] text-white/40">Tầng 48 · Quận 1</span>
+      <header class="sticky top-0 z-50 border-b border-[#F8D127]/25 bg-[#1D1312]/95 backdrop-blur-xl">
+        <div class="mx-auto flex h-[72px] sm:h-[78px] w-full max-w-[1440px] items-center justify-between px-4 sm:px-8 lg:px-[64px]">
+          <a class="flex items-baseline gap-2 sm:gap-3" href="/">
+            <span class="font-display text-[22px] sm:text-[25px] leading-none tracking-[0.22em] sm:tracking-[0.24em] text-[#F8D127]">NOCTURNE</span>
+            <span class="text-[8px] sm:text-[9px] uppercase tracking-[0.25em] sm:tracking-[0.3em] text-white/40">Tầng 48 · Q.1</span>
           </a>
-          <nav class="flex items-center gap-9 text-[11px] uppercase tracking-[0.18em]">
+          <nav class="hidden lg:flex items-center gap-8 xl:gap-9 text-[11px] uppercase tracking-[0.18em]">
             <a class="text-white/65 hover:text-[#F8D127] transition" href="/">Trang chủ</a>
             <a class="text-white/65 hover:text-[#F8D127] transition" href="/thuc-don.html">Thực đơn</a>
             <a class="text-white/65 hover:text-[#F8D127] transition" href="/bep-truong.html">Bếp trưởng</a>
             <a class="text-[#F8D127] border-b border-[#F8D127] pb-1.5" href="/dat-ban.html">Đặt bàn</a>
             <a class="text-white/65 hover:text-[#F8D127] transition" href="/lien-he.html">Liên hệ</a>
           </nav>
-          <div class="flex items-center gap-7">
+          <div class="hidden sm:flex items-center gap-5 xl:gap-7">
             <a class="tnum text-[13px] font-light tracking-[0.04em] text-white/65 hover:text-[#F8D127] transition"
               href="tel:0988888999">0988 888 999</a>
-            <a class="bg-[#F8D127] px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.2em] text-[#1D1312] transition hover:bg-white"
+            <a class="bg-[#F8D127] px-6 sm:px-7 py-3 sm:py-3.5 text-[11px] font-medium uppercase tracking-[0.2em] text-[#1D1312] transition hover:bg-white"
               href="/dat-ban.html">Đặt bàn</a>
+          </div>
+          <!-- Mobile Controls -->
+          <div class="flex items-center gap-2 sm:gap-3 lg:hidden">
+            <a href="tel:0988888999" class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center border border-[#F8D127]/40 text-[#F8D127] transition hover:bg-[#F8D127]/10" aria-label="Gọi hotline">
+              <i class="ph ph-phone text-[18px]"></i>
+            </a>
+            <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center border border-white/20 text-white transition hover:border-[#F8D127] hover:text-[#F8D127]" aria-label="Mở menu">
+              <i id="mobile-menu-icon" class="ph ph-list text-[20px] sm:text-[22px]"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu-drawer" class="hidden lg:hidden border-t border-white/10 bg-[#151110] px-5 py-5 transition-all">
+          <div class="flex flex-col space-y-3 text-[13px] uppercase tracking-[0.18em]">
+            <a class="py-2 text-white/80 hover:text-[#F8D127] border-b border-white/5" href="/">Trang chủ</a>
+            <a class="py-2 text-white/80 hover:text-[#F8D127] border-b border-white/5" href="/thuc-don.html">Thực đơn</a>
+            <a class="py-2 text-white/80 hover:text-[#F8D127] border-b border-white/5" href="/bep-truong.html">Bếp trưởng</a>
+            <a class="py-2 text-[#F8D127] font-semibold border-b border-white/5" href="/dat-ban.html">Đặt bàn</a>
+            <a class="py-2 text-white/80 hover:text-[#F8D127] border-b border-white/5" href="/lien-he.html">Liên hệ</a>
+            <div class="pt-2 flex flex-col gap-2.5">
+              <div class="text-[11px] text-white/40 tracking-[0.05em] normal-case">Hotline Concierge tầng 48: <b class="text-[#F8D127] text-[13px]">0988 888 999</b></div>
+              <a class="block w-full bg-[#F8D127] py-3 text-center text-[12px] font-semibold uppercase tracking-[0.2em] text-[#1D1312]" href="/dat-ban.html">Đặt bàn ngay</a>
+            </div>
           </div>
         </div>
       </header>
 
       <main id="top">
-        <section class="border-b border-white/10 pb-[60px] pt-[80px]">
-          <div class="mx-auto grid w-full max-w-[1440px] grid-cols-[1fr_380px] items-end gap-[80px] px-[64px]">
+        <section class="border-b border-white/10 pb-8 sm:pb-[60px] pt-8 sm:pt-[80px]">
+          <div class="mx-auto grid w-full max-w-[1440px] grid-cols-1 lg:grid-cols-[1fr_380px] items-end gap-8 lg:gap-[80px] px-4 sm:px-8 lg:px-[64px]">
             <div>
-              <div class="mb-6 h-px w-[104px] bg-[#F8D127]"></div>
-              <h1 class="font-display text-[64px] leading-[1.04] text-white">Đặt bàn & Tùy chọn thực đơn</h1>
-              <p class="mt-4 max-w-[500px] text-[16px] font-light leading-[1.85] text-white/60">
+              <div class="mb-4 sm:mb-6 h-px w-[80px] sm:w-[104px] bg-[#F8D127]"></div>
+              <h1 class="font-display text-3xl sm:text-5xl lg:text-[64px] leading-[1.08] sm:leading-[1.04] text-white">Đặt bàn & Tùy chọn thực đơn</h1>
+              <p class="mt-4 max-w-[500px] text-[14px] sm:text-[16px] font-light leading-[1.8] sm:leading-[1.85] text-white/60">
                 Thực đơn được chuẩn bị chính xác theo số lượng khách đã chọn: <strong
                   class="text-[#F8D127] font-medium">2 khách (12 món)</strong>, <strong
                   class="text-[#F8D127] font-medium">8 khách (14 món Vault)</strong> hoặc <strong
@@ -94,89 +131,89 @@
             <div class="border-t border-white/12">
               <div class="flex items-baseline justify-between border-b border-white/10 py-3.5">
                 <span class="text-[10px] uppercase tracking-[0.22em] text-white/40">Giờ nhận khách</span>
-                <span class="tnum text-[15px] text-white/85">17:30 – 22:00</span>
+                <span class="tnum text-[14px] sm:text-[15px] text-white/85">17:30 – 22:00</span>
               </div>
               <div class="flex items-baseline justify-between border-b border-white/10 py-3.5">
                 <span class="text-[10px] uppercase tracking-[0.22em] text-white/40">Sức chứa tối đa</span>
-                <span class="tnum text-[15px] text-white/85">24 chỗ / đêm</span>
+                <span class="tnum text-[14px] sm:text-[15px] text-white/85">24 chỗ / đêm</span>
               </div>
               <div class="flex items-baseline justify-between py-3.5">
                 <span class="text-[10px] uppercase tracking-[0.22em] text-white/40">Quy chuẩn món</span>
-                <span class="tnum text-[15px] text-[#F8D127]">Tùy biến theo số khách</span>
+                <span class="tnum text-[14px] sm:text-[15px] text-[#F8D127]">Tùy biến theo số khách</span>
               </div>
             </div>
           </div>
         </section>
 
-        <section class="py-[80px]" id="dat-ban">
-          <div class="mx-auto grid w-full max-w-[1440px] grid-cols-[1fr_440px] items-start gap-[80px] px-[64px]">
+        <section class="py-8 sm:py-[80px]" id="dat-ban">
+          <div class="mx-auto grid w-full max-w-[1440px] grid-cols-1 lg:grid-cols-[1fr_440px] items-start gap-10 lg:gap-[80px] px-4 sm:px-8 lg:px-[64px]">
 
             <!-- FORM ĐẶT BÀN -->
             <form class="w-full" id="booking-form" onsubmit="return false">
 
               <!-- NGÀY -->
-              <div class="grid grid-cols-[150px_1fr] items-start gap-8 border-t border-white/12 py-7">
-                <label class="pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40" for="rv-date">Ngày
+              <div class="grid grid-cols-1 sm:grid-cols-[150px_1fr] items-start gap-3 sm:gap-8 border-t border-white/12 py-5 sm:py-7">
+                <label class="pt-1 sm:pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40" for="rv-date">Ngày
                   đặt</label>
                 <div>
                   <input
-                    class="tnum w-full border-b border-white/25 bg-transparent pb-3 text-[18px] text-white outline-none [color-scheme:dark] focus:border-[#F8D127]"
+                    class="tnum w-full border-b border-white/25 bg-transparent pb-3 text-[16px] sm:text-[18px] text-white outline-none [color-scheme:dark] focus:border-[#F8D127]"
                     id="rv-date" type="date" value="2026-11-07" />
                 </div>
               </div>
 
               <!-- GIỜ -->
-              <div class="grid grid-cols-[150px_1fr] items-start gap-8 border-t border-white/10 py-7">
-                <div class="pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40">Giờ nhận bàn</div>
+              <div class="grid grid-cols-1 sm:grid-cols-[150px_1fr] items-start gap-3 sm:gap-8 border-t border-white/10 py-5 sm:py-7">
+                <div class="pt-1 sm:pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40">Giờ nhận bàn</div>
                 <div>
-                  <div aria-label="Giờ đặt bàn" class="grid grid-cols-5 gap-2" id="rv-times" role="group">
+                  <div aria-label="Giờ đặt bàn" class="grid grid-cols-3 sm:grid-cols-5 gap-2" id="rv-times" role="group">
                     <button
-                      class="slot tnum border border-white/20 py-3.5 text-[13px] text-white/70 transition-colors hover:border-white/45"
+                      class="slot tnum border border-white/20 py-3 sm:py-3.5 text-[13px] text-white/70 transition-colors hover:border-white/45"
                       data-time="17:30" type="button">17:30</button>
                     <button
-                      class="slot tnum border border-white/20 py-3.5 text-[13px] text-white/70 transition-colors hover:border-white/45"
+                      class="slot tnum border border-white/20 py-3 sm:py-3.5 text-[13px] text-white/70 transition-colors hover:border-white/45"
                       data-time="18:00" type="button">18:00</button>
                     <button
-                      class="slot tnum border border-white/20 py-3.5 text-[13px] text-white/70 transition-colors hover:border-white/45"
+                      class="slot tnum border border-white/20 py-3 sm:py-3.5 text-[13px] text-white/70 transition-colors hover:border-white/45"
                       data-time="19:00" type="button">19:00</button>
                     <button
-                      class="slot tnum border border-white/20 py-3.5 text-[13px] text-white/70 transition-colors hover:border-white/45"
+                      class="slot tnum border border-white/20 py-3 sm:py-3.5 text-[13px] text-white/70 transition-colors hover:border-white/45"
                       data-time="19:30" type="button">19:30</button>
                     <button
-                      class="slot tnum border border-white/20 py-3.5 text-[13px] text-white/70 transition-colors hover:border-white/45"
+                      class="slot tnum border border-white/20 py-3 sm:py-3.5 text-[13px] text-white/70 transition-colors hover:border-white/45"
                       data-time="21:00" type="button">21:00</button>
                   </div>
-                  <p class="mt-3 text-[12px] leading-[1.6] text-white/35">Thực đơn nếm kéo dài khoảng 2 giờ 30 phút.</p>
+                  <p class="mt-2.5 text-[12px] leading-[1.6] text-white/35">Thực đơn nếm kéo dài khoảng 2 giờ 30 phút.</p>
                 </div>
               </div>
 
               <!-- SỐ LƯỢNG KHÁCH (NÓI RÕ SỐ MÓN THEO KHÁCH) -->
-              <div class="grid grid-cols-[150px_1fr] items-start gap-8 border-t border-white/10 py-7">
-                <div class="pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40">Số khách</div>
+              <div class="grid grid-cols-1 sm:grid-cols-[150px_1fr] items-start gap-3 sm:gap-8 border-t border-white/10 py-5 sm:py-7">
+                <div class="pt-1 sm:pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40">Số khách</div>
                 <div>
-                  <div aria-label="Số khách" class="grid grid-cols-4 gap-2" id="rv-guests" role="group">
+                  <div aria-label="Số khách" class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="rv-guests" role="group">
                     <button
-                      class="guest tnum border border-white/20 py-3.5 text-center transition-colors hover:border-white/45"
+                      class="guest tnum border border-white/20 py-3 sm:py-3.5 text-center transition-colors hover:border-white/45"
                       data-guests="2" data-tier="2" type="button">
-                      <span class="block text-[14px]">2 khách</span>
+                      <span class="block text-[13px] sm:text-[14px]">2 khách</span>
                       <span class="block text-[10px] text-white/40 mt-0.5">12 món tinh hoa</span>
                     </button>
                     <button
-                      class="guest tnum border border-white/20 py-3.5 text-center transition-colors hover:border-white/45"
+                      class="guest tnum border border-white/20 py-3 sm:py-3.5 text-center transition-colors hover:border-white/45"
                       data-guests="4" data-tier="4" type="button">
-                      <span class="block text-[14px]">4–6 khách</span>
+                      <span class="block text-[13px] sm:text-[14px]">4–6 khách</span>
                       <span class="block text-[10px] text-white/40 mt-0.5">12 món salon</span>
                     </button>
                     <button
-                      class="guest tnum border border-white/20 py-3.5 text-center transition-colors hover:border-white/45"
+                      class="guest tnum border border-white/20 py-3 sm:py-3.5 text-center transition-colors hover:border-white/45"
                       data-guests="8" data-tier="8" type="button">
-                      <span class="block text-[14px]">8 khách</span>
+                      <span class="block text-[13px] sm:text-[14px]">8 khách</span>
                       <span class="block text-[10px] text-[#F8D127] mt-0.5">14 món Vault VIP</span>
                     </button>
                     <button
-                      class="guest tnum border border-white/20 py-3.5 text-center transition-colors hover:border-white/45"
+                      class="guest tnum border border-white/20 py-3 sm:py-3.5 text-center transition-colors hover:border-white/45"
                       data-guests="16" data-tier="16" type="button">
-                      <span class="block text-[14px]">16+ khách</span>
+                      <span class="block text-[13px] sm:text-[14px]">16+ khách</span>
                       <span class="block text-[10px] text-[#F8D127] mt-0.5">16 món Bespoke</span>
                     </button>
                   </div>
@@ -190,8 +227,8 @@
               </div>
 
               <!-- TÙY CHỈNH THỰC ĐƠN & PHONG CÁCH -->
-              <div class="grid grid-cols-[150px_1fr] items-start gap-8 border-t border-white/10 py-7">
-                <div class="pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40">Tùy biến thực đơn</div>
+              <div class="grid grid-cols-1 sm:grid-cols-[150px_1fr] items-start gap-3 sm:gap-8 border-t border-white/10 py-5 sm:py-7">
+                <div class="pt-1 sm:pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40">Tùy biến thực đơn</div>
                 <div class="space-y-4">
                   <div>
                     <label class="block text-[11px] uppercase tracking-[0.16em] text-white/50 mb-2">Phong cách ẩm
@@ -227,36 +264,36 @@
               </div>
 
               <!-- KHÔNG GIAN BÀN TIỆC -->
-              <div class="grid grid-cols-[150px_1fr] items-start gap-8 border-t border-white/10 py-7">
-                <div class="pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40">Không gian</div>
+              <div class="grid grid-cols-1 sm:grid-cols-[150px_1fr] items-start gap-3 sm:gap-8 border-t border-white/10 py-5 sm:py-7">
+                <div class="pt-1 sm:pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40">Không gian</div>
                 <div>
-                  <div aria-label="Không gian" class="grid grid-cols-2 gap-3" id="rv-space" role="group">
+                  <div aria-label="Không gian" class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="rv-space" role="group">
                     <button
-                      class="space-opt border border-white/15 px-5 py-4 text-left transition hover:border-white/35"
+                      class="space-opt border border-white/15 px-4 sm:px-5 py-3.5 sm:py-4 text-left transition hover:border-white/35"
                       data-seats="2 khách" data-space="Quầy bar bếp lửa" type="button">
                       <span class="block text-[14px] text-white/85">Quầy bar bếp lửa</span>
                       <span class="mt-1 block text-[11px] text-white/40">2 khách · nhìn thẳng bếp than</span>
                     </button>
                     <button
-                      class="space-opt border border-white/15 px-5 py-4 text-left transition hover:border-white/35"
+                      class="space-opt border border-white/15 px-4 sm:px-5 py-3.5 sm:py-4 text-left transition hover:border-white/35"
                       data-seats="2–4 khách" data-space="Bàn cửa sổ view thành phố" type="button">
                       <span class="block text-[14px] text-white/85">Bàn cửa sổ view thành phố</span>
                       <span class="mt-1 block text-[11px] text-white/40">2–4 khách · cửa kính toàn cảnh</span>
                     </button>
                     <button
-                      class="space-opt border border-white/15 px-5 py-4 text-left transition hover:border-white/35"
+                      class="space-opt border border-white/15 px-4 sm:px-5 py-3.5 sm:py-4 text-left transition hover:border-white/35"
                       data-seats="4–6 khách" data-space="Sofa lounge" type="button">
                       <span class="block text-[14px] text-white/85">Sofa lounge</span>
                       <span class="mt-1 block text-[11px] text-white/40">4–6 khách · góc riêng tĩnh lặng</span>
                     </button>
                     <button
-                      class="space-opt border border-white/15 px-5 py-4 text-left transition hover:border-white/35"
+                      class="space-opt border border-white/15 px-4 sm:px-5 py-3.5 sm:py-4 text-left transition hover:border-white/35"
                       data-seats="8–12 khách" data-space="The Obsidian Vault" type="button">
                       <span class="block text-[14px] text-white/85">The Obsidian Vault</span>
                       <span class="mt-1 block text-[11px] text-white/40">8–12 khách · phòng riêng, phục vụ riêng</span>
                     </button>
                     <button
-                      class="space-opt col-span-2 border border-white/15 px-5 py-4 text-left transition hover:border-white/35"
+                      class="space-opt col-span-1 sm:col-span-2 border border-white/15 px-4 sm:px-5 py-3.5 sm:py-4 text-left transition hover:border-white/35"
                       data-seats="12–24 khách" data-space="Penthouse Grand Salon" type="button">
                       <span class="block text-[14px] text-white/85">Penthouse Grand Salon (Bao trọn tầng 48)</span>
                       <span class="mt-1 block text-[11px] text-white/40">12–24 khách · đại yến tiệc, quầy bar & acoustic
@@ -267,34 +304,34 @@
               </div>
 
               <!-- HỌ VÀ TÊN -->
-              <div class="grid grid-cols-[150px_1fr] items-start gap-8 border-t border-white/10 py-7">
-                <label class="pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40" for="rv-name">Họ và
+              <div class="grid grid-cols-1 sm:grid-cols-[150px_1fr] items-start gap-3 sm:gap-8 border-t border-white/10 py-5 sm:py-7">
+                <label class="pt-1 sm:pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40" for="rv-name">Họ và
                   tên</label>
                 <div>
                   <input
-                    class="w-full border-b border-white/25 bg-transparent pb-3 text-[18px] text-white outline-none placeholder:text-white/25 focus:border-[#F8D127]"
+                    class="w-full border-b border-white/25 bg-transparent pb-3 text-[16px] sm:text-[18px] text-white outline-none placeholder:text-white/25 focus:border-[#F8D127]"
                     id="rv-name" placeholder="Nguyễn Văn A" type="text" />
                 </div>
               </div>
 
               <!-- SỐ ĐIỆN THOẠI -->
-              <div class="grid grid-cols-[150px_1fr] items-start gap-8 border-t border-white/10 py-7">
-                <label class="pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40" for="rv-phone">Số điện
+              <div class="grid grid-cols-1 sm:grid-cols-[150px_1fr] items-start gap-3 sm:gap-8 border-t border-white/10 py-5 sm:py-7">
+                <label class="pt-1 sm:pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40" for="rv-phone">Số điện
                   thoại</label>
                 <div>
                   <input
-                    class="tnum w-full border-b border-white/25 bg-transparent pb-3 text-[18px] text-white outline-none placeholder:text-white/25 focus:border-[#F8D127]"
+                    class="tnum w-full border-b border-white/25 bg-transparent pb-3 text-[16px] sm:text-[18px] text-white outline-none placeholder:text-white/25 focus:border-[#F8D127]"
                     id="rv-phone" placeholder="0988 888 999" type="tel" />
                 </div>
               </div>
 
               <!-- GHI CHÚ DỊ ỨNG & YÊU CẦU ĐẶC BIỆT -->
-              <div class="grid grid-cols-[150px_1fr] items-start gap-8 border-y border-white/10 py-7">
-                <label class="pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40" for="rv-note">Ghi chú khẩu
+              <div class="grid grid-cols-1 sm:grid-cols-[150px_1fr] items-start gap-3 sm:gap-8 border-y border-white/10 py-5 sm:py-7">
+                <label class="pt-1 sm:pt-[14px] text-[11px] uppercase tracking-[0.2em] text-white/40" for="rv-note">Ghi chú khẩu
                   vị &amp; Dị ứng</label>
                 <div>
                   <textarea
-                    class="h-[84px] w-full resize-none border-b border-white/25 bg-transparent pb-3 text-[15px] leading-[1.7] text-white outline-none placeholder:text-white/25 focus:border-[#F8D127]"
+                    class="h-[84px] w-full resize-none border-b border-white/25 bg-transparent pb-3 text-[14px] sm:text-[15px] leading-[1.7] text-white outline-none placeholder:text-white/25 focus:border-[#F8D127]"
                     id="rv-note"
                     placeholder="Ví dụ: Dị ứng hải sản vỏ cứng / Dị ứng hạt / Ăn kiêng / Sinh nhật, kỷ niệm ngày cưới..."></textarea>
 
@@ -724,6 +761,19 @@
         });
       }
     })();
+
+    function toggleMobileMenu() {
+      var drawer = document.getElementById('mobile-menu-drawer');
+      var icon = document.getElementById('mobile-menu-icon');
+      if (!drawer) return;
+      if (drawer.classList.contains('hidden')) {
+        drawer.classList.remove('hidden');
+        if (icon) icon.className = 'ph ph-x text-[20px] sm:text-[22px] text-[#F8D127]';
+      } else {
+        drawer.classList.add('hidden');
+        if (icon) icon.className = 'ph ph-list text-[20px] sm:text-[22px]';
+      }
+    }
   </script>
 </body>
 
