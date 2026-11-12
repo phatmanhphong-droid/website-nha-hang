@@ -62,7 +62,13 @@ const server = http.createServer((req, res) => {
         res.end(`Lỗi máy chủ: ${error.code}`);
       }
     } else {
-      res.writeHead(200, { 'Content-Type': contentType });
+      const headers = { 'Content-Type': contentType };
+      if (extname === '.html') {
+        headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, proxy-revalidate';
+        headers['Pragma'] = 'no-cache';
+        headers['Expires'] = '0';
+      }
+      res.writeHead(200, headers);
       res.end(content, 'utf-8');
     }
   });

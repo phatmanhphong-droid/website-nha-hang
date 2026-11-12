@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>NOCTURNE · Quản Trị & Điều Phối Lễ Tân Tầng 48</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -290,7 +293,7 @@
         </div>
 
         <!-- Metric Ribbon & Live Table Availability Banner -->
-        <div class="tnum bg-white border border-slate-200 rounded-lg p-3.5 flex items-center gap-4 sm:gap-6 text-[13px] overflow-x-auto shadow-2xs">
+        <div class="tnum bg-white border border-slate-200 rounded-lg p-3.5 flex items-center gap-4 sm:gap-6 text-[13px] overflow-x-auto whitespace-nowrap thin-scroll shadow-2xs">
           
           <!-- Capacity Progress -->
           <div class="flex items-center gap-3 shrink-0 pr-4 border-r border-slate-200">
@@ -373,37 +376,34 @@
         </div>
 
         <!-- Main Content Grid: Left Schedule Table + Right Detail Drawer -->
-        <div class="flex flex-col lg:flex-row min-h-0 flex-1 gap-5 items-start">
+        <div class="flex flex-col xl:flex-row min-h-0 flex-1 gap-5 items-start">
           
           <!-- Left: Hourly Schedule Ledger Table -->
           <section class="flex-1 min-w-0 w-full bg-white border border-slate-200 rounded-lg shadow-2xs overflow-hidden flex flex-col">
             
-            <!-- Horizontal scroll container ensures NO squashing or text overlap on narrow screens -->
-            <div class="overflow-x-auto thin-scroll">
-              <div class="min-w-[760px] flex flex-col">
-                
-                <!-- Table Column Header -->
-                <div class="grid h-[42px] grid-cols-[1fr_80px_200px_150px_90px_44px] items-center gap-3 border-b border-slate-200 bg-slate-50/90 px-4 text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500">
-                  <span>Khách hàng</span>
-                  <span class="text-center">Số khách</span>
-                  <span>Không gian bàn</span>
-                  <span>Trạng thái</span>
-                  <span class="text-center">Đến lúc</span>
-                  <span class="text-right">Lưu ý</span>
-                </div>
-
-                <!-- Scrollable list of rows grouped by time slot -->
-                <div id="shift-schedule-rows" class="divide-y divide-slate-100 max-h-[calc(100vh-360px)] overflow-y-auto thin-scroll">
+            <!-- Table container with generous minimum width to completely eliminate squashed text -->
+            <div class="w-full overflow-x-auto thin-scroll">
+              <table class="w-full min-w-[940px] border-collapse text-left">
+                <thead>
+                  <tr class="h-[44px] border-b border-slate-200 bg-slate-50/90 text-[11px] font-bold uppercase tracking-[0.08em] text-slate-500 select-none">
+                    <th class="py-3 px-4 w-[280px] min-w-[260px]">Khách hàng</th>
+                    <th class="py-3 px-3 w-[110px] text-center">Số khách</th>
+                    <th class="py-3 px-4 w-[240px] min-w-[220px]">Không gian bàn</th>
+                    <th class="py-3 px-4 w-[180px] min-w-[160px]">Trạng thái</th>
+                    <th class="py-3 px-3 w-[100px] text-center">Đến lúc</th>
+                    <th class="py-3 px-3 w-[70px] text-center">Lưu ý</th>
+                  </tr>
+                </thead>
+                <tbody id="shift-schedule-rows" class="divide-y divide-slate-100 text-[13px]">
                   <!-- Rendered via JS -->
-                </div>
-
-              </div>
+                </tbody>
+              </table>
             </div>
 
           </section>
 
-          <!-- Right: Reservation Details Panel Drawer (420px) -->
-          <aside id="shift-detail-drawer" class="w-full lg:w-[410px] xl:w-[430px] shrink-0 bg-white border border-slate-200 rounded-lg shadow-2xs flex flex-col overflow-hidden">
+          <!-- Right: Reservation Details Panel Drawer -->
+          <aside id="shift-detail-drawer" class="w-full xl:w-[400px] 2xl:w-[420px] shrink-0 bg-white border border-slate-200 rounded-lg shadow-2xs flex flex-col overflow-hidden">
             <!-- Rendered via JS based on selected booking -->
           </aside>
 
@@ -612,29 +612,29 @@
         <!-- Main Content Split Area: Approval Ledger + Night Review Panel -->
         <div class="flex flex-col xl:flex-row min-h-0 flex-1 gap-5 items-start">
           
-          <!-- Left: Requests Ledger Table (710px) -->
-          <section class="w-full xl:w-[710px] shrink-0 bg-white border border-slate-200 rounded-lg shadow-2xs overflow-hidden flex flex-col">
+          <!-- Left: Requests Ledger Table (720px) -->
+          <section class="w-full xl:w-[720px] shrink-0 bg-white border border-slate-200 rounded-lg shadow-2xs overflow-hidden flex flex-col">
             <div class="overflow-x-auto thin-scroll">
-              <div class="min-w-[620px] flex flex-col">
-                <div class="grid h-[42px] grid-cols-[110px_1fr_150px_64px_110px] items-center gap-3 border-b border-slate-200 bg-slate-50/90 px-4 text-[11px] font-bold uppercase tracking-[0.06em] text-slate-500">
-                  <span>Đã chờ</span>
-                  <span>Khách hàng</span>
-                  <span>Ngày phục vụ</span>
-                  <span class="text-right">Khách</span>
-                  <span class="text-right">Cọc dự kiến</span>
-                </div>
-
-                <!-- Scrollable list container for ledger rows -->
-                <div id="approval-ledger-rows" class="divide-y divide-slate-100 max-h-[calc(100vh-340px)] overflow-y-auto thin-scroll text-[14px]">
+              <table class="w-full min-w-[700px] border-collapse text-left">
+                <thead>
+                  <tr class="h-[44px] border-b border-slate-200 bg-slate-50/90 text-[11px] font-bold uppercase tracking-[0.06em] text-slate-500 select-none">
+                    <th class="py-3 px-4 w-[130px]">Đã chờ</th>
+                    <th class="py-3 px-4 w-[220px]">Khách hàng</th>
+                    <th class="py-3 px-4 w-[180px]">Ngày phục vụ</th>
+                    <th class="py-3 px-3 w-[70px] text-right">Khách</th>
+                    <th class="py-3 px-4 w-[120px] text-right">Cọc dự kiến</th>
+                  </tr>
+                </thead>
+                <tbody id="approval-ledger-rows" class="divide-y divide-slate-100 text-[13px]">
                   <!-- Loaded via JS -->
-                </div>
+                </tbody>
+              </table>
+            </div>
 
-                <!-- Ledger Summary Footer Bar -->
-                <div class="tnum flex h-[44px] shrink-0 items-center justify-between border-t border-slate-200 px-4 text-[13px] bg-slate-50 font-medium text-slate-600">
-                  <span id="approval-summary-count">0 yêu cầu, 0 khách</span>
-                  <span id="approval-summary-deposit" class="text-[#B45309] font-bold">Cọc dự kiến 0₫</span>
-                </div>
-              </div>
+            <!-- Ledger Summary Footer Bar -->
+            <div class="tnum flex h-[44px] shrink-0 items-center justify-between border-t border-slate-200 px-4 text-[13px] bg-slate-50 font-medium text-slate-600">
+              <span id="approval-summary-count">0 yêu cầu, 0 khách</span>
+              <span id="approval-summary-deposit" class="text-[#B45309] font-bold">Cọc dự kiến 0₫</span>
             </div>
           </section>
 
@@ -1077,7 +1077,7 @@
       const rowsContainer = document.getElementById('shift-schedule-rows');
 
       if (sortedTimeKeys.length === 0) {
-        rowsContainer.innerHTML = '<div class="p-12 text-center text-slate-400 font-medium">Không tìm thấy đơn đặt bàn nào theo bộ lọc này.</div>';
+        rowsContainer.innerHTML = '<tr><td colspan="6" class="p-12 text-center text-slate-400 font-medium">Không tìm thấy đơn đặt bàn nào theo bộ lọc này.</td></tr>';
       } else {
         rowsContainer.innerHTML = sortedTimeKeys.map(timeKey => {
           const items = groups[timeKey];
@@ -1093,84 +1093,90 @@
             let statusPill = '';
             if (isDining) {
               statusPill = `
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[12px] font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-semibold bg-amber-50 text-amber-800 border border-amber-200 whitespace-nowrap">
                   <span class="size-2 rounded-full bg-amber-500 animate-pulse"></span>
                   Đang dùng bữa
                 </span>
               `;
             } else if (isCompleted) {
               statusPill = `
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[12px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 whitespace-nowrap">
                   <span class="size-2 rounded-full bg-emerald-500"></span>
                   Đã trả bàn
                 </span>
               `;
             } else if (b.status === 'Đã nhận cọc') {
               statusPill = `
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-blue-50 text-blue-700 border border-blue-200">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-medium bg-blue-50 text-blue-700 border border-blue-200 whitespace-nowrap">
                   <span class="size-2 rounded-full bg-blue-500"></span>
                   Đã nhận cọc
                 </span>
               `;
             } else if (b.status === 'Chờ xác nhận') {
               statusPill = `
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-amber-50 text-amber-700 border border-amber-200">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-medium bg-amber-50 text-amber-700 border border-amber-200 whitespace-nowrap">
                   <span class="size-2 rounded-full bg-amber-500"></span>
                   Chờ duyệt
                 </span>
               `;
             } else if (isCancelled) {
               statusPill = `
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-slate-100 text-slate-500 border border-slate-200 line-through">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-medium bg-slate-100 text-slate-500 border border-slate-200 line-through whitespace-nowrap">
                   Đã hủy
                 </span>
               `;
             } else {
               statusPill = `
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-slate-100 text-slate-700 border border-slate-200">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-medium bg-slate-100 text-slate-700 border border-slate-200 whitespace-nowrap">
                   ${b.status}
                 </span>
               `;
             }
 
             return `
-              <div onclick="selectShiftBooking('${b.id}')" class="grid h-[58px] grid-cols-[1fr_80px_200px_150px_90px_44px] items-center gap-3 px-4 text-[13px] cursor-pointer transition-colors ${isSelected ? 'bg-red-50/80 border-l-4 border-l-[#941E21]' : 'hover:bg-slate-50/80'} ${isCancelled ? 'opacity-60' : ''}">
-                <div class="min-w-0 pr-2">
-                  <div class="font-semibold text-slate-900 truncate ${isCancelled ? 'line-through text-slate-400' : ''}">${b.name}</div>
-                  <div class="tnum text-[11px] text-slate-400 flex items-center gap-2">
-                    <span>${b.id}</span>
+              <tr onclick="selectShiftBooking('${b.id}')" class="h-[62px] border-b border-slate-100 cursor-pointer transition-colors ${isSelected ? 'bg-red-50/90 font-medium' : 'hover:bg-slate-50/80'} ${isCancelled ? 'opacity-60' : ''}">
+                <td class="py-3 px-4 align-middle">
+                  <div class="font-bold text-slate-900 text-[13.5px] truncate ${isCancelled ? 'line-through text-slate-400' : ''}">${b.name}</div>
+                  <div class="tnum text-[11px] text-slate-500 font-medium flex items-center gap-2 mt-0.5 whitespace-nowrap">
+                    <span class="text-slate-600 font-semibold">${b.id}</span>
                     <span>·</span>
                     <span>${b.phone || 'Chưa có SĐT'}</span>
                   </div>
-                </div>
-                <div class="text-center">
-                  <span class="tnum inline-block font-semibold bg-slate-100 text-slate-700 px-2 py-0.5 rounded text-[12px]">${b.guests} khách</span>
-                </div>
-                <div class="text-slate-700 truncate font-medium flex items-center gap-1.5 text-[12.5px]">
-                  <i class="ph ph-map-pin text-[#B45309] text-[15px] shrink-0"></i>
-                  <span class="truncate">${b.space}</span>
-                </div>
-                <div>
+                </td>
+                <td class="py-3 px-3 align-middle text-center">
+                  <span class="tnum inline-block font-semibold bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full text-[12px] whitespace-nowrap">${b.guests} khách</span>
+                </td>
+                <td class="py-3 px-4 align-middle">
+                  <div class="text-slate-800 font-medium flex items-center gap-1.5 text-[12.5px]">
+                    <i class="ph ph-map-pin text-[#B45309] text-[15px] shrink-0"></i>
+                    <span class="truncate" title="${b.space}">${b.space}</span>
+                  </div>
+                </td>
+                <td class="py-3 px-4 align-middle whitespace-nowrap">
                   ${statusPill}
-                </div>
-                <div class="tnum text-center text-[12.5px] ${b.arrivedAt ? 'text-emerald-700 font-bold' : 'text-slate-400'}">
-                  ${b.arrivedAt || '—'}
-                </div>
-                <div class="text-right">
-                  ${b.note ? '<i class="ph ph-warning-circle text-[18px] text-amber-600 hover:text-amber-700" title="Có ghi chú đặc biệt / cảnh báo dị ứng"></i>' : '<span class="text-slate-300">—</span>'}
-                </div>
-              </div>
+                </td>
+                <td class="py-3 px-3 align-middle text-center whitespace-nowrap">
+                  <span class="tnum text-[12.5px] ${b.arrivedAt ? 'text-emerald-700 font-bold' : 'text-slate-400'}">${b.arrivedAt || '—'}</span>
+                </td>
+                <td class="py-3 px-3 align-middle text-center">
+                  ${b.note ? '<i class="ph ph-warning-circle text-[20px] text-amber-600 hover:text-amber-700 inline-block align-middle" title="Có ghi chú đặc biệt / cảnh báo dị ứng"></i>' : '<span class="text-slate-300">—</span>'}
+                </td>
+              </tr>
             `;
           }).join('');
 
           return `
-            <div class="tnum flex h-[34px] items-center justify-between bg-slate-100/70 px-4 text-[12px] border-b border-slate-200">
-              <span class="font-bold text-slate-800 flex items-center gap-2">
-                <i class="ph ph-clock text-[#941E21]"></i>
-                <span>${timeKey}</span>
-              </span>
-              <span class="text-slate-500 font-medium">${timeTables} bàn · ${timeGuests} thực khách</span>
-            </div>
+            <tr class="bg-slate-100/80 border-y border-slate-200">
+              <td colspan="6" class="px-4 py-2 font-bold text-slate-800 text-[12px]">
+                <div class="flex items-center justify-between">
+                  <span class="flex items-center gap-2">
+                    <i class="ph ph-clock text-[#941E21]"></i>
+                    <span>Khung giờ ${timeKey}</span>
+                  </span>
+                  <span class="text-slate-500 font-medium">${timeTables} bàn · ${timeGuests} thực khách</span>
+                </div>
+              </td>
+            </tr>
             ${rowsHtml}
           `;
         }).join('');
@@ -1662,7 +1668,7 @@
 
       const ledger = document.getElementById('approval-ledger-rows');
       if (list.length === 0) {
-        ledger.innerHTML = '<div class="p-12 text-center text-slate-400 font-medium">Không có yêu cầu đặt bàn nào theo tiêu chí này.</div>';
+        ledger.innerHTML = '<tr><td colspan="5" class="p-12 text-center text-slate-400 font-medium">Không có yêu cầu đặt bàn nào theo tiêu chí này.</td></tr>';
       } else {
         ledger.innerHTML = list.map(b => {
           const isSelected = (b.id === selectedApprovalBookingId);
@@ -1671,22 +1677,26 @@
           const dep = b.deposit || (b.guests * 500000);
 
           return `
-            <div onclick="selectApprovalBooking('${b.id}')" class="grid h-[58px] grid-cols-[110px_1fr_150px_64px_110px] items-center gap-3 px-4 cursor-pointer transition-colors ${isSelected ? 'bg-red-50/80 border-l-4 border-l-[#941E21]' : 'hover:bg-slate-50/80'}">
-              <div class="tnum leading-tight">
-                <div class="${isUrgent ? 'text-red-600 font-bold' : 'text-slate-800 font-semibold'} text-[12.5px]">${waitStr}</div>
-                <div class="text-[11px] text-slate-400">${b.createdAt ? b.createdAt.substring(5, 16).replace('T', ' ') : '—'}</div>
-              </div>
-              <div class="min-w-0 pr-2">
-                <div class="truncate font-semibold text-slate-900">${b.name}</div>
-                <div class="truncate text-[11px] text-slate-500">${b.status}</div>
-              </div>
-              <div class="tnum leading-tight">
-                <div class="text-[#941E21] font-bold text-[13px]">${b.date}, ${b.time}</div>
-                <div class="truncate text-[11px] text-slate-500">${b.space}</div>
-              </div>
-              <span class="tnum text-right font-bold text-slate-800">${b.guests}k</span>
-              <span class="tnum text-right font-bold text-[#B45309]">${fmt.format(dep)}₫</span>
-            </div>
+            <tr onclick="selectApprovalBooking('${b.id}')" class="h-[60px] border-b border-slate-100 cursor-pointer transition-colors ${isSelected ? 'bg-red-50/90 font-medium border-l-4 border-l-[#941E21]' : 'hover:bg-slate-50/80'}">
+              <td class="py-3 px-4 align-middle tnum leading-tight">
+                <div class="${isUrgent ? 'text-red-600 font-bold' : 'text-slate-800 font-semibold'} text-[12.5px] whitespace-nowrap">${waitStr}</div>
+                <div class="text-[11px] text-slate-400 whitespace-nowrap">${b.createdAt ? b.createdAt.substring(5, 16).replace('T', ' ') : '—'}</div>
+              </td>
+              <td class="py-3 px-4 align-middle">
+                <div class="font-bold text-slate-900 text-[13.5px] truncate">${b.name}</div>
+                <div class="text-[11.5px] text-slate-500 font-medium whitespace-nowrap">${b.status}</div>
+              </td>
+              <td class="py-3 px-4 align-middle tnum leading-tight">
+                <div class="text-[#941E21] font-bold text-[13px] whitespace-nowrap">${b.date}, ${b.time}</div>
+                <div class="text-[11.5px] text-slate-500 truncate" title="${b.space}">${b.space}</div>
+              </td>
+              <td class="py-3 px-3 align-middle text-right tnum font-bold text-slate-800 whitespace-nowrap">
+                ${b.guests}k
+              </td>
+              <td class="py-3 px-4 align-middle text-right tnum font-bold text-[#B45309] whitespace-nowrap">
+                ${fmt.format(dep)}₫
+              </td>
+            </tr>
           `;
         }).join('');
       }
